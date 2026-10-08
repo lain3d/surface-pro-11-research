@@ -6,6 +6,8 @@
 # copy, because a truncated 4 GB ISO looks exactly like a good one.
 #
 # Usage:  bash tools/stage-to-drive.sh [/mnt/d/surface]
+# Historical image-staging utility, not a public source publisher. Review old
+# handoff archives before copying; use the GitHub release tags for public source.
 set -uo pipefail
 
 DEST=${1:-/mnt/d/surface}
@@ -35,7 +37,7 @@ cp -n "$SRC"/baseline/*.deb "$DEST/kernel-debs/" 2>/dev/null
 ls -1 "$DEST/kernel-debs/" 2>/dev/null | sed 's/^/  /'
 
 step "handoff tarballs"
-for f in "$DOCS"/sp11-handoff-*.tar.gz "$DOCS"/sp11-repos-*.tar; do
+for f in "$DOCS"/sp11-handoff-*.tar.gz; do
     [ -f "$f" ] || continue
     echo "  $(basename "$f")  $(du -h "$f" | cut -f1)"
     cp -n "$f" "$DEST/handoff/" || fail=1

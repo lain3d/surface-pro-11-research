@@ -6,6 +6,11 @@ Everything needed to boot Linux on this machine and continue the work. Staged
 Historical local-drive manifest, not the contents of the public release.
 The private-memory archive, Git bundles, Ghidra projects, and ISO images below
 are not distributed in the public research snapshot.
+The private Git-bundle generator has been removed. For current public source,
+use the matching `research-handoff-2026-10` release tags in
+[the research repo](https://github.com/lain3d/surface-pro-11-research/releases/tag/research-handoff-2026-10)
+and [the kernel repo](https://github.com/lain3d/surface-pro-11-kernel/releases/tag/research-handoff-2026-10).
+The old bundle-clone commands below describe that local drive only.
 
 ## Start here
 

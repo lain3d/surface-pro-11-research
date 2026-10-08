@@ -18,7 +18,9 @@
 set -euo pipefail
 
 REPO=${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
-LOGS=${LOGS:-/mnt/c/sp11-stage/logs}
+# Public packaging has no implicit dependency on a private local log stage.
+# Set LOGS explicitly only after reviewing the selected logs for disclosure.
+LOGS=${LOGS:-}
 DEST=${1:-/mnt/e/sp11-audio-handoff}
 
 echo "=== destination: $DEST ==="
@@ -33,13 +35,13 @@ echo "  $(find "$DEST" -type f | wc -l) files"
 
 echo "=== logs ==="
 mkdir -p "$DEST/logs"
-# boot0 is the current state: integ20, ADSP attached, CDSP up, no audio.
-for f in boot0.txt boot-1.txt; do
-    [ -f "$LOGS/$f" ] && cp "$LOGS/$f" "$DEST/logs/" && echo "  $f"
-done
-# the streamed console, copied out of the Windows ESP by the caller
-[ -f "$LOGS/kmsg-integ20.txt" ] && cp "$LOGS/kmsg-integ20.txt" "$DEST/logs/" \
-    && echo "  kmsg-integ20.txt"
+if [ -n "$LOGS" ]; then
+    for f in boot0.txt boot-1.txt kmsg-integ20.txt; do
+        [ -f "$LOGS/$f" ] && cp "$LOGS/$f" "$DEST/logs/" && echo "  $f"
+    done
+else
+    echo "  no LOGS supplied; source-only handoff"
+fi
 
 echo "=== normalise line endings ==="
 find "$DEST" -type f \( -name '*.sh' -o -name '*.py' -o -name '*.md' \) -print0 \
