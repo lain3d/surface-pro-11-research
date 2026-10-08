@@ -76,6 +76,6 @@ ls -la "$OUT"
 sha256sum "$OUT"
 echo
 echo "contents:"
-tar -tzf "$OUT" | sed 's|^sp11-handoff/||' | awk -F/ 'NF<=2' | sort | head -40
+tar -tzf "$OUT" | sed 's|^sp11-handoff/||' | awk -F/ 'NF<=2' | sort | awk 'NR<=40'
 echo
 echo "Unpack on the target with:  tar -xzf $(basename "$OUT") && cd sp11-handoff && cat BRINGUP.md"
