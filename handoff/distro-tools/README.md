@@ -115,4 +115,32 @@ archives. They are not prebuilt kernel or ISO assets. Use
 `tools/make-audio-handoff.sh` for audio-focused material. Both include these
 exports and the licenses from committed Git content, never assistant memories.
 If exporting a patch series, explicitly set `WT` to a public kernel clone;
-`KERNEL_REF` defaults to `main`, and `BASE` to `upstream/base`.
+`KERNEL_REF` defaults to `main`, and `BASE` to the preserved public squashed
+import `31339fbd93060c569c7ae3b911f87726d3021fc6` (also named `upstream/base`
+in the kernel repository). Override `KERNEL_REF` with the handoff tag to freeze
+the selected tip rather than following a future `main`.
+
+## Publication verification
+
+Executed on 2026-10-08 under x86_64 Ubuntu 24.04/WSL, using real tools and
+disposable file-backed inputs. Fixture kernel/initrd/DTB payloads were structural
+test data, not bootable hardware images.
+
+| Exercised path | Observed result |
+|---|---|
+| Exported/changed Bash scripts | All 14 parsed with `bash -n`. |
+| ADSP runner on a live root | Refused before hardware operations: no `/etc/initrd-release`. |
+| Ubuntu stub acquisition | Actual 259.5 package downloaded/extracted; AArch64 PE stub recognized `.dtb`. |
+| ADSP UKI builder | Build/install/status/rollback on a disposable bind-mounted ESP; total size and non-command-line sections/payloads preserved; blacklist extended and pre-mount break added; original and fallback restored/preserved. |
+| EFI variants A/B | Real PE files constructed; A retained DTB, B omitted it, both retained kernel/initrd bytes; default path left the fixture ESP unchanged. |
+| Existing kernel fetch path | Real checkout reused without fetch/reset; `make kernelversion` returned `7.1.3`. |
+| Public runtime guard | Pinned denisix checkout passed source validation up to the missing-ISO boundary; modified runtime and wrong-origin inputs rejected before mounting. |
+| ISO writer | Real xorriso assembled a small file-backed fixture; retained 6 MiB FAT ESP byte-for-byte and emitted El Torito UEFI/GPT metadata. |
+| Public handoff packagers | Both included exported tools and BSD license; neither included assistant-memory directories; audio handoff copied no implicit local logs. |
+| Optional public kernel patch export | 53 patches applied to the recorded public base reconstructed the complete published `main` tree `7c1ba25b2f68e3ad073923ea839698151bc79ff4`. |
+
+Initial WSL attempts correctly propagated Git ownership and missing-make
+failures; prerequisites were then satisfied, without disabling Git's ownership
+check globally. No Surface hardware boot, ADSP restart, kernel compilation,
+optional EFI variant C/ESP replacement, full ARM64 distro remaster, or first-boot
+installer/session integration was qualified by this publication work.

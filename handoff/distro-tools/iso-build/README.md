@@ -142,10 +142,11 @@ The preserved speaker routing has no demonstrated speaker-protection guarantee.
 
 ## Non-destructive handoff checks
 
-On Linux, run `bash -n` on each script. Smoke the fetcher with fake Git/make
-commands in a temporary PATH: assert public/main clone arguments, existing-tree
-reuse, and nonzero clone/log/kernelversion failures. With fake Git/ISO tools,
-confirm remaster rejects missing `DISTRO_ROOT`, wrong origin/revision or changed
-runtime files before any mount/copy, and captures only `DISTRO_FILES` in rsync.
-Use temporary work paths for missing-input verifier/assembly checks; do not run
-apt, mounts, chroots, remastering or USB writes as part of source-only smoke.
+Use real Git, make, PE tools and ISO readers on disposable paths. The
+[publication verification record](../README.md#publication-verification)
+distinguishes source/PE/ISO checks from an actual hardware boot.
+Do not use a physical root disk or write USB media for these checks. The
+historical appended-ESP interval still needs review against your actual base.
+On a Windows-mounted checkout, Git may reject root's access as dubious
+ownership; run as the owner or trust only that known checkout for the invocation,
+never a blanket `safe.directory=*`.

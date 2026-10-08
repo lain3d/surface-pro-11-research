@@ -7,11 +7,19 @@
 
 ## Public release
 
-Original research prose, probes, and tooling are MIT-licensed; see [LICENSE](LICENSE).
+Original research prose, probes, and tooling use the scoped [MIT grant](LICENSE)
+unless a file declares another license. BSD-3-Clause tools retain their
+[BSD-3-Clause license](LICENSES/BSD-3-Clause.txt).
 Third-party patches, quoted source, driver excerpts, OEM ACPI tables, and
 vendor-derived register data retain their existing rights and provenance.
 The MIT license does not grant redistribution rights over vendor material.
 Complete proprietary drivers and firmware are not supplied.
+
+Matching October 2026 source handoff releases:
+[research](https://github.com/lain3d/surface-pro-11-research/releases/tag/research-handoff-2026-10)
+and [kernel](https://github.com/lain3d/surface-pro-11-kernel/releases/tag/research-handoff-2026-10),
+both tagged `research-handoff-2026-10`. These are experimental source snapshots,
+not prebuilt kernel, ISO, firmware, or support releases.
 
 ### Most useful handoff
 

@@ -16,7 +16,8 @@ set -euo pipefail
 
 REPO=${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
 WT=${WT:-}
-BASE=${BASE:-upstream/base}
+# Preserved public squashed import; works in normal and bare clones.
+BASE=${BASE:-31339fbd93060c569c7ae3b911f87726d3021fc6}
 KERNEL_REF=${KERNEL_REF:-main}
 OUT=${1:-$PWD/sp11-handoff-$(date +%Y%m%d).tar.gz}
 
