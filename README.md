@@ -17,8 +17,8 @@ Complete proprietary drivers and firmware are not supplied.
 
 - [Front camera state and measured fixes](design/camera-state-20260807.md):
   IMX681 capture, desktop/libcamera integration, C-PHY bring-up, and mode timing.
-- [Kernel source and experimental branches](https://github.com/lain3d/surface-pro-11-kernel):
-  the latest camera work is on `debug/camss-cphy`, not the default `sp11` branch.
+- [Kernel source on default `main`](https://github.com/lain3d/surface-pro-11-kernel/tree/main):
+  latest released front-camera driver and associated C-PHY/CAMSS work together.
 - [Upstream handoff and remaining limits](design/upstream.md): audio/ADSP,
   USB-C/DisplayPort, USB4, and camera/codec findings.
 - [libcamera and FFmpeg patches; libaperture findings](patches/): userspace fixes
@@ -32,6 +32,8 @@ Complete proprietary drivers and firmware are not supplied.
   intentionally retain CRLF.
 - Removed references that required unpublished assistant notes.
 - Added this maintenance notice and scoped original-material licensing.
+- Made the latest preserved camera tree the kernel's default `main`, with no
+  additional experiment merges or new hardware qualification.
 
 ## Historical research
 
