@@ -26,8 +26,8 @@ Complete proprietary drivers and firmware are not supplied.
   the latest camera work is on `debug/camss-cphy`, not the default `sp11` branch.
 - [Upstream handoff and remaining limits](design/upstream.md): audio/ADSP,
   USB-C/DisplayPort, USB4, and camera/codec findings.
-- [libcamera, FFmpeg, and libaperture patches](patches/): userspace fixes with
-  their own evidence and scope.
+- [libcamera and FFmpeg patches; libaperture findings](patches/): userspace fixes
+  and unpatched recording-bug notes, with their own evidence and scope.
 
 ### Release changes
 
