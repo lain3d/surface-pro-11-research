@@ -335,17 +335,23 @@ working audio stack to develop the topology and UCM work against.
 ### The experiment, already built
 
 ```
-~/surface/surface-pro-11-linux/scripts/sp11-build-adsp-test-uki.sh
+tools/sp11-build-adsp-test-uki.sh
     rebuilds the UKI with rd.break=pre-mount and qcom_q6v5_pas blacklisted
     (--install / --rollback / --status). The blacklist matters: udev otherwise
     autoloads the driver during coldplug and binds the ADSP in attach mode
     before you get a prompt.
 
-/usr/local/sbin/sp11-adsp   (source: .../scripts/sp11-adsp-initramfs-boot.sh)
+/usr/local/sbin/sp11-adsp   (source: tools/sp11-adsp-initramfs-boot.sh)
     run at the dracut prompt. Stages firmware from a read-only root, unmounts,
     loads the driver, times how long the root device is gone and whether it
     returns, then reports whether adsp_apps appeared.
 ```
+
+Public-source handoff: both tools are included in this research checkout.
+The `/usr/local/sbin/sp11-adsp` path above is a copy of the public helper on the
+target root, not a private repository dependency. See
+[the tooling handoff](../handoff/distro-tools/README.md) for source provenance,
+deployment assumptions, and the historical nature of this experiment.
 
 At the `dracut:/#` prompt:
 

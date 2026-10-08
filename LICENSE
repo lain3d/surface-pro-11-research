@@ -3,6 +3,10 @@ License scope
 
 The MIT License below applies to original research prose, probes, and tooling
 created for this project, except where a file carries a different license.
+BSD-3-Clause tools retain that license; see LICENSES/BSD-3-Clause.txt.
+The original ISO/EFI source export is covered by this MIT grant, with its
+source provenance recorded in handoff/distro-tools/README.md. External distro
+runtime, Ubuntu EFI stubs, and generated images are not licensed by this grant.
 
 It does not relicense third-party patches or source excerpts, OEM ACPI tables,
 driver strings or decompilation excerpts, vendor-derived register tables, or

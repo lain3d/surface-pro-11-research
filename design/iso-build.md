@@ -1,5 +1,11 @@
 # Reproducing the ISO build
 
+> Historical incremental-build notes. The formerly missing original ISO
+> assembly tools are now exported in
+> [handoff/distro-tools/iso-build](../handoff/distro-tools/iso-build/README.md).
+> They require a lawful base image and an explicit public runtime checkout;
+> no historical root filesystem, firmware, ISO or EFI binary is distributed.
+
 How `surface-pro-11-ubuntu-INTEG-*.iso` is produced, what it is made of, and how
 to tell whether the result is sound.
 

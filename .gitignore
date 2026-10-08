@@ -28,3 +28,12 @@ __pycache__/
 .sparse.sh
 .*.sh
 probes/*.exe
+
+# Generated outputs from the source-only distro/EFI tooling handoff.
+handoff/distro-tools/**/*.deb
+handoff/distro-tools/**/*.efi
+handoff/distro-tools/**/*.stub
+handoff/distro-tools/**/*.iso
+handoff/distro-tools/**/*.img
+handoff/distro-tools/**/*.squashfs
+handoff/distro-tools/**/*.bin

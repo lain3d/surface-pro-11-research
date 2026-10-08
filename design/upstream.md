@@ -1,5 +1,10 @@
 # Upstream work: what we build on, and what is already in our tree
 
+> Historical August 2026 audit. The missing original distro/build tools are now
+> exported in [the public tooling handoff](../handoff/distro-tools/README.md).
+> The private distro fork below is provenance, not a required checkout; the
+> remasterer uses a separately selected public denisix runtime baseline.
+
 Audited 2026-08-09 against `/root/sp11/wt-cfg` (the tree whose `.config` carries
 `CONFIG_LOCALVERSION="-sp11-stockcfg-gf2cc827b6b89"`, matching the running
 kernel) and the live UKI `integ46`.
@@ -92,6 +97,13 @@ the x1e-nixos project, required by the SP11 touchscreen. It is unrelated to the
 we have all of denisix's work. Our 14 are ISO-build tooling, patch-series
 hygiene (CRLF, malformed mboxes, hunk headers), the kernel/distro split, and
 EFI-stub boot without GRUB.
+
+Public export: original ISO build/inspection tools and EFI-stub sources are
+included under `handoff/distro-tools/`, and the ADSP test UKI builder is now
+`tools/sp11-build-adsp-test-uki.sh`. The broader installer/runtime remains an
+external public denisix prerequisite rather than a copy of the private fork.
+See [the tooling handoff](../handoff/distro-tools/README.md) for exact source
+identifiers, licensing, deliberate exclusions, and experimental limits.
 
 **`install.sh` never touches the kernel.** Read in full, 2026-08-09: it does
 udev rules, `apt`, file copies, userspace builds, SDK downloads and firmware

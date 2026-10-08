@@ -23,6 +23,9 @@ Complete proprietary drivers and firmware are not supplied.
   USB-C/DisplayPort, USB4, and camera/codec findings.
 - [libcamera and FFmpeg patches; libaperture findings](patches/): userspace fixes
   and unpatched recording-bug notes, with their own evidence and scope.
+- [Exported build and UKI tools](handoff/distro-tools/README.md): reviewed
+  source-only ISO/EFI tooling and the ADSP test builder, with public external
+  prerequisites instead of a dependency on the unpublished distro checkout.
 
 ### Release changes
 
@@ -34,6 +37,11 @@ Complete proprietary drivers and firmware are not supplied.
 - Added this maintenance notice and scoped original-material licensing.
 - Made the latest preserved camera tree the kernel's default `main`, with no
   additional experiment merges or new hardware qualification.
+- Exported missing original ISO/EFI/ADSP source tools with provenance; excluded
+  private disk/account installers, firmware, compiled outputs, and Git history.
+- Removed the obsolete private Git/Ghidra bundle generator. Use the tagged
+  GitHub source archives; both public handoff generators include the new tools
+  and their license.
 
 ## Historical research
 

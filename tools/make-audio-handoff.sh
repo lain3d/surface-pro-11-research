@@ -28,7 +28,7 @@ rm -rf "${DEST:?}"/* 2>/dev/null || true
 echo "=== docs and tools from git (LF, not the working copy) ==="
 # START-HERE.md lives at the repo root - the on-machine session revised it there,
 # and a second copy under tools/ would go stale exactly when it matters.
-git -C "$REPO" archive --format=tar HEAD design tools START-HERE.md LICENSE | tar -x -C "$DEST"
+git -C "$REPO" archive --format=tar HEAD design tools handoff START-HERE.md LICENSE LICENSES | tar -x -C "$DEST"
 echo "  $(find "$DEST" -type f | wc -l) files"
 
 echo "=== logs ==="

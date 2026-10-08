@@ -15,8 +15,9 @@
 set -euo pipefail
 
 REPO=${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
-WT=${WT:-/root/sp11/wt-ov13858}
-BASE=${BASE:-18b0b569c}
+WT=${WT:-}
+BASE=${BASE:-upstream/base}
+KERNEL_REF=${KERNEL_REF:-main}
 OUT=${1:-$PWD/sp11-handoff-$(date +%Y%m%d).tar.gz}
 
 STAGE=$(mktemp -d)
@@ -26,34 +27,32 @@ mkdir -p "$ROOT"
 
 echo "=== staging from git (LF endings, not the CRLF working copy) ==="
 git -C "$REPO" archive --format=tar HEAD \
-    BRINGUP.md docs design probes tools data README.md LICENSE \
+    BRINGUP.md START-HERE.md docs design probes tools data patches handoff LICENSES README.md LICENSE \
     | tar -x -C "$ROOT"
 echo "  $(find "$ROOT" -type f | wc -l) files"
 
 echo "=== kernel patch series ==="
-if [ -d "$WT" ]; then
-    for b in camera/ov13858-dt camera/denali-pm8010 usb4/platform-nhi \
-             camera/imx681 debug/imx681-addr-scan; do
-        d="$ROOT/kernel-patches/$(echo "$b" | tr / -)"
-        mkdir -p "$d"
-        n=$(git -C "$WT" format-patch -o "$d" "$BASE..$b" 2>/dev/null | wc -l)
-        echo "  $b: $n patches"
-    done
+if [ -n "$WT" ]; then
+    git -C "$WT" rev-parse --verify "$BASE^{commit}" >/dev/null
+    git -C "$WT" rev-parse --verify "$KERNEL_REF^{commit}" >/dev/null
+    d="$ROOT/kernel-patches/main"
+    mkdir -p "$d"
+    git -C "$WT" format-patch -o "$d" "$BASE..$KERNEL_REF"
     git -C "$WT" log --oneline -1 "$BASE" > "$ROOT/kernel-patches/BASE.txt"
+    git -C "$WT" rev-parse "$KERNEL_REF" > "$ROOT/kernel-patches/TIP.txt"
     cat >> "$ROOT/kernel-patches/BASE.txt" <<'TXT'
 
-All series apply on the commit above. Its tree is byte-identical to the commit
-the baseline ISO's kernel was built from -- different hashes, same content.
+The series preserves the selected public kernel source tree, not a freshly
+qualified integration. Apply it to the base recorded above:
 
   git checkout -b work <base>
-  git am ../kernel-patches/camera-denali-pm8010/*.patch
-  ...
+  git am ../kernel-patches/main/*.patch
 
-debug-imx681-addr-scan is a THROWAWAY. It carries a placeholder I2C address and
-exists only to discover the real one. Never merge it.
+The base is the kernel repository's squashed upstream import. For the original
+upstream provenance and experimental limits, read the public kernel README.
 TXT
 else
-    echo "  WARNING: no kernel worktree at $WT; skipping"
+    echo "  no WT supplied; use the tagged public kernel source archive"
 fi
 
 echo "=== normalise line endings on anything executable ==="

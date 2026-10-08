@@ -1,5 +1,10 @@
 # Audio on the Surface Pro 11 — start here
 
+> Historical August 2026 experiment, not a current installation recipe.
+> The required source tools are now included in this public repository.
+> Read [the tooling handoff](handoff/distro-tools/README.md) before changing an ESP
+> or attempting an ADSP restart; the experiment can disconnect a USB-C root disk.
+
 You are running **on the Surface itself**, booted into Linux. That is new. Every
 previous session drove this machine from Windows and could only read its disk
 offline, which is why so much of the recorded work is indirect.
@@ -105,17 +110,24 @@ where remoteproc does a clean boot.
 ### The experiment is already built
 
 ```
-~/surface/surface-pro-11-linux/scripts/sp11-build-adsp-test-uki.sh
+tools/sp11-build-adsp-test-uki.sh
     Rebuilds the UKI with rd.break=pre-mount and qcom_q6v5_pas blacklisted.
     --install / --rollback / --status. The blacklist matters: udev otherwise
     autoloads the driver during coldplug and binds the ADSP in attach mode
     before you ever get a prompt.
 
-/usr/local/sbin/sp11-adsp   (source: .../scripts/sp11-adsp-initramfs-boot.sh)
+/usr/local/sbin/sp11-adsp   (source: tools/sp11-adsp-initramfs-boot.sh)
     Run at the dracut prompt. Stages firmware from a read-only root, unmounts
     so nothing holds the disk, loads the driver, times how long the root device
     is gone and whether it returns, then reports whether adsp_apps appeared.
 ```
+
+The historical `/usr/local/sbin/sp11-adsp` path is an installed copy, not an
+unpublished dependency. On the mounted target root, copy the public
+`tools/sp11-adsp-initramfs-boot.sh` there before attempting this experiment.
+The builder accepts `ESP=/path/to/your/mounted/esp`; it does not locate a disk
+for you. Its build action writes an alternate UKI, while `--install` changes
+the boot default and `--rollback` restores the saved original.
 
 At the `dracut:/#` prompt:
 
