@@ -144,3 +144,8 @@ failures; prerequisites were then satisfied, without disabling Git's ownership
 check globally. No Surface hardware boot, ADSP restart, kernel compilation,
 optional EFI variant C/ESP replacement, full ARM64 distro remaster, or first-boot
 installer/session integration was qualified by this publication work.
+
+The larger patch bundle exposed an archive-preview SIGPIPE (exit 141) after a
+valid archive had already been written. The preview now drains the stream
+instead of closing it at line 40. The repaired command passed using an ordinary
+public clone, and its 53 patches reproduced the exact published kernel tree.
