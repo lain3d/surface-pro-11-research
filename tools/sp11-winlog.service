@@ -1,0 +1,22 @@
+[Unit]
+Description=sp11: stream dmesg to the Windows ESP while the root disk lives
+Documentation=https://github.com/lain3d/surface-arm-platform-research
+# It has to be running before the failure at ~11s. DefaultDependencies=no plus
+# WantedBy=sysinit.target starts it right after the root filesystem is remounted
+# rw, which the logs put at about 5s.
+DefaultDependencies=no
+After=systemd-remount-fs.service
+Before=local-fs.target shutdown.target
+Conflicts=shutdown.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/sp11-winlog
+# The root filesystem may stop serving reads mid-run. Do not restart into a
+# failure loop; one pass is the whole point.
+Restart=no
+TimeoutStartSec=0
+KillMode=mixed
+
+[Install]
+WantedBy=sysinit.target

@@ -1,0 +1,198 @@
+CSID interrupt-status decode, recovered from qccamisp8380.sys
+=============================================================
+
+Source: C:\Windows\System32\DriverStore\FileRepository\qccamisp8380.inf_arm64_*\
+Ghidra: SurfaceCam.gpr, program /qccamisp8380.sys, served on port 8099.
+Recovered 2026-08-07.
+
+The driver's own source path, from its strings:
+
+    Z:\b\WP\Camera\rel\10.9\CamZ\Core\IFEDriverV3\csid\src\csid_full_hal.c
+
+Everything below comes from FUN_14001b840, the CSID interrupt service routine.
+It is the only place in the binary that classifies these status words.
+
+WHAT THE ISR DOES NOT GIVE US
+-----------------------------
+There are no per-bit name strings. The ISR prints raw hex:
+
+    ISR CSID%d: ippIrqStatus = 0x%x, rxIrqStatus = 0x%x, topIrqStatus = 0x%x
+                and bufDone = 0x%x
+
+So individual bit names are still unknown. What the ISR does give is better in
+one respect: the *masks* it tests against, which partition each status word into
+error and non-error bits. A mask is a statement by the vendor about which bits
+mean something is wrong.
+
+ARGUMENT MAPPING
+----------------
+The ISR takes a pointer (param_2) to a latched status block:
+
+    param_2[1]  topIrqStatus
+    param_2[3]  rxIrqStatus
+    param_2[4]  ippIrqStatus
+    param_2[5]  pppIrqStatus
+    param_2[6]  rdi0IrqStatus
+    param_2[7]  rdi1IrqStatus
+    param_2[8]  rdi2IrqStatus
+    param_2[9]  rdi3IrqStatus
+    param_2[10] (saved, not classified)
+
+Confirmed against the format string argument order at 140036008.
+
+CSI2 RX IRQ STATUS  (Linux: CSID_CSI2_RX_IRQ_STATUS, offset 0x9c)
+-----------------------------------------------------------------
+
+    error mask = 0x019FB800
+
+        if ((rxIrqStatus & 0x019FB800) != 0)
+            "CSID%d: CSID Received error IRQs on RX side, rxIrqStatus = 0x%x."
+
+    error bits = 11, 12, 13, 15, 16, 17, 18, 19, 20, 23, 24
+
+    A narrower sub-mask escalates to a message sent up the stack:
+
+        if ((rxIrqStatus & 0x00186000) != 0)
+            -> IFE_MSG_ID_CSID_ERROR
+    sub-mask bits = 13, 15, 16, 19, 20     (fatal subset)
+
+    bit 22  UNMAPPED LONG PACKET HEADER
+
+        if ((rxIrqStatus >> 22) & 1) {
+            u32 v = readl(base + 0x210);
+            dt = (v >> 16) & 0x3f;      /* bits 21:16 */
+            vc = (v >> 22) & 0x1f;      /* bits 26:22 */
+            "CSID%d: Received Unmapped long packet header with vc = %d and dt = %d"
+        }
+
+        Note the field layout matches CSID_RDI_CFG0's DT 21:16 / VC 26:22.
+        Register 0x210 is not named in camss-csid-680.c; it sits inside the
+        0x20c-0x23c gap.
+
+    bit 27  RX RESET DONE
+        clears the driver's pending-reset bit 0x8000000.
+
+    NOT an error bit, per this mask: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 21,
+    22, 25, 26, 27, 28, 29, 30, 31.
+
+    OUR MEASURED VALUE, mission 14:  rxIrqStatus = 0x00400017
+
+        0x00400017 & 0x019FB800 = 0
+
+        bits set: 0, 1, 2, 4  (unclassified by the vendor ISR)
+                  22          (unmapped long packet header)
+
+        Qualcomm's own driver would not call this an error. It would print
+        exactly one line: the unmapped-long-packet-header message.
+
+IPP / RDI PATH IRQ STATUS  (Linux: CSID_CSI2_RDIN_IRQ_STATUS(n), 0xec + 0x10*n)
+-------------------------------------------------------------------------------
+
+    error mask = 0x3C1C6004      (identical for ippIrqStatus and rdi0/1/2)
+
+    error bits = 2, 13, 14, 18, 19, 20, 26, 27, 28, 29
+
+    Cross-check against the names camss-csid-680.c already defines:
+
+        BIT(2)   CSID_CSI2_RDIN_INFO_FIFO_OVERFLOW            in mask
+        BIT(19)  CSID_CSI2_RDIN_ERROR_REC_OVERFLOW_IRQ        in mask
+        BIT(25)  CSID_CSI2_RDIN_BATCH_END_MISSING_VIOLATION   NOT in mask
+        BIT(26)  CSID_CSI2_RDIN_ERROR_REC_HEIGHT_VIOLATION    in mask
+        BIT(27)  CSID_CSI2_RDIN_ERROR_REC_WIDTH_VIOLATION     in mask
+        BIT(29)  CSID_CSI2_RDIN_CCIF_VIOLATION                in mask
+
+    Five of six agree, which is what makes the mask interpretation credible.
+    Bits 13, 14, 18, 20 and 28 are errors Qualcomm watches and camss does not
+    name. BIT(23) RUP_DONE is correctly absent -- it is not an error.
+
+    PPP path uses a smaller mask: 0x00006004  (bits 2, 13, 14).
+
+OTHER BITS THE ISR USES
+-----------------------
+
+    topIrqStatus bit 0      CSID TOP reset done
+    ippIrqStatus bit 1      IPP reset done
+    pppIrqStatus bit 1      PPP reset done
+    rdiNIrqStatus bit 1     RDIn reset done
+    rxIrqStatus bit 27      RX reset done
+
+    pppIrqStatus bit 8      PPP_SOF
+    pppIrqStatus bit 5      PPP_EOF
+
+    per-path bit 4          start acknowledge  (clears a pending-start bitmap
+                            at ctx+0x104)
+    per-path bit 3          stop acknowledge   (clears a pending-stop bitmap
+                            at ctx+0x108; when it reaches zero the driver logs
+                            "CSID driver completing the stop cmd sequence")
+
+THE ACQUIRE STRUCTURE
+---------------------
+Printed by the IFE acquire path. Relevant because it shows what Windows
+configures that camss does not:
+
+    =============== Acquire IFE Device =============
+    ifeDeviceResourceParamSize         = %d
+    ----------   IFE Input Resource ----------------
+    Resource type                      = %d
+    Lane type (dphy/cphy)              = %d
+    Active lane number                 = %d
+    Lane configurations: 4 bits/lane   = %d
+    Virtual Channel                    = %d
+    Data Type                          = %d
+    Number of Valid VCDT               = %d      <---
+    Input Image Format                 = %d
+    Test Pattern for the TPG           = %d
+    Single ISP or Dual ISP             = %d
+    Left input start offset in pixels  = %d
+    Left input stop offset in pixels   = %d
+    Left input Width in pixels         = %d
+    Right input start offset in pixels = %d
+    Right input stop offset in pixels  = %d
+    Right input Width in pixels        = %d
+    Start offset of the pixel line     = %d
+    Stop offset of the pixel line      = %d
+    Input height in lines              = %d
+    Sensor output clock                = %d
+    Batch size for HFR mode            = %d
+    DSP Mode                           = %d
+    HBI Count                          = %d
+    Custom Node                        = %d
+    Offline Mode                       = %d
+    Binning Config                     = %d
+    CQCFABinning                       = %d
+    Type of input resource             = %d
+    Feature Mask                       = %d
+    SW CDM                             = %d
+    TPG Mode                           = %d
+    Test Pattern Type                  = %d
+    Reserved field                     = %d
+    Number of the output resource      = %d
+    ----------   IFE Output Resource [%d]--------------
+    Resource type                           = %d
+    Format of the output                    = %d
+    Width of the output image               = %d
+    Height of the output image              = %d
+    Composite Group id of the group         = %d
+    Split point in pixels for Dual ISP case = %d
+    Output port to be secure or non-secure  = %d
+    wmMode                                  = %d
+
+"Number of Valid VCDT" is a count, so the acquire takes an ARRAY of VC/DT
+pairs. camss configures exactly one: csid->phy.en_vc has a single bit set and
+__csid_configure_rdi_stream() programs one DT into one RDI. If the sensor emits
+more than one DT, every packet of the others is an unmapped long packet header
+-- rxIrqStatus bit 22, which we measure as set.
+
+A LATENT BUG IN camss-csid-680.c
+--------------------------------
+    #define CSI2_RX_CAPTURE_CTRL_CPHY_PKT_DT   GENMASK(20, 25)
+
+GENMASK takes (high, low). This is reversed. include/linux/bits.h has
+
+    #define GENMASK_INPUT_CHECK(h, l) BUILD_BUG_ON_ZERO(const_true((l) > (h)))
+
+so the macro does not silently evaluate to zero -- it fails the build. It
+survives today only because nothing expands it: CSID_CSI2_RX_CAPTURE_CTRL is
+never written by the driver. Anyone who starts using C-PHY packet capture hits
+a build error first. Should read GENMASK(25, 20). CPHY_PKT_VC GENMASK(30, 26)
+is correct.

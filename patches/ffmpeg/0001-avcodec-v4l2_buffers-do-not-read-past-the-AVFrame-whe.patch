@@ -1,0 +1,143 @@
+From: Linux agent, Surface Pro 11 IMX681 bring-up relay
+Subject: [PATCH] avcodec/v4l2_buffers: do not read past the AVFrame when the
+ driver pads the height
+
+v4l2_buffer_swframe_to_buf() takes the plane height from the *driver's*
+v4l2_format and the plane pointer from the AVFrame, and copies
+frame->linesize[i] * height bytes out of frame->data[i]. Those two heights are
+not required to be equal: a driver is free to return a height rounded up to
+its own alignment. A Qualcomm iris encoder asked for 1920x1080 returns
+1920x1088, so the copy reads 8 luma rows and 4 chroma rows past the end of
+each plane.
+
+    luma   plane holds 2,073,600 bytes, 2,088,960 copied  -> 15,360 over
+    chroma plane holds 1,036,800 bytes, 1,044,480 copied  ->  7,680 over
+
+The over-read happens on *every* frame through this path. Whether it faults
+depends only on what the allocator left after the plane, so most of the time it
+is silent: the junk rows land in the padding the encoder crops away again, and
+the output file is correct. Under valgrind, a transcode that completes normally
+and produces a good 30-frame file still reports
+
+    Invalid read of size 8 ... Address is 0 bytes after a block of size 2,073,616
+
+four times. The crash is the visible tail of a much wider bug.
+
+On an x1e80100 (Surface Pro 11) with the iris encoder it is deterministic:
+
+    ffmpeg -f lavfi -i testsrc=size=1920x1080:rate=30 -t 2 \
+           -pix_fmt nv12 -c:v h264_v4l2m2m -b:v 8M -y out.mp4
+
+segfaults 8 runs out of 8, having written a 48-byte MP4 with no frames.
+1280x720 (driver reports 736) and 1920x1000 (1024) also fault; 640x480 and
+1920x1088, where the driver returns the height unchanged, do not. valgrind:
+
+    Invalid read of size 8
+       at __GI_memcpy
+       by v4l2_buffer_swframe_to_buf / avcodec_send_frame
+     Address 0x13c2fb40 is 0 bytes after a block of size 2,073,616 alloc'd
+
+2,073,616 is 1920*1080 plus av_cpu_max_align(), i.e. an exact-height luma
+plane out of libavfilter's frame pool: framepool.c passes pool->height
+unmodified to av_image_fill_plane_sizes() and allocates sizes[i] + align.
+
+Note that libavutil's own av_frame_get_buffer() would not have been hit --
+get_video_buffer() allocates FFALIGN(frame->height, 32) rows, which covers
+1088 for 1080 and happens to match exactly what this driver asks for. Frames
+reaching an encoder through libavfilter do not get that padding, so whether
+this over-reads depends on which allocator produced the frame. That is
+probably why it has survived since 2019.
+
+
+The destination is already clamped by FFMIN(size, length-offset), so only the
+source side is unguarded. Fix by passing the copy length separately from the
+plane extent: copy only the rows the AVFrame owns, but keep advancing the
+destination offset by the driver's plane size, so the following plane still
+lands where the driver expects it and bytesused is unchanged.
+
+Tested on Qualcomm iris (x1e80100), same source tree and configure both ways:
+
+    1920x1080  unpatched SIGSEGV, 0 bytes  ->  patched 30/30 frames, 136 KB
+    PSNR against the source: y 52.91 dB, average 52.59 dB
+    valgrind: 0 invalid reads, exit clean
+
+    regression, all 10/10 frames and correct dimensions out:
+    1920x1080  1920x1088  1280x720  640x480  640x488  1920x1000
+    1024x768   320x240
+
+--- a/libavcodec/v4l2_buffers.c
++++ b/libavcodec/v4l2_buffers.c
+@@ -289,7 +289,16 @@
+     return ret;
+ }
+ 
+-static int v4l2_bufref_to_buf(V4L2Buffer *out, int plane, const uint8_t* data, int size, int offset)
++/*
++ * size      how much of the destination plane this source occupies, i.e. how
++ *           far the driver expects the next plane to be -- and what the buffer
++ *           should report as bytesused.
++ * copy_size how many bytes the source actually owns. Never larger than size.
++ *           They differ when the driver rounds the height up to its own
++ *           alignment and the AVFrame does not have those rows.
++ */
++static int v4l2_bufref_to_buf(V4L2Buffer *out, int plane, const uint8_t* data,
++                              int size, int copy_size, int offset)
+ {
+     unsigned int bytesused, length;
+ 
+@@ -299,7 +308,8 @@
+     length = out->plane_info[plane].length;
+     bytesused = FFMIN(size+offset, length);
+ 
+-    memcpy((uint8_t*)out->plane_info[plane].mm_addr+offset, data, FFMIN(size, length-offset));
++    memcpy((uint8_t*)out->plane_info[plane].mm_addr+offset, data,
++           FFMIN(copy_size, length-offset));
+ 
+     if (V4L2_TYPE_IS_MULTIPLANAR(out->buf.type)) {
+         out->planes[plane].bytesused = bytesused;
+@@ -397,11 +407,25 @@
+ 
+         for (i = 0; i < planes_nb; i++) {
+             int size, h = height;
++            int src_h = frame->height;
+             if (i == 1 || i == 2) {
+                 h = AV_CEIL_RSHIFT(h, desc->log2_chroma_h);
++                src_h = AV_CEIL_RSHIFT(src_h, desc->log2_chroma_h);
+             }
+             size = frame->linesize[i] * h;
+-            ret = v4l2_bufref_to_buf(out, 0, frame->data[i], size, offset);
++            /*
++             * A driver is free to return a height rounded up to its own
++             * alignment: an iris (qcom) encoder asked for 1920x1080 reports
++             * 1920x1088. h is that rounded height, but frame->data[i] only
++             * holds frame->height rows, so copying h rows reads off the end of
++             * the plane -- 15360 bytes past a 1920x1080 luma allocation, which
++             * is a segfault whenever the allocator does not happen to leave
++             * slack there. Copy only the rows the frame owns; keep advancing
++             * by the driver's plane size so the next plane still lands where
++             * the driver expects it.
++             */
++            ret = v4l2_bufref_to_buf(out, 0, frame->data[i], size,
++                                     frame->linesize[i] * FFMIN(h, src_h), offset);
+             if (ret)
+                 return ret;
+             offset += size;
+@@ -410,7 +434,8 @@
+     }
+ 
+     for (i = 0; i < out->num_planes; i++) {
+-        ret = v4l2_bufref_to_buf(out, i, frame->buf[i]->data, frame->buf[i]->size, 0);
++        ret = v4l2_bufref_to_buf(out, i, frame->buf[i]->data,
++                                 frame->buf[i]->size, frame->buf[i]->size, 0);
+         if (ret)
+             return ret;
+     }
+@@ -496,7 +521,7 @@
+ {
+     int ret;
+ 
+-    ret = v4l2_bufref_to_buf(out, 0, pkt->data, pkt->size, 0);
++    ret = v4l2_bufref_to_buf(out, 0, pkt->data, pkt->size, pkt->size, 0);
+     if (ret)
+         return ret;
+ 

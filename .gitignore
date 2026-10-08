@@ -1,0 +1,30 @@
+# Ghidra project artifacts — regenerated per analysis session, and the lock files
+# are meaningless outside the running instance.
+data/*.gpr
+data/*.rep/
+data/*.lock
+data/*.lock~
+
+# Copies of proprietary system drivers, pulled from the local DriverStore for
+# offline analysis. Not redistributable, and trivially restored:
+#
+#   copy "C:\Windows\System32\DriverStore\FileRepository\qcusb4bus8380.inf_arm64_*\QcUsb4Bus8380.sys"     data\bin\
+#   copy "C:\Windows\System32\DriverStore\FileRepository\usb4hostrouter.inf_arm64_*\Usb4HostRouter.sys"   data\bin\
+data/bin/
+
+# MSDM holds the OEM Windows product key in plaintext. Never commit it.
+data/acpi/MSDM.aml
+
+# Private session context and local handoff archives are not public research.
+MEMORY/
+**/MEMORY/
+.claude/
+sp11-handoff*.tar.gz
+sp11-repos*.tar
+
+# Python
+__pycache__/
+*.pyc
+.sparse.sh
+.*.sh
+probes/*.exe

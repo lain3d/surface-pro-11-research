@@ -1,0 +1,46 @@
+[Unit]
+Description=Re-negotiate the USB-C display connector after the ADSP restart
+Documentation=file:/usr/local/sbin/sp11-dp-reset.sh
+# The ADSP restart in the initramfs costs charger_pd its PD state, so DP alt
+# mode is never re-entered for a display that was already attached. This sends
+# that connector a UCSI_CONNECTOR_RESET, which is a replug in software.
+#
+# Ordered after sp11-altmode.service because that is what turns pan_enable on
+# at ~72 s; before it, Linux is not subscribed to altmode notifications and
+# would not act on the HPD that the renegotiation produces.
+#
+# Both this and sp11-altmode.service now hang off the display manager, so the
+# display comes up as the desktop does rather than ~18s later. gdm starts at
+# 20.4s of uptime here; multi-user.target is not reached until 37.3s, so
+# ordering against it would be strictly worse.
+#
+# THE CYCLE THIS AVOIDS. Being WantedBy a target gives a unit the implicit
+# Before= that target. The first version was WantedBy=multi-user.target with
+# After=sp11-altmode.service, and altmode was After=multi-user.target, which
+# closes a loop. systemd breaks a loop by deleting a job, and the one it deleted
+# was this:
+#
+#   multi-user.target: Found ordering cycle: sp11-dp-reset.service/start after
+#     sp11-altmode.service/start after multi-user.target/start - after
+#     sp11-dp-reset.service
+#   Job sp11-dp-reset.service/start deleted to break ordering cycle
+#
+# It left no trace in dmesg because it never ran at all. Both units now order
+# against display-manager.service and are WantedBy=graphical.target, which gdm
+# is also ordered before - so the chain is dm -> altmode -> dp-reset -> target,
+# with no edge pointing back.
+After=display-manager.service sp11-altmode.service
+Wants=sp11-altmode.service
+
+[Service]
+Type=oneshot
+# sp11-altmode.service returns as soon as it writes the parameter; give
+# charger_pd a moment to answer PAN_EN before disturbing the port again.
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/local/sbin/sp11-dp-reset.sh
+RemainAfterExit=yes
+# A missing connector file or an already-working display are both fine.
+SuccessExitStatus=0 1
+
+[Install]
+WantedBy=graphical.target

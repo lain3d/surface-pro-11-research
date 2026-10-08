@@ -1,0 +1,40 @@
+License scope
+=============
+
+The MIT License below applies to original research prose, probes, and tooling
+created for this project, except where a file carries a different license.
+
+It does not relicense third-party patches or source excerpts, OEM ACPI tables,
+driver strings or decompilation excerpts, vendor-derived register tables, or
+other material copied or derived from third-party works. In particular, patches/
+and data/ are not granted a blanket MIT license by this file. Preserve upstream
+copyright notices and comply with the applicable upstream licenses. Third-party
+quotations in otherwise original documents retain their existing rights.
+
+The accompanying kernel repository retains its existing Linux kernel licensing.
+No permission to redistribute proprietary vendor drivers or firmware is granted.
+The presence of research output is not a representation that every vendor-derived
+artifact has a redistribution license.
+
+MIT License
+===========
+
+Copyright (c) 2026 lain3d
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -1,0 +1,1848 @@
+﻿=== C:\Users\Crazy\projs\arm64-egpu\data\bin\Usb4HostRouter.sys ===
+
+--- strings (1728) ---
+  0x00004D  !This program cannot be run in DOS mode.
+  0x0000D8  RichD
+  0x000200  .text
+  0x000227  hfothk
+  0x00024F  h.rdata
+  0x000277  H.data
+  0x0002A0  .pdata
+  0x0002C7  H.idata
+  0x0002EF  HNONPAGE
+  0x000318  PAGE
+  0x00033F  `INIT
+  0x000367  bGFIDS
+  0x00038F  B.rsrc
+  0x0003B7  B.reloc
+  0x00057E  @9*,
+  0x00058F  )(0@
+  0x0010B0  U4DH
+  0x00118F  TH-@
+  0x001CC9  b@93
+  0x002AF7  T($@
+  0x003461  D@9L!
+  0x0034A1  D@9I!
+  0x00393F  4kVByjRByi
+  0x0039A7  TI-@
+  0x003A1B  Th"F9H
+  0x003A2F  T(-@
+  0x003AF3  4iVByh
+  0x003B3F  Th-@
+  0x003B6F  4jVByi
+  0x003CE3  T(A@y
+  0x003D1A  @yiI@y
+  0x003D23  KiM@y
+  0x004108  VUUU
+  0x00429E  @yII@y
+  0x0042A7  KIM@y
+  0x0042C1  "+kh=
+  0x004501  A@yh
+  0x004778  (E@y
+  0x0048A7  4h6@
+  0x004CFB  4h~@
+  0x004DBB  Th~@
+  0x004FE4  JA@y
+  0x004FFF  Tj-@
+  0x005173  Ti-@
+  0x00534B  Ti~@
+  0x005E9F  4hQD
+  0x00673B  4HQD
+  0x006DCA  C9iv@
+  0x007237  4i~@
+  0x0075DE  Cy()
+  0x00876F  4hNA
+  0x008CC3  4hN@
+  0x009C6F  T*-@
+  0x00A033  4hJ@y
+  0x00A04C  hN@y
+  0x00A24D  J@yiF@y
+  0x00A3B3  ShE@yj
+  0x00A69E  @yhJ@yjN@y)
+  0x00A6CB  4iB@yv
+  0x00A6DF  Sk!,
+  0x00A707  S)!+
+  0x00A737  T+-@
+  0x00A77C  lF@y
+  0x00AD3B  4HSD
+  0x00B8A9  &F9h
+  0x00BC04  U4hr
+  0x00BEDC  iM@yHi@
+  0x00BEE9  !)ki
+  0x00BF33  Th5@
+  0x00BF84  hM@yIi@
+  0x00C53F  R`"@
+  0x00D541  C@y(A
+  0x00D566  A9(A
+  0x00D570  (A@y
+  0x00D6D0  IA@yh
+  0x00D9D3  Raf@
+  0x00DB87  5`F@
+  0x00DD33  9h"A
+  0x00DD77  9hR@
+  0x00EA79  K@yh
+  0x00EC1B  yhN@y
+  0x00F2DF  yHe@y(
+  0x00F340  Ie@yh
+  0x00F3A7  5h~@
+  0x012DF8  Hx@9h
+  0x012DFF  5Ht@9(
+  0x012E4B  4H|@9
+  0x01347F  RHx@9(
+  0x013487  5Ht@9
+  0x013EC3  4h&@
+  0x013F27  4hF@
+  0x014647  Th*@
+  0x015113  RcZ@
+  0x0157FE  B9hf
+  0x01598F  9i"E
+  0x015A7F  4h"@
+  0x015CCB  4i"E
+  0x015E43  4cZ@
+  0x01700B  TiV@
+  0x017135  a@9hV@
+  0x01714B  Rj&@
+  0x01715F  ShV@
+  0x017BA0  hrA9
+  0x017C1F  4h:@
+  0x0180C7  4C!@
+  0x018913  RcN@
+  0x01938B  4hrA9ij
+  0x019398  l6F)j.E)
+  0x019408  i"B)
+  0x019428  h2@y
+  0x019438  h*E)(
+  0x019443  3i"F)H%
+  0x0196A3  4hrA9jj
+  0x0196B0  m:F)k2E)
+  0x019873  3i^F)
+  0x01997C  h"@9
+  0x019A08  JIh8)Ih8?
+  0x019A29  Ib8)5
+  0x01A05F  Sj.@
+  0x01B05F  4i.@
+  0x01B74F  Th&@
+  0x01BE01  !E9h
+  0x01CB23  T(!@
+  0x01EA63  6`J@
+  0x01ED27  Ra2@
+  0x01F19F  5`J@
+  0x01F333  8`&@
+  0x020343  =,%@xl
+  0x0206D1  c@y(
+  0x020E74  hBB9h
+  0x020E83  4`N@
+  0x02190F  ?U4DH
+  0x0222DF  4h2@
+  0x02250E  A93)
+  0x025B8B  Rcz@
+  0x0268E0  &QBy'
+  0x029D9F  4h>@
+  0x02A081  C@ys
+  0x02A63B  RC!@
+  0x02A677  RkN@
+  0x02A852  B9(+
+  0x02AE01  BB9H
+  0x02B210  h!x67
+  0x02B21A  B9wB
+  0x02B870  hBB9
+  0x02B87A  B9h2
+  0x02B910   (AzC*
+  0x02CD27  5a^@
+  0x02CE05  c@y(!
+  0x02CEC3  K9C3
+  0x02D00F  Sh&@
+  0x02D199  g@yi
+  0x02D253  4h.@
+  0x02D280  hbC9
+  0x02D3B4  hfC9
+  0x02D55F  yhb@
+  0x02D567  R(ih
+  0x02DB41  yuxt
+  0x02DC47  7hN@
+  0x02E26E  @yk&@
+  0x02E423  <hv@
+  0x02E429  y)xh
+  0x02E7EF  =`N@
+  0x02F7C2  @y5=
+  0x02FA16  A9NK
+  0x02FDAE  @qHih
+  0x02FE00  +)A)i&@
+  0x0328C3  4i:@
+  0x03399B  4hB@
+  0x033BF3  4h&H)F
+  0x033E03  4h&H)f
+  0x03430F  4h&H)
+  0x034697  4hZ@
+  0x034737  Rc*@
+  0x034B37  T`VA
+  0x03566F  R`B@
+  0x0362A7  4h*@
+  0x036668  hBA9
+  0x0368B3  ThBA9
+  0x037E5E  @yhF
+  0x037ED5  :@9h
+  0x037EDD  >@9h
+  0x037EE5  B@9h
+  0x037EED  F@9h
+  0x037EF5  J@9h
+  0x037EFD  N@9h
+  0x037F15  Z@9h
+  0x038024  kF@yj
+  0x03802A  @9iB@y
+  0x038060  h"@9iB
+  0x0380DE  @9i:@
+  0x038176  @9h:@
+  0x0388B7  4c*@
+  0x038C8F  Rh"@
+  0x039052  A9ab
+  0x03A513  ShR@9
+  0x03A52F  Th.@
+  0x03BB83  4c&@
+  0x03C1D7  4)A(
+  0x03C1DE  @9iJ(8)
+  0x03C29B  4)@(
+  0x03C51F  Q(Ih8h
+  0x03C557  4*@(
+  0x03C8D6  @ygVA9
+  0x03C8E2  @yfRA9
+  0x03C8F8  hZA9d
+  0x03D4CE  @y4=
+  0x03D58F  Tub@
+  0x03DAD7  4`:@
+  0x03F7AA  @9(!
+  0x042A83  Th"@
+  0x042BF3  4av@
+  0x04318F  Qcv@
+  0x0434CF  Rcv@
+  0x0434DA  @9*9
+  0x043987  4cv@
+  0x044CDE  @9(I*8
+  0x045C37  4hJ@
+  0x046A73  4c"@
+  0x048BB2  @yeFA9dBA9
+  0x04999A  @y8=
+  0x049B00  .il8
+  0x04A159  $@x)
+  0x04A279  "B9(
+  0x04A3D5  A@9_
+  0x04AF1B  RcB@
+  0x04B2CD  J@9)
+  0x04B3D9  F@9?)
+  0x04B551  N@9(
+  0x04B733  TiB@9?
+  0x04B748  hN@9
+  0x04B80C  hF@9
+  0x04B81B  9hJ@9
+  0x04B823  4hF@9h
+  0x04C998  hzvx
+  0x04CE4F  ThJ@9
+  0x04CE5B  ThF@9
+  0x04CE63  5hN@9
+  0x04CEB3  4hB@9'
+  0x04CF7C  hB@9
+  0x04D1B7  ThF@9h
+  0x04D1BF  5hN@9(
+  0x04D20B  4hB@9
+  0x04D82B  Ti"@
+  0x04DA18  H1@y
+  0x04DA2B  TIQ@
+  0x04DB27  O!A(
+  0x04DC48  Asrt
+  0x04DE5B  K(A(
+  0x04E535  LO9!<
+  0x04E545  HO9_
+  0x04E7E9  xjx_
+  0x04E839  x*x)
+  0x04E9E4  eRO9h
+  0x04EA40  hRO9i
+  0x04EA48  5y(xhRO9
+  0x04EAA1  [@9a
+  0x04EAB8  hRO9
+  0x04EACF  xhRO9
+  0x04EAF7  TiRO9I
+  0x04EB4C  $yhx
+  0x04EB5F  6iZO9
+  0x04EB6B  6h^O9
+  0x04ECB8  hVO9
+  0x04ED07  TuYi
+  0x04EDC5  ynx)
+  0x04EE1A  @y-<
+  0x04EEAF  RKYhx
+  0x04EF41  PO9h
+  0x04EF88   ihx
+  0x04F0D0  SmFx
+  0x04F503  ThJO9
+  0x04F50B  RlNO9nN
+  0x04F530  lzmx
+  0x04F53C  lz.x
+  0x04F543  5lzmx
+  0x04F560  lNO9
+  0x04F613  TwYi
+  0x04F62F  9tJO9
+  0x04F644  czhx
+  0x04F65B  ThRO9
+  0x04F688  cz(x
+  0x04F69C  hNO9
+  0x04F750  hFO9
+  0x04F770  hFO9h
+  0x04F77B  yhFO9h
+  0x04F787  yhFO9
+  0x04F859  XO9i
+  0x04FE3C  TrAG
+  0x04FFFB  *hZt
+  0x05003F  SuZt
+  0x050311  G@9I
+  0x05039B  ThBA
+  0x0503D3  TarA
+  0x050445  K@9`b
+  0x0504CC  (ia8)
+  0x05057B  ))0@
+  0x050863  4(QE
+  0x050D38  CWmkMDkl
+  0x050EA0  MDklCWmk
+  0x050FFB  ThRE
+  0x0511C4  Asst
+  0x0512D8  hhb8c
+  0x0513D1  $@x($@x
+  0x051461  $@x($@xc
+  0x0517EE  06  
+  0x051806   6 p
+  0x0518F0    @L!
+  0x0518F8  $ @L!
+  0x051964    @L` 
+  0x051982   6!@
+  0x05198C   p@L`p
+  0x051A20  )&&&&&&&&&&&&&&&&
+  0x051C20   (@z
+  0x051D3B  =_ @
+  0x05204E  _8(ho8
+  0x052376  @x_@
+  0x052878  NULL
+  0x052888  Unexpected PDF processing in AsyncUsb4ErrorHandler
+  0x0528C0  Usb4Hrd::AsyncUsb4ErrorHandler::ProcessRxPacket
+  0x0528F0  rxPacket->GetPDF() == PDF_VALUE::PDF_NOTIFICATION_PACKET
+  0x052930  Unexpected notification event: PcieWake received!
+  0x052968  Unexpected notification event: DpConChange received!
+  0x0529A0  Unexpected notification event: DpTxDiscovery received!
+  0x0529D8  false
+  0x052A78  Verify all links have been removed
+  0x052AA0  Usb4Hrd::BandwidthManager::~BandwidthManager
+  0x052AD0  m_Usb4Links.size() == 0
+  0x052AE8  Verify all tunnels have been removed
+  0x052B10  m_TunnelAllocations.size() == 0
+  0x052B30  There should be no pending request
+  0x052B58  m_NextRequestFromDrd == nullptr
+  0x052B78  There should be no current request
+  0x052BA0  m_CurrentRequest == nullptr
+  0x052BC8  Modern Standby callback context does not exist.
+  0x052BF8  Usb4Hrd::BandwidthManager::OnStandbyChangeThunk
+  0x052C28  context != nullptr
+  0x052C40  entering
+  0x052C50  exiting
+  0x052C58  Only notifications should be delivered to BM
+  0x052C88  Usb4Hrd::BandwidthManager::EvtNotificationPacket
+  0x052CC0  Packet->GetPDF() == PDF_VALUE::PDF_NOTIFICATION_PACKET
+  0x052CF8  Create tunnel adapter must have a link
+  0x052D20  Usb4Hrd::BandwidthManager::OnBandwidthOrTunnelRequest
+  0x052D58  linkRecord
+  0x052D68  Wait lock acquisition should not timeout
+  0x052D98  Usb4Hrd::BandwidthManager::EvtDpNotificationTimerFired
+  0x052DD0  (((NTSTATUS)(status)) >= 0)
+  0x052DF0  Cannot properly cancel create tunnel request, will be in a bad state
+  0x052E38  Usb4Hrd::BandwidthManager::EvtBandwidthRequestCanceled
+  0x052E78  Cannot properly cancel rebuild tunnel request, will be in a bad state
+  0x052EC0  Bandwidth should be provided
+  0x052EE0  previouslyAllocatedBandwidthForCreate != 0
+  0x052F10  Create tunnel should only release bandwidth
+  0x052F40  requestContext->DownstreamBandwidthToAllocate <= 0
+  0x052F78  Usb4Hrd::BandwidthManager::DispatchDrdRequestToStateMachine
+  0x052FB8  Request context should be assigned
+  0x052FE0  requestContext != nullptr
+  0x053000  Usb4Hrd::BandwidthManager::EvtDpNotificationWorkItem
+  0x053038  Timed out waiting for tunnel ready event processing DP BW notification
+  0x053080  DP BW notification from HW while feature not enabled
+  0x0530B8  SM should not be idle with a queue
+  0x0530E0  me->m_DpBwNotificationQueue.size() == 0
+  0x053108  No DRD request should be in SM
+  0x053128  me->m_CurrentRequest == nullptr
+  0x053148  No tunnel record should be in SM
+  0x053170  me->m_CurrentOperationTunnelAllocationRecord == nullptr
+  0x0531A8  Usb4Hrd::BandwidthManager::GetAvailableBandwidthForLinkRecord
+  0x0532E8  Verify usb3&pcie does not exceed available bandwidth
+  0x053320  Usb4Hrd::BandwidthManager::GetAvailableBandwidthForLinkRecordLocked
+  0x053368  linkAvailableUpstream >= assignedUsb3AndPcieUpstream
+  0x0533A0  linkAvailableDownstream >= assignedUsb3AndPcieDownstream
+  0x0533E0  Usb4Hrd::BandwidthManager::ReserveBandwidthForLinkRecord
+  0x0534E0  Upstream bandwidth must be available at link
+  0x053510  Usb4Hrd::BandwidthManager::ReserveBandwidthForLinkRecordLocked
+  0x053550  (availableUpstream - record->AssignedUpstreamBandwidth) >= ReserveUpstream
+  0x0535A0  Downstream bandwidth must be available at link
+  0x0535D0  (availableDownstream - record->AssignedDownstreamBandwidth) >= ReserveDownstream
+  0x053628  Usb4Hrd::BandwidthManager::FreeBandwidthForLinkRecord
+  0x053720  Upstream bandwidth must be allocated at link
+  0x053750  Usb4Hrd::BandwidthManager::FreeBandwidthForLinkRecordLocked
+  0x053790  FreeUpstream <= record->AssignedUpstreamBandwidth
+  0x0537C8  Downstream bandwidth must be allocated at link
+  0x0537F8  FreeDownstream <= record->AssignedDownstreamBandwidth
+  0x053830  Unexpected USB3 scale value
+  0x053850  Usb4Hrd::BandwidthManager::ConvertBandwidthUsb3To100Mbps
+  0x053890  Usb4Hrd::BandwidthManager::ConvertBandwidth100MbpsToUsb3
+  0x0538D0  USB3 adapter requires a 12-bit bandwidth figure
+  0x053900  bw < 4096
+  0x053910  Usb4Hrd::BandwidthManager::DecrementAllocationsAndFlushIfLast
+  0x0539B0  Outstanding allocations should not underflow
+  0x0539E0  tbt3 / no USB3 link roots should not enter this path
+  0x053A18  Usb4Hrd::BandwidthManager::CalculateIfNewUsb3BandwidthOnAllocate
+  0x053A60  rootLinkRecord->MaximumUSB3LinkRateInGbps != 0
+  0x053A90  USB3 + PCIE should only exceed BW on 10gbps link
+  0x053AC8  m_CurrentRequestLink->MaximumUSB3LinkRateInGbps == 10
+  0x053C08  New USB3+PCIe bandwidth shouldn't be less than in use
+  0x053C40  m_NewRootLinkUsb3AndPcieAssignedUpstreamBandwidthToCommit >= usb3AndPcieInUseUpstream
+  0x053C98  m_NewRootLinkUsb3AndPcieAssignedDownstreamBandwidthToCommit >= usb3AndPcieInUseDownstream
+  0x053CF8  Usb4Hrd::BandwidthManager::CalculateNewUsb3BandwidthHelper
+  0x053D38  USB3 CMR handshake should only timeout on release operations / teardown
+  0x053D80  Usb4Hrd::BandwidthManager::CompleteRequestFailureOrRequeue
+  0x053DC0  Should be a request to complete
+  0x053DE0  Usb4Hrd::BandwidthManager::CompleteUsb3TunnelRequestFailure
+  0x053E20  m_CurrentRequest != nullptr
+  0x053E40  All requests must have context
+  0x053E60  Usb4Hrd::BandwidthManager::ProcessRequestAndCheckIfAllocation
+  0x053EA0  Destroy tunnel should have associated tunnel record in SM
+  0x053EE0  m_CurrentOperationTunnelAllocationRecord.get() != nullptr
+  0x053F20  Downstream bandwidth to allocate must not be greater than zero
+  0x053F60  m_DownstreamBandwidthToAllocate <= 0
+  0x053F88  Upstream bandwidth to allocate must not be greater than zero
+  0x053FC8  m_UpstreamBandwidthToAllocate <= 0
+  0x053FF0  Parent link rate must be set
+  0x054010  Usb4Hrd::BandwidthManager::ProcessUsb3TunnelRequest
+  0x054048  parentLinkRecord->MaximumUSB3LinkRateInGbps > 0
+  0x054078  Timer was unexpectedly already in the queue!
+  0x0540A8  Usb4Hrd::BandwidthManager::StartDpTxTimer
+  0x0540D8  Usb4Hrd::BandwidthManager::StartUsb3AckRetryTimer
+  0x054110  Path should only happen on adapters that support DP BW allocation mode
+  0x054158  Usb4Hrd::BandwidthManager::UpdateBookkeepingIfAllocation
+  0x054198  m_CurrentOperationTunnelAllocationRecord->DpInBwAllocationModeEnabled
+  0x0541E0  Non-DP operations should not take this path
+  0x054210  SM should be processing prior to ready state
+  0x054240  Usb4Hrd::BandwidthManager::ReadyForOperation
+  0x054270  m_SmReadyForOperation == false
+  0x054290  m_CurrentOperationTunnelAllocationRecord == nullptr
+  0x054310  BandwidthManager Machine Exception
+  0x054338  Usb4Hrd::BandwidthManager::EvtLogMachineException
+  0x054370  Asym Event Type Not Implemented!
+  0x054398  Usb4Hrd::BandwidthManager::ProcessAsymEvent
+  0x0543C8  Usb4Hrd::BandwidthManager::CheckAsymPolicyOnRouterPlugUnplug
+  0x054408  No Symmetric Votes!
+  0x054420  record->SymmetricVotes != 0
+  0x054440  plug
+  0x054448  unplug
+  0x054450  Usb4Hrd::RequestHelper::RequestCompleteWorker
+  0x054480  Unknown request completion type.
+  0x0544A8  Usb4Hrd::RequestHelper::CheckStackSizeAndCompleteRequest
+  0x0544E8  Could not create a work item for request completion when kernel stack usage is above 50%. Completing the request anyway.
+  0x054568  StandbyHelper::Initialize
+  0x054588  Attempting to initialize StandbyHelper that is already initialized.
+  0x0545D0  IsEqualGUID(*SettingGuid, GUID_CONSOLE_DISPLAY_STATE)
+  0x054608  Expecting GUID_CONSOLE_DISPLAY_STATE while attempting to enter or exit standby.
+  0x054658  ValueLength == sizeof(MONITOR_DISPLAY_STATE)
+  0x054688  Invalid value type or length for display state setting.
+  0x0546C0  Value != nullptr
+  0x0546D8  Value does not exist.
+  0x0546F0  StandbyHelper::Initialize::<lambda_80e864e41471ccc0683bcb5b10c344db>::operator ()
+  0x054748  Context != nullptr
+  0x054760  GUID_CONSOLE_DISPLAY_STATE callback context does not exist.
+  0x0547A0  StandbyHelper::~StandbyHelper
+  0x0547C0  m_IsInitialized == false
+  0x0547E0  StandbyHelper is being destructed without being deinitialized. This may indicate a resource leak of the Po callback registration.
+  0x054868  Config Space accessor must not be running
+  0x054898  Usb4Hrd::ConfigSpaceAccessor::~ConfigSpaceAccessor
+  0x0548D0  !m_running
+  0x0548E0  Failed to get Tx ring Zero
+  0x054900  Usb4Hrd::ConfigSpaceAccessor::Init
+  0x054928  m_txRingZero
+  0x054938  Failed to get Rx ring Zero
+  0x054958  m_rxRingZero
+  0x054968  Unsupported PDF
+  0x054978  Usb4Hrd::ConfigSpaceAccessRequest::ProcessRxPacket
+  0x0549B0  SendWriteTxCommand: Self reference for timer is already set
+  0x0549F0  Usb4Hrd::ConfigSpaceAccessRequest::SendWriteTxCommand
+  0x054A28  m_selfReferenceForTimer == nullptr
+  0x054A50  SendReadTxCommand: Self reference for timer is already set
+  0x054A90  Usb4Hrd::ConfigSpaceAccessRequest::SendReadTxCommand
+  0x054AC8  Response packet Config Space mismatch!
+  0x054AF0  Response packet Adapter mismatch!
+  0x054B18  Self reference for timer is not set on timer callback entry
+  0x054B58  Usb4Hrd::ConfigSpaceAccessRequest::OnTimeoutExpired
+  0x054B90  m_selfReferenceForTimer != nullptr
+  0x054BB8  Self reference for timer is not set after StopTimer returned true
+  0x054C00  Usb4Hrd::ConfigSpaceAccessRequest::StopTimer
+  0x054C30  Unknown error code in notification packet.
+  0x054C60  Usb4Hrd::ConfigSpaceAccessRequest::ShouldFailRequestOnNotificationPacket
+  0x054CB0  Invalid State
+  0x054CC0  Usb4Hrd::LocalConfigSpaceAccessReadRequest::Complete
+  0x054CF8  Usb4Hrd::LocalConfigSpaceAccessWriteRequest::Complete
+  0x054D30  m_request is NULL, can't complete the request
+  0x054D60  Usb4Hrd::IoctlConfigSpaceAccessReadRequest::Complete
+  0x054D98  Usb4Hrd::IoctlConfigSpaceAccessReadEXRequest::Complete
+  0x054DD0  Usb4Hrd::IoctlConfigSpaceAccessWriteRequest::Complete
+  0x054E08  Unknown IOCTL forwarded to Domain Policy Manager!
+  0x054E40  Usb4Hrd::DomainPolicyManager::OnDomainPolicyRequest
+  0x054E78  Invalid tunnel type
+  0x054E90  Usb4Hrd::DPTunnel::InitPaths
+  0x054EB0  tunnelInfo->TunnelType == USB4TunnelTypeDisplayPort
+  0x054EE8  disabled
+  0x054EF8  enabled
+  0x054F38  DP main path must be intialized
+  0x054F58  Usb4Hrd::DPTunnel::GetEtwFormatSize
+  0x054F80  m_DpMainPath.get() != nullptr
+  0x054FA0  DP IN Aux path must be initialized
+  0x054FC8  m_DpInAuxPath.get() != nullptr
+  0x054FE8  DP OUT Aux path must be initialized
+  0x055010  m_DpOutAuxPath.get() != nullptr
+  0x055048  Out of memory of copy failed for vector insert
+  0x055078  Usb4Hrd::DPTunnel::SerializeToEtwFormat
+  0x0550A0  buffer.insert(buffer.end(), (BYTE*)L"DisplayPort", (BYTE*)L"DisplayPort" + sizeof(L"DisplayPort")) != nullptr
+  0x055110  Out of memory or copy failed during vector insertion
+  0x055148  SerializeFieldToEtwBuffer
+  0x055168  success != nullptr
+  0x055190  Underflow root connected router count!
+  0x0551B8  Usb4Hrd::Driver::DecrementRootConnectedRouterCount
+  0x0551F0  m_RootConnectedRouterCount >= 0
+  0x055218  Vendor ID string length must be non-zero
+  0x055248  Usb4HrdHal::HardwareAbstraction::GetAcpiInfo
+  0x055278  vendorIdStringLength != 0
+  0x055298  Vendor ID string length must be less than 5
+  0x0552C8  vendorIdStringLength < 5
+  0x0552E8  Device ID string length must be non-zero
+  0x055318  deviceIdStringLength != 0
+  0x055338  Device ID string length must be less than 5
+  0x055368  deviceIdStringLength < 5
+  0x055388  FFFF
+  0x055390  UKWN
+  0x0553A8  Unexpected that Set Force Power workaround will fail!
+  0x0553E0  Usb4HrdHal::HardwareAbstraction::ConfigHostInterface
+  0x055418  MSIx table check failed.
+  0x055438  Invalid number of paths reported in host interface capability register. Expected value is 1-21 (both inclusive)
+  0x0554A8  Ring ID must be < MAX_NUMBER_OF_PATHS
+  0x0554D0  ringIndex < 21
+  0x0554E0  MMIO has been unmapped
+  0x0554F8  Usb4HrdHal::HostInterfaceRegisters::IsMmioValid
+  0x055528  Usb4HrdHal::HostInterfaceRegisters::RxRingConfig
+  0x055560  Enabled
+  0x055568  Disabled
+  0x055578  Usb4HrdHal::HostInterfaceRegisters::RxRingDeconfig
+  0x0555B0  Usb4HrdHal::HostInterfaceRegisters::TxRingConfig
+  0x0555E8  Usb4HrdHal::HostInterfaceRegisters::TxRingDisableEndToEndFlowControl
+  0x055630  Usb4HrdHal::HostInterfaceRegisters::TxRingDeconfig
+  0x055668  Disabling
+  0x055678  Invalid adapter handle specified in IOCTL.
+  0x0556A8  Usb4Hrd::HostRouter::OnAdapterInterDomainNotificationRequest
+  0x0556E8  Invalid current power state for host router during re-programming host after HRR!
+  0x055740  Usb4Hrd::HostRouter::ReProgramHostAfterHRR
+  0x055770  m_currentPowerState == WdfPowerDeviceD0
+  0x055798  No transmit frame completion callback registered
+  0x0557D0  Usb4Hrd::InterDomainDatapathTunnel::NotifyFramesTransmitted
+  0x055810  nullptr != m_ClientParams.m_NotifyFrameTransmittedCallback
+  0x055850  No received frame completion callback registered
+  0x055888  Usb4Hrd::InterDomainDatapathTunnel::NotifyFramesReceived
+  0x0558C8  nullptr != m_ClientParams.m_NotifyFrameReceivedCallback
+  0x055900  Usb4Hrd::InterDomainDatapathTunnel::InitPaths
+  0x055930  tunnelInfo->TunnelType == USB4TunnelTypeInterDomain
+  0x055990  Interdomain inbound and outbound data paths must be initialized
+  0x0559D0  Usb4Hrd::InterDomainDatapathTunnel::GetEtwFormatSize
+  0x055A08  m_inboundPath.get() != nullptr && m_outboundPath.get() != nullptr
+  0x055A70  Out of memory or copy failed for vector insertion
+  0x055AA8  Usb4Hrd::InterDomainDatapathTunnel::SerializeToEtwFormat
+  0x055AE8  buffer.insert(buffer.end(), (BYTE*)L"Host-To-Host", (BYTE*)L"Host-To-Host" + sizeof(L"Host-To-Host")) != nullptr
+  0x055B60  UsePreallocatedInterdomainRings should only be applied when using line based interrupts
+  0x055BB8  Failed to create preallocated Tx ring
+  0x055BE0  Failed to create preallocated Rx ring
+  0x055C08  Failed initializing preallocated Interdomain Tx ring
+  0x055C40  Failed initializing preallocated Interdomain Rx ring
+  0x055C78  Inter domain Rings not freed yet!
+  0x055CA0  Usb4HrdHal::InterDomainRingsPool::DeInit
+  0x055CD0  m_UsedRings.empty()
+  0x055CE8  Failed to push front Ring-1 back to rings pool
+  0x055D18  Usb4HrdHal::InterDomainRingsPool::ReleaseRing
+  0x055D48  Failed to push back ring ID back to rings pool
+  0x055D78  Usb4HrdHal::HostInterfaceRegisters::RxRingQueryIndexes
+  0x055DB0  Usb4HrdHal::HostInterfaceRegisters::RxRingSetConsumerIndex
+  0x055DF0  InterDomain Rx: Frame mode CRC error.
+  0x055E18  Usb4HrdHal::InterDomainRxRing::GetNextDrainFrame
+  0x055E50  !m_assertOnCrcError
+  0x055E68  InterDomain Rx: Frame mode buffer overrun error.
+  0x055EA0  !m_assertOnBufferOverrunError
+  0x055EC0  Callback already registered
+  0x055EE0  Usb4HrdHal::InterDomainRxRing::RegisterNotifyFrameReceivedCallback
+  0x055F28  m_notifyFrameReceivedCallback.callback == nullptr
+  0x055F60  Context already registered
+  0x055F80  m_notifyFrameReceivedCallback.context == nullptr
+  0x055FB8  Callback isn't registered
+  0x055FD8  Usb4HrdHal::InterDomainRxRing::UnregisterNotifyFrameReceivedCallback
+  0x056020  m_notifyFrameReceivedCallback.callback != nullptr
+  0x056058  Context isn't registered
+  0x056078  m_notifyFrameReceivedCallback.context != nullptr
+  0x0560B0  Invalid frame index parameter in ReturnBufferAvailableForUsb4FrameUse
+  0x0560F8  Usb4HrdHal::InterDomainRxRing::ReturnBufferAvailableForUsb4FrameUse
+  0x056140  writing to updatedIndex will overwrite an undrained descriptor
+  0x056180  Usb4HrdHal::HostInterfaceRegisters::TxRingQueryIndexes
+  0x0561B8  Usb4HrdHal::HostInterfaceRegisters::TxRingSetProducerIndex
+  0x0561F8  Inter-domain TX ring is not making progress.
+  0x056228  Usb4HrdHal::InterDomainTxRing::OnWatchdogTimer
+  0x056258  Inter-domain TX ring made progress after getting stuck.
+  0x056290  Usb4HrdHal::InterDomainTxRing::RegisterNotifyFrameTransmittedCallback
+  0x0562D8  m_notifyFrameTransmittedCallback.callback == nullptr
+  0x056310  m_notifyFrameTransmittedCallback.context == nullptr
+  0x056348  Usb4HrdHal::InterDomainTxRing::UnregisterNotifyFrameTransmittedCallback
+  0x056390  m_notifyFrameTransmittedCallback.callback != nullptr
+  0x0563C8  m_notifyFrameTransmittedCallback.context != nullptr
+  0x056400  Out of bound producer or consumer indexes
+  0x056430  Usb4HrdHal::InterDomainTxRing::ProcessTxInterrupt
+  0x056468  Descriptor %d is NULL
+  0x056480  Usb4HrdHal::Interrupt::Init
+  0x0564A0  Resource is not an interrupt
+  0x0564C0  Interrupt type must be < 3
+  0x0564E0  Usb4HrdHal::Interrupt::ToInterruptCause
+  0x056508  (UINT32)interruptType < 3
+  0x056528  Ring number must be < number of paths
+  0x056550  ringNumber < numberOfPaths
+  0x056570  Interrupt is already binded
+  0x056590  Usb4HrdHal::MessageBasedInterrupt::Bind
+  0x0565B8  m_interruptCause == c_invalidInterruptCause
+  0x0565E8  Interrupt cause is invalid
+  0x056608  Usb4HrdHal::MessageBasedInterrupt::DeconfigHostInterface
+  0x056648  Allocated interrupts should be empty when release hardware comes
+  0x056690  Usb4HrdHal::MessageBasedInterruptsPool::ReleaseHardware
+  0x0566C8  m_allocatedInterrupts.empty()
+  0x0566E8  Source depth is the same as Destination depth
+  0x056718  Usb4Hrd::Path::Init
+  0x056730  sourceRouterDepth != destinationRouterDepth
+  0x056760  Invalid path type, cannot get arbitration parameters
+  0x056798  Usb4Hrd::Path::GetPathArbitrationParams
+  0x0567C0  Usb4Hrd::Path::SerializeToEtwFormat
+  0x0567E8  buffer.insert(buffer.end(), (BYTE *)m_description.c_str(), (BYTE *)m_description.c_str() + (m_description.length() + 1) * sizeof(wchar_t)) != nullptr
+  0x056880  Usb4Hrd::PathSegment::SerializeToEtwFormat
+  0x0568B0  buffer.insert(buffer.end(), (BYTE*)(topologyId.Port), (BYTE*)(topologyId.Port) + topologyIdCount * sizeof(UINT8)) != nullptr
+  0x056930  Bus interface not initialized
+  0x056950  Usb4HrdHal::PciConfigSpace::Read
+  0x056978  m_busInterfaceInitialized
+  0x056998  Usb4HrdHal::PciConfigSpace::Write
+  0x0569C0  Usb4Hrd::PCIeTunnel::InitInternal
+  0x0569E8  tunnelInfo->TunnelType == USB4TunnelTypePcie
+  0x056A28  PCIe USB tunnel's inbound and outbound paths must be initialized
+  0x056A70  Usb4Hrd::PCIeUSBTunnel::GetEtwFormatSize
+  0x056AA0  Usb4Hrd::PCIeUSBTunnel::SerializeToEtwFormat
+  0x056AD0  buffer.insert(buffer.end(), (BYTE*)m_description.c_str(), (BYTE*)m_description.c_str() + (m_description.length() + 1) * sizeof(wchar_t)) != nullptr
+  0x056B68  Tx ring zero is missing
+  0x056B80  Usb4Hrd::PlugPacketEventHandler::Init
+  0x056BA8  m_txRingZero != nullptr
+  0x056BC0  Rx ring zero is missing
+  0x056BD8  m_rxRingZero != nullptr
+  0x056BF0  Received an event before Topology manger registeredCallbacks to handle it
+  0x056C40  Usb4Hrd::PlugPacketEventHandler::OnPlugPacket
+  0x056C70  m_chkPlugPacketCallback != nullptr
+  0x056C98  Unexpected plug event type
+  0x056CB8  onecore\drivers\wdm\usb\usb4\hrd\src\rootdevicerouter.cpp
+  0x056CF8  Parent Device
+  0x056D08  onecore\internal\sdk\inc\wil\opensource/wil/resource.h
+  0x056D40  Root device has no UFP, unexpected to call this method on root PDO!
+  0x056D88  Usb4Hrd::RootDeviceRouterInterface::IsLaneBondingSupported
+  0x056DC8  Root device has no UFP, unexpected to call to check asymmetry support on root PDO!
+  0x056E20  Usb4Hrd::RootDeviceRouterInterface::IsAsymmetricConfigSupported
+  0x056E60  Root device has no parent router, unexpected call on root PDO!
+  0x056EA0  Usb4Hrd::RootDeviceRouterInterface::GetMaxEnumTime
+  0x056ED8  %X-Rx%u
+  0x056EE0  Usb4HrdHal::Ring<struct Usb4HrdHal::_RECEIVE_BUFFER_DESCRIPTOR>::Ring
+  0x056F28  m_id < 21
+  0x056F38  TRUE
+  0x056F40  FALSE
+  0x056F48  Callbacks array not in sync with number of possible PDF values.
+  0x056F88  Usb4HrdHal::RxRingZero::ProcessRxPackets
+  0x056FB8  Ring zero RX frame larger than max possible transport packet.
+  0x056FF8  request
+  0x057000  response
+  0x057010  Invalid PDF registered!
+  0x057028  Usb4HrdHal::RxRingZero::RegisterProcessRxPacketCallback
+  0x057060  No root port record found!
+  0x057080  Usb4Hrd::TmuDomainPolicy::IsRootPortExcludedFromGlobalPolicy
+  0x0570C0  Adapter number must be non-zero
+  0x0570E0  Usb4Hrd::TopologyAdapterNode::InitMembers
+  0x057110  adapterNum != 0
+  0x057120  Domain Power Down not supported on Adapter Node!
+  0x057158  Usb4Hrd::TopologyAdapterNode::OnDomainPowerDown
+  0x057188  There should be no more topology handles
+  0x0571B8  Usb4Hrd::TopologyManager::~TopologyManager
+  0x0571E8  There should be no more tunnel handles
+  0x057218  Such a topology handle already exists
+  0x057240  Usb4Hrd::TopologyManager::AllocateHandle
+  0x057270  Trying to delete non-existent handle
+  0x057298  Usb4Hrd::TopologyManager::DestroyHandle
+  0x0572C0  Target handle is invalid
+  0x0572E0  Usb4Hrd::TopologyManager::OnConfigSpaceReadIoctlRequest
+  0x057318  Usb4Hrd::TopologyManager::OnConfigSpaceReadEXIoctlRequest
+  0x057358  Usb4Hrd::TopologyManager::OnConfigSpaceWriteIoctlRequest
+  0x057398  Unexpected non-inter-domain-packet PDF value.
+  0x0573C8  Usb4Hrd::TopologyManager::OnInterDomainPacket
+  0x0573F8  Adapter number should be 0
+  0x057418  Usb4Hrd::TopologyRouterNode::InitMembers
+  0x057448  (adapterNum == 0)
+  0x057460  This operation is not valid for router handles.
+  0x057490  Usb4Hrd::TopologyRouterNode::PendInterDomainNotificationRequest
+  0x0574D0  Usb4Hrd::TopologyRouterNode::SetInterDomainNotification
+  0x057508  Draining Tx Ring took an abnormally long time, ring may be slow or stuck!
+  0x057558  Usb4HrdHal::TxRing::Stop
+  0x057578  %X-Tx%u
+  0x057580  Usb4HrdHal::Ring<struct Usb4HrdHal::_TRANSMIT_BUFFER_DESCRIPTOR>::Ring
+  0x0575C8  Tx buffer is too large
+  0x0575E0  Usb4HrdHal::TxRingZero::Send
+  0x057600  length <= RING_ZERO_TX_FRAME::frameSize
+  0x057628  Transmit ring 0 full
+  0x057640  Usb4HrdHal::TxRingZero::CanSendPacket
+  0x057668  Usb4Hrd::USB3Tunnel::InitInternal
+  0x057690  tunnelInfo->TunnelType == USB4TunnelTypeUSB3
+  0x0576D0  Unknown reference string prefix.
+  0x0576F8  Usb4Hrd::VirtualPowerPdo::ParseReferenceString
+  0x057728  DP IN adapter is already tunneled or in alt mode workaround, cannot exercise DP alt mode workaround.
+  0x057790  Usb4Hrd::VirtualPowerPdo::DpTunnelConfig
+  0x0577C0  DP IN adapter is already in alt mode workaround, cannot exercise DP alt mode workaround.
+  0x057820  Alt mode workaround for DP IN was engaged when configuring a DP tunnel.
+  0x057868  adp->InAltMode == false
+  0x057880  onecore\drivers\wdm\usb\usb4\hrd\src\virtualpowerpdo.cpp
+  0x0578C0  DP Adapter not found
+  0x0578D8  Usb4Hrd::VirtualPowerPdo::DpTunnelTeardown
+  0x057908  nullptr != adp
+  0x057918  DP IN adapter did not apply alt mode workaround before clearing it.
+  0x057960  Alt mode workaround for DP IN was engaged when deconfiguring a DP tunnel.
+  0x0579B0  Excessive Gfx Power References (10), failing!
+  0x0579E0  Usb4Hrd::VirtualPowerPdo::GfxClaimPowerOwnership
+  0x057A18  DP Adapter not found on file close.
+  0x057A40  Usb4Hrd::VirtualPowerPdo::GfxRelinquishPowerOwnership
+  0x057A78  Gfx ownership dropped, power reference unexpectedly held by VPDO
+  0x057AC0  !adp->PowerReferenceHeld
+  0x057AE0  Gfx ownership dropped without first being claimed.
+  0x057B18  Expecting Monitor Display State GUID for Virtual Power PDO callback.
+  0x057B60  Usb4Hrd::VirtualPowerPdo::MonitorDisplayStateChangeCallbackThunk
+  0x057BA8  Invalid value type or length for Monitor Display State setting.
+  0x057BE8  Monitor Display State callback context does not exist.
+  0x057C20  Expecting LPE GUID while attempting to enter or exit LPE.
+  0x057C60  Usb4Hrd::VirtualPowerPdo::LowPowerEpochEntryExitCallbackThunk
+  0x057CA0  IsEqualGUID(*SettingGuid, GUID_LOW_POWER_EPOCH)
+  0x057CD0  Invalid value type or length for LPE setting.
+  0x057D00  ValueLength == sizeof(ULONG)
+  0x057D20  LPE callback context does not exist.
+  0x057D48  Standby callback context does not exist.
+  0x057D78  Usb4Hrd::VirtualPowerPdo::OnStandbyChangeThunk
+  0x057DA8  PoUnregisterPowerSettingCallback should only fail if passed a bad handle!
+  0x057DF8  Usb4Hrd::VirtualPowerPdo::EvtObjectContextCleanup
+  0x057E30  PoUnregisterPowerSettingCallback for GUID_CONSOLE_DISPLAY_STATE should only fail if passed a bad handle!
+  0x057EA0  DriverEntry failed 0x%x for driver %wZ
+  0x057EC8  FxStubBindClasses: invalid driver image, the address of symbol __KMDF_CLASS_BIND_START 0x%p is greater than the address of symbol __KMDF_CLASS_BIND_END 0x%p, status 0x%x
+  0x057F78  FxGetNextClassBindInfo failed
+  0x057F98  FxStubBindClasses: ClientBindClass %p, WDF_CLASS_BIND_INFO 0x%p, class %S, returned status 0x%x
+  0x058000  FxStubBindClasses: VersionBindClass WDF_CLASS_BIND_INFO 0x%p, class %S, returned status 0x%x
+  0x058060  FxStubInitTypes: invalid driver image, the address of symbol __KMDF_TYPE_INIT_START 0x%p is greater than the address of symbol __KMDF_TYPE_INIT_END 0x%p, status 0x%x
+  0x058108  FxGetNextObjectContextTypeInfo failed
+  0x058130  <unknown>
+  0x05A410  Usb4Hrd::HRD_FILE_OBJECT_CONTEXT
+  0x05A438  Usb4Hrd::HRD_WDFREQUEST_CONTEXT
+  0x05A458  Usb4Hrd::RequestHelper
+  0x05A487  7OGO
+  0x05A494  "?zE
+  0x05A5AA  kI%o
+  0x05A5D4  &IA8YBf868(f&
+  0x05A699  gZP.
+  0x05A6A1  N#^A
+  0x05A6D0  Usb4Hrd::CONFIG_SPACE_ACCESS_REQUEST_CONTEXT
+  0x05A700  Usb4Hrd::CONFIG_SPACE_ACCESSOR_CONTEXT
+  0x05A728  Usb4Hrd::RTR_ASYM_REQUEST_CONTEXT
+  0x05A750  Usb4Hrd::PLUG_PACKET_EVENT_HANDLER_CONTEXT
+  0x05A780  Usb4Hrd::FILE_OBJECT_DATA
+  0x05A7A0  Usb4Hrd::DOMAINPOLICY_QUEUE_CONTEXT
+  0x05A7C8  Usb4Hrd::TunnelHandle
+  0x05A7F6  !77nbr
+  0x05A800  Usb4Hrd::BANDWIDTHMANAGER_OBJ_CONTEXT
+  0x05A828  Usb4Hrd::BANDWIDTHMANAGER_WORKITEM_CONTEXT
+  0x05A858  Usb4Hrd::BANDWIDTHMANAGER_NOTIFICATION_WORKITEM_CONTEXT
+  0x05A890  Usb4Hrd::BANDWIDTHMANAGER_NOTIFICATION_TIMER_CONTEXT
+  0x05A8C8  Usb4Hrd::BandwidthManagerRequest
+  0x05AFCE  `3h(7Z
+  0x05AFFB  pK324
+  0x05B02E  u1GC
+  0x05B048  Usb4HrdHal::INTERRUPT_CONTEXT
+  0x05B088  Usb4Hrd::TMUDOMAINPOLICY_QUEUE_CONTEXT
+  0x05B0B0  Usb4Hrd::RTR_TMU_REQUEST_CONTEXT
+  0x05B0D8  Usb4Hrd::HostRouter
+  0x05B12E  zMUsb4Hrd::InterDomainTunnelRequestWorkItem
+  0x05B1A0  Usb4HrdHal::InterDomainTxRingWatchdogTimerContext
+  0x05B1DC  E:F?x
+  0x05B21B  Canb=k
+  0x05B247  m-hQ
+  0x05B2D8  Usb4Hrd::RootDeviceRouter
+  0x05B345  p /N
+  0x05B353  ^7>\
+  0x05B358  kl"U
+  0x05B368  Usb4Hrd::ROUTER_DOMAIN_POWER_DOWN_CONTEXT
+  0x05B398  Usb4Hrd::TopologyHandle
+  0x05B3D5  eb1rE
+  0x05B41F  1dSX
+  0x05B42C  (O79~m]
+  0x05B450  Usb4Hrd::VirtualPowerPdo
+  0x05B4AC  o=mN
+  0x05B680  ETW0
+  0x05B69F  AssertionFailure
+  0x05B6B0  Message
+  0x05B6B9  Expression
+  0x05B6C5  Arg1
+  0x05B6CB  Arg2
+  0x05B6D1  Function
+  0x05B6DB  Line
+  0x05B6F0  AsymmetricTransitionDuration
+  0x05B70D  DomainID
+  0x05B717  ToAsymmetric
+  0x05B726  LinkCountSucceeded
+  0x05B73A  LinkCountFailed
+  0x05B74B  AsymmetricTransitionDurationMs
+  0x05B76B  PartA_PrivTags
+  0x05B78A  LogicalLayerErrors
+  0x05B7A7  TopologyID
+  0x05B7B5  AdapterNumber
+  0x05B7E7  FlowControlError
+  0x05B82E  HECError
+  0x05B86D  DPBandwidthAllocation
+  0x05B883  IsRundownEvent
+  0x05B8BB  TunnelHandle
+  0x05B8C9  RequestedBandwidthInDpUnits
+  0x05B8E6  AllocatedBandwidthInDpUnits
+  0x05B903  EstimatedBandwidthInDpUnits
+  0x05B920  Granularity
+  0x05BA0B  TotalConnectedRootPorts
+  0x05BA23  ConnectedRootPorts
+  0x05BA3B  sPartA_PrivTags
+  0x05BA5B  RundownComplete
+  0x05BA7A  RundownStart
+  0x05BA96  DriverAssert
+  0x05BABB  DriverAssertWithArgs
+  0x05BAF4  HostRouterInformationOther
+  0x05BB2A  DeviceInstancePath
+  0x05BB3E  AcpiBiosDeviceName
+  0x05BBCE  HostRouterInformationAcpi
+  0x05BC17  VendorIdString
+  0x05BC27  DeviceIdString
+  0x05BC37  HardwareRevision
+  0x05BD0C  HostRouterInformationPci
+  0x05BD54  BusNumber
+  0x05BD5F  DeviceNumber
+  0x05BD6D  FunctionNumber
+  0x05BD7D  VendorId
+  0x05BD87  DeviceId
+  0x05BD91  RevisionId
+  0x05BD9E  SubVendorId
+  0x05BDAC  SubSystemId
+  0x05BEAE  DomainSleepInformation
+  0x05BEE3  IsDomainPoweredDown
+  0x05BEF9  NumberOfDomainPowerDownRequests
+  0x05BF29  HostRouterRemoval
+  0x05BF54  TunnelInformation
+  0x05BF77  Tunnel
+  0x05BF98  Description
+  0x05BFA5  Paths
+  0x05BFAD  Name
+  0x05BFB3  IsIncoming
+  0x05BFC0  PathSegments
+  0x05BFCF  TopologyId
+  0x05BFDA  DInHopId
+  0x05BFE4  OutHopId
+  0x05BFEE  OutAdapterNum
+  0x05BFFD  InAdapterNum
+  0x05C00B  PathCredits
+  0x05C018  Weight
+  0x05C020  Priority
+  0x05C10D  TunnelRestoreDuration
+  0x05C12D  DomainRestoreTimeout
+  0x05C144  TunnelRestoreDurationMs
+  0x05C15D  DomainRestorePowerAction
+  0x05C177  TunnelCount
+  0x05C184  RouterCount
+  0x05C1B0  TunnelRemoval
+  0x05C1E5  UnclaimedDpTunnel
+  0x05C201  DPCDCmID
+  0x05C23A  AssertWithArgs
+  0x05C249  assertVersion
+  0x05C25D  timestamp
+  0x05C268  imageSize
+  0x05C273  imageName
+  0x05C27E  count
+  0x05C285  totalHits
+  0x05C290  IRQL
+  0x05C296  originatingBinary
+  0x05C2A9  bucketArgument1
+  0x05C2BA  bucketArgument2
+  0x05C2CB  message
+  0x05C2E4  AssertWERWithArgs
+  0x05C33D  Status
+  0x05C38A  Assert
+  0x05C3F7  AssertWER
+  0x05C460  TlgAggregateSummary
+  0x05C484  UtcAggParams
+  0x05C493  Period
+  0x05C49B  MaxEvents
+  0x05C4A6  Mode
+  0x05C4AC  Provider
+  0x05C4B6  UtcAggVal
+  0x05C4C8  Value
+  0x05C5DC  BusesAssert
+  0x05C5E8  Count
+  0x05C5F3  qComponentName
+  0x05C62B  BusesAssertArgs
+  0x05C6A1  qMessage
+  0x05C6AB  ComponentName
+  0x05C743  [WE+
+  0x05C74D  u{a7;
+  0x05C753  Microsoft.Windows.USB.USB4.HostRouter
+  0x05C79F  TelemetryAssert
+  0x05C7D5  TelemetryAssertDiagTrack_KM
+  0x05C804  TelemetryAssertDiagTrack
+  0x05C830  Microsoft.Windows.TlgAggregateInternal
+  0x05C878  P;<3
+  0x05C87D  Microsoft.Windows.BusesAssert
+  0x05C8B4  RSDS
+  0x05C8CC  Usb4HostRouter.pdb
+  0x05C8E0  OGPS
+  0x05C8FC  .text$mn
+  0x05C910  .text$mn$00
+  0x05C924  .text$mn$21
+  0x05C938  .text$s
+  0x05C948  fogrp
+  0x05C958  .giats
+  0x05C968  .rdata
+  0x05C978  .rdata$zETW0
+  0x05C990  .rdata$zETW1
+  0x05C9A8  .rdata$zETW2
+  0x05C9C0  .rdata$zETW9
+  0x05C9D8  .rdata$zzzdbg
+  0x05C9F0  .xdata
+  0x05CA00  WilStagingFeatureDescriptors$__m
+  0x05CA2C  .data
+  0x05CA3C  .kmdfclassbind$a
+  0x05CA58  .kmdfclassbind$c
+  0x05CA74  .kmdfclassbind$d
+  0x05CA90  .kmdftypeinit$a
+  0x05CAA8  .kmdftypeinit$c
+  0x05CAC0  .bss
+  0x05CAD0  .bss$WilStagingAlmostROZ
+  0x05CB04  .idata$5
+  0x05CB18  .00cfg
+  0x05CB28  .idata$2
+  0x05CB3C  .idata$3
+  0x05CB50  .idata$4
+  0x05CB64  .idata$6
+  0x05CB78  NONPAGE
+  0x05CB98  PAGE$s
+  0x05CBA8  INIT
+  0x05CBB8  INIT$s
+  0x05CBC8  .gfids
+  0x05CBD8  .rsrc$01
+  0x05CBEC  .rsrc$02
+  0x061B52  EtwWriteTransfer
+  0x061B66  KdRefreshDebuggerNotPresent
+  0x061B84  KeBugCheckEx
+  0x061B94  RtlNotifyFeatureUsage
+  0x061BAC  RtlQueryFeatureConfiguration
+  0x061BCC  KeClearEvent
+  0x061BDC  KeWaitForSingleObject
+  0x061BF4  _vsnprintf
+  0x061C02  KeInitializeEvent
+  0x061C16  PoUnregisterPowerSettingCallback
+  0x061C3A  KeSetEvent
+  0x061C48  PoRegisterPowerSettingCallback
+  0x061C6A  IoGetStackLimits
+  0x061C7E  KeReleaseSpinLock
+  0x061C92  KeAcquireSpinLockRaiseToDpc
+  0x061CB0  KeInitializeSpinLock
+  0x061CC8  _purecall
+  0x061CD4  ExUuidCreate
+  0x061CE4  EtwActivityIdControl
+  0x061CFC  ZwUpdateWnfStateData
+  0x061D14  RtlInitUnicodeString
+  0x061D2C  MmGetSystemRoutineAddress
+  0x061D48  IoWMIRegistrationControl
+  0x061D64  RtlRecordFeatureUsage
+  0x061D7C  RtlRegisterFeatureUsageProvider
+  0x061D9E  RtlArmFeatureUsageProviderFlushNotification
+  0x061DCC  RtlRegisterFeatureConfigurationChangeNotification
+  0x061E00  RtlQueryFeatureConfigurationChangeStamp
+  0x061E2A  ZwPowerInformation
+  0x061E40  RtlUnregisterFeatureUsageProvider
+  0x061E64  RtlUnregisterFeatureConfigurationChangeNotification
+  0x061E9A  ZwQuerySystemInformation
+  0x061EB6  RtlCompareMemory
+  0x061ECA  _vsnwprintf
+  0x061ED8  RtlInitAnsiString
+  0x061EEC  RtlUnicodeStringToAnsiString
+  0x061F0C  RtlFreeAnsiString
+  0x061F20  RtlUnicodeStringToInteger
+  0x061F3C  KseQueryDeviceFlags
+  0x061F52  KeDelayExecutionThread
+  0x061F6C  MmMapIoSpaceEx
+  0x061F7E  MmUnmapIoSpace
+  0x061F90  DbgPrintEx
+  0x061F9E  IoSetDevicePropertyData
+  0x061FB8  RtlCompareUnicodeString
+  0x061FD2  SeCaptureSubjectContext
+  0x061FEC  SeLockSubjectContext
+  0x062004  SeTokenIsAdmin
+  0x062016  SeUnlockSubjectContext
+  0x062030  SeReleaseSubjectContext
+  0x06204A  IoGetDeviceInterfaces
+  0x062062  ExFreePoolWithTag
+  0x062076  KeFlushQueuedDpcs
+  0x06208A  KeLeaveCriticalRegion
+  0x0620A2  ExReleasePushLockExclusiveEx
+  0x0620C2  ExAcquirePushLockExclusiveEx
+  0x0620E2  KeEnterCriticalRegion
+  0x0620FA  KeReleaseSpinLockFromDpcLevel
+  0x06211A  KeAcquireSpinLockAtDpcLevel
+  0x062138  ExAllocatePool2
+  0x06214A  KeBugCheck
+  0x062156  ntoskrnl.exe
+  0x062166  KfRaiseIrql
+  0x062174  KfLowerIrql
+  0x062182  KeQueryPerformanceCounter
+  0x06219E  KeStallExecutionProcessor
+  0x0621B8  HAL.dll
+  0x0621C2  WppAutoLogTrace
+  0x0621D4  imp_WppRecorderLogDelete
+  0x0621F0  imp_WppRecorderLogCreate
+  0x06220C  imp_WppRecorderLogSetIdentifier
+  0x06222E  imp_WppRecorderReplay
+  0x062246  WppAutoLogStart
+  0x062258  WppAutoLogStop
+  0x06226A  imp_WppRecorderConfigure
+  0x062284  WppRecorder.sys
+  0x062296  RtlCopyUnicodeString
+  0x0622AE  IoQueryFullDriverPath
+  0x0622C6  EtwSetInformation
+  0x0622DA  DbgkWerCaptureLiveKernelDump
+  0x0622FA  EtwUnregister
+  0x06230A  EtwRegister
+  0x062318  KeQueryTimeIncrement
+  0x062330  IoAllocateWorkItem
+  0x062346  IoFreeWorkItem
+  0x062358  IoQueueWorkItem
+  0x06236A  ExFreePool
+  0x062378  KeGetCurrentThread
+  0x06238E  RtlRunOnceExecuteOnce
+  0x0623A6  KeIsExecutingDpc
+  0x0623BA  ExSetTimer
+  0x0623C8  ExReleaseSpinLockExclusive
+  0x0623E6  ExDeleteTimer
+  0x0623F6  ExAllocateTimer
+  0x062408  ExTryAcquirePushLockExclusiveEx
+  0x06242A  ExReleaseSpinLockSharedFromDpcLevel
+  0x062450  ExQueueWorkItem
+  0x062462  ExReleaseSpinLockShared
+  0x06247C  ExAcquireSpinLockShared
+  0x062496  ExAcquireSpinLockSharedAtDpcLevel
+  0x0624BA  ExAcquireSpinLockExclusive
+  0x0624D8  ExReleasePushLockSharedEx
+  0x0624F4  ExAllocatePoolWithTag
+  0x06250C  ExAcquirePushLockSharedEx
+  0x062528  wcscpy_s
+  0x062534  IoOpenDriverRegistryKey
+  0x06254E  ZwQueryValueKey
+  0x062560  ZwClose
+  0x06256A  KeGetCurrentIrql
+  0x06257E  WdfVersionUnbind
+  0x062592  WdfLdrQueryInterface
+  0x0625AA  WdfVersionBind
+  0x0625BC  WdfVersionUnbindClass
+  0x0625D4  WdfVersionBindClass
+  0x0625E8  WDFLDR.SYS
+  0x06289B  4i*@
+  0x063C98  HA@y
+  0x064131  3A9i
+  0x064167  *hB@9
+  0x064198  h1@y
+  0x064E8B  yh~@
+  0x06508C  cVBy
+  0x065094  bRBy&f
+  0x0650F0  iVBy
+  0x065FE7  RjN@y
+  0x065FF3  ShB@y
+  0x066062  A9kF@y?!
+  0x066191  ")k(=
+  0x0661BC  he@y
+  0x0677C6  [9h.
+  0x068AC7  4,E@yj
+  0x06992C  (M@yh
+  0x0699DC  (I@yh
+  0x069BF4  "I@yb
+  0x069BFB  5(M@y
+  0x069C08  #M@y
+  0x069E56  [9(P
+  0x069FFB  4ifA9hbA9n6@
+  0x06A008  mf@yl
+  0x06A06C  hf@yH
+  0x06A073  yh6@
+  0x06A080  hbA9
+  0x06A08C  hfA9
+  0x06A3D2  [9('
+  0x06B18A  [9h$
+  0x06B454  i!A)
+  0x06B595  sAy 
+  0x06C87D  !@9,H
+  0x06D482  A9hO
+  0x06E912  [9HK
+  0x06EA96  [9(?
+  0x06EDB2  [9H&
+  0x06FC0D  BA9d
+  0x0705C0  haA9(
+  0x0705CC  hmA9)
+  0x0707E2  @9(m
+  0x070A84  Ie@y)
+  0x070D38  gfff
+  0x070E8C  (eA9(
+  0x07107A  @9(5
+  0x07121C  ojA9
+  0x073760  hB@y
+  0x0737E8  h"@9H
+  0x0739B9  D@y)
+  0x0739CA  @9(-
+  0x0739DE  @9(E
+  0x073A1A  @9Ha
+  0x073A56  @9(a
+  0x073A6A  @9(e
+  0x073A7E  @9(i
+  0x073B3F  4`&@
+  0x073B5B  S`&@
+  0x074AD2  A95e
+  0x0752BE  P):c
+  0x07551F  4#!@
+  0x076358  USB4
+  0x076F8C  +%@xk
+  0x07774F  TB|@
+  0x0778B1  C@9h
+  0x0778E9  k@9h
+  0x077B80  (x@9
+  0x077B87  5(t@9
+  0x077BBF  4(|@9
+  0x077DA0  hv@9
+  0x077DA7  5hz@9
+  0x077DAF  5hr@9
+  0x07815F  Xa2@
+  0x078970  ANqB
+  0x0789CB  =a2@
+  0x079F33  R(]A
+  0x07A494  h2C9h
+  0x07A49B  9h*Z)i
+  0x07A4C6  @yi"
+  0x07A947  Tcv@
+  0x07AA9C  eRBy
+  0x07BDA7  Rej@
+  0x07BFFB  4cz@
+  0x07C347  4az@
+  0x07C9F4  (X@9
+  0x07CDD0  AEcUL
+  0x07D8D7  4hSD
+  0x07E5BF  Rkb@
+  0x07F474  h!@90
+  0x07F4A0  J-@)
+  0x07F4D4  "!@9h
+  0x07F7BB  *`j@
+  0x080889  a\9I
+  0x082E88  hjC9
+  0x082E8F  4hb@
+  0x082EB7  <hjC9h
+  0x082EDF  4hv@
+  0x0836CE  @y`"
+  0x084F3F  4@\A
+  0x0851F4  hb@9&
+  0x0853D8  hb@9f
+  0x0855AB  )hB@y
+  0x085880  h"@9h
+  0x086137  4`.@
+  0x086157  S`.@
+  0x086213  T`.@
+  0x08628B  Ti>@
+  0x086466  B9(A
+  0x086B1E  H6`&@
+  0x087067  =1A@
+  0x0872F5  RByh
+  0x0890CB  5hz@
+  0x08A8AB  4j.@
+  0x08A9F1  cC9(
+  0x08AA0E  @9(q
+  0x08BDE7  Th&A)?
+  0x08C037  Ta^@
+  0x08CC0B  5h2@
+  0x08E23F  R(I@
+  0x08E254  aB@9h
+  0x08F509  RByH
+  0x091B98  +iax*$@x
+  0x092648  +&@)L
+  0x092680  +&@)
+  0x0928D3  *hZu
+  0x092963  4arA
+  0x092D40  Link powered down when requested asymmetric transition.
+  0x092D78  Usb4Hrd::AsymmetricDomainPolicy::SwitchLinksHelper
+  0x092DB8  Symmetric
+  0x092DC8  Asymmetric
+  0x092DD8  Verify waited for SM tear down correctly
+  0x092E08  Usb4Hrd::BandwidthManager::Deinit
+  0x092EA0  Usb4Hrd::BandwidthManager::SelfManagedIoCleanup
+  0x092ED0  Asym timer should not have been running on resume!
+  0x092F08  Usb4Hrd::BandwidthManager::ExitingSystemSuspend
+  0x092F38  !inSystemQueue
+  0x092F48  BM %s
+  0x092F50  Unknown IOCTL processed
+  0x092F68  Usb4Hrd::BandwidthManager::OnBandwidthQueueIo
+  0x092F98  WdfRequestRetrieveInputBuffer failed
+  0x092FC0  Usb4Hrd::BandwidthManager::ProcessDprxRequest
+  0x092FF0  WdfRequestRetrieveOutputBuffer failed
+  0x093018  Non-DP create tunnel in DPRX queue
+  0x093040  inputData->TunnelType == USB4TunnelTypeDisplayPort
+  0x0930A8  Group ID should be reset when only a single tunnel previously existed
+  0x0930F0  linkRecord->AssignedGroupId == 0
+  0x093118  Verify tunnel record for rebuild exists
+  0x093140  tunnelRecord
+  0x0931C8  Outstanding allocations should not underflow during rebuild
+  0x093210  Only rebuilds and creates should be handled by DPRX work item
+  0x093250  Unknown value for common caps link rate
+  0x093278  Unknown value for common caps lane count
+  0x0932A8  Link record must exist for adapter's router
+  0x0932E8  COMMON_CAPS indicate higher bandwidth requirement than allocated.
+  0x093330  Forwarding request to queue should never fail
+  0x093360  Timer should not be started if we hit the failure path
+  0x093398  !tunnelRecord->DpInBwAllocationModeWaitingForInitialRequest
+  0x0933D8  (((NTSTATUS)(secondaryStatus)) >= 0)
+  0x093400  Group ID should have been freed
+  0x093448  Route string length must be non-zero
+  0x093470  Usb4Hrd::BandwidthManager::OnNotifyUfpLinkBandwidth
+  0x0934A8  routeString.Length() != 0
+  0x0934C8  Topology handle's adapter number must be non-zero
+  0x093500  tpHandle->GetAdapterNum() == 0
+  0x093520  Link should provide the same rate on resume
+  0x093550  record->MaximumBandwidthIn100MbpsUnits == BandwidthGbps * c_MaximumBandwidthGbpsTo100MbpsFactor
+  0x0935B0  Link unexpectedly changed to 3 Tx UP!
+  0x0935D8  HW claims no Asymmetric support on update, but lanes in Asymmetric config!
+  0x093628  Symmetry support changed across resume!
+  0x093650  Initial Link State 3 Tx UP is unsupported!
+  0x093680  HW claims no Asymmetric support, but lanes in Asymmetric config!
+  0x093818  All downstream bandwidth should be freed
+  0x093848  record->AssignedDownstreamBandwidth == 0
+  0x093878  All upstream bandwidth should be freed
+  0x0938A0  record->AssignedUpstreamBandwidth == 0
+  0x0938C8  Link should not be assigned a group ID
+  0x0938F0  record->AssignedGroupId == 0
+  0x093910  All DP tunnels should be torn down on link
+  0x093940  record->DpTunnelCount == 0
+  0x093960  Got ufp cleanup call for unknown router
+  0x093988  Usb4Hrd::BandwidthManager::OnCreateTunnelRequest
+  0x0939C0  Context should have been assigned to DP request
+  0x0939F0  requestContext
+  0x093A00  Link record must exist for USB3 adapter's router
+  0x093A38  requestContext->AssociatedLink
+  0x093A58  Usb4Hrd::BandwidthManager::OnRebuildTunnelRequest
+  0x093A90  Context should not be assigned to incoming USB3 rebuild
+  0x093AC8  requestContext == nullptr
+  0x093AE8  Usb4Hrd::BandwidthManager::OnAllocateDpBandwidthRequest
+  0x093B20  Usb4Hrd::BandwidthManager::OnReleaseDpBandwidthRequest
+  0x093B58  Usb4Hrd::BandwidthManager::OnDestroyTunnelRequest
+  0x093B90  (((NTSTATUS)(lockStatus)) >= 0)
+  0x093BB0  record->ParentLink->AssignedGroupId == 0
+  0x093BE0  Tunnel must have a record for query
+  0x093C08  Usb4Hrd::BandwidthManager::OnQueryDpBandwidth
+  0x093C38  Usb4Hrd::BandwidthManager::EvtDomainPowerDown
+  0x093C68  Usb4Hrd::BandwidthManager::GetTunnelAllocationRecord
+  0x093CA0  Usb4Hrd::BandwidthManager::GetLinkRecordForUsb3TunnelHandle
+  0x093CE0  Usb4Hrd::BandwidthManager::GetLinkRecord
+  0x093D10  Got invalid handle for link record lookup
+  0x093D40  Usb4Hrd::BandwidthManager::GetLinkRecordLocked
+  0x093D70  Usb4Hrd::BandwidthManager::GetParentLinkRecord
+  0x093E48  Usb3 + PCIe exceeds available bandwidth on link (for DP estimated BW)
+  0x093E90  Usb4Hrd::BandwidthManager::GetEstimatedBandwidthForDpInAdapterLocked
+  0x093ED8  linkAvailableDownstream >= utilizedUsb3AndPcieDownstream
+  0x093F18  DP units should fit into 8-bit config space variable
+  0x093F50  availableDownstream <= 0xFF
+  0x093F70  Usb4Hrd::BandwidthManager::GetEstimatedBandwidthForDpInAdapter
+  0x093FB0  Usb4Hrd::BandwidthManager::ReEvaluateIfLinksShouldSwitchToSymmetric
+  0x093FF8  Usb4Hrd::BandwidthManager::ReEvaluateIfLinksShouldSwitchToAsymmetric
+  0x094040  Usb4Hrd::BandwidthManager::FindLinksToRootFromLeafOnArrival
+  0x094080  Usb4Hrd::BandwidthManager::FindLinksToRootFromLeafOnRemoval
+  0x0940C0  Usb4Hrd::BandwidthManager::CheckIfLinksShouldBeSwitchedToSymmetric
+  0x094108  Usb4Hrd::BandwidthManager::CacheLinksThatRequireAsymDueToBwReq
+  0x094190  Usb4Hrd::BandwidthManager::ClearDpBwCMAck
+  0x094208  Allocation requests must actually allocate bandwidth
+  0x094240  Usb4Hrd::BandwidthManager::CompleteRequestSuccess
+  0x094278  (m_UpstreamBandwidthToAllocate >= 0) && (m_DownstreamBandwidthToAllocate >= 0)
+  0x0942C8  Unable to retrieve output buffer for IOCTL_INTERNAL_USB4_ALLOCATE_DP_BANDWIDTH
+  0x094338  Usb4Hrd::BandwidthManager::ProgramUsb3TunnelAndCompleteRequest
+  0x094398  Should be a USB3 tunnel creation
+  0x0943C0  inputData->TunnelType == USB4TunnelTypeUSB3
+  0x0943F0  Rebuild should be for USB3 tunnel in this path
+  0x094420  GetLinkRecordForUsb3TunnelHandle(inputData->TunnelHandle) != nullptr
+  0x094468  Only USB3 creates and rebuilds should be handled here.
+  0x0944A0  Usb4Hrd::BandwidthManager::ProcessNotificationAndReadAdapter
+  0x0944E0  Usb4Hrd::BandwidthManager::ReadDpTxReqAndCheckIfClear
+  0x094518  Usb4Hrd::BandwidthManager::WriteAllocationToDpIn
+  0x094550  Usb4Hrd::BandwidthManager::SetDpInCmAckOnFailure
+  0x094588  Usb4Hrd::BandwidthManager::WriteDpInEstimatedBandwidths
+  0x0945C0  Scale should only be set in the initialization path for USB3 tunnel
+  0x094608  Usb4Hrd::BandwidthManager::ReadModifyWriteUsb3AdpCs3WithScale
+  0x094648  rootLinkRecord == m_CurrentRequestLink.get()
+  0x094678  Usb4Hrd::DomainPolicyManager::DequeueRequests
+  0x0946A8  Unexpectedly failed to retrieve request from Domain Policy queue.
+  0x0946F0  Failed to retrieve WDF request buffer for domain power down callbacks
+  0x094738  Usb4Hrd::DomainPowerDown::DispatchDomainPowerDownCallbacks
+  0x094778  status == ((NTSTATUS)0x00000000L)
+  0x0947A0  Failed to register Dp tunnel configure with virtual power parent.
+  0x0947E8  Usb4Hrd::DPTunnel::Configure
+  0x094808  ((NTSTATUS)0xC00002D3L) == status
+  0x094830  Should be no alpine ridge DP in
+  0x094850  m_DpInAdapter->GetRouterType() != RouterTypeTbt3AlpineRidge
+  0x094BD8  All CMIDs already allocated.
+  0x094BF8  Usb4HrdHal::HardwareAbstraction::GetDeviceBiosNameAndCmIdFromAcpi
+  0x094C40  Unexpected parent bus type.
+  0x094C60  Usb4HrdHal::HardwareAbstraction::QueryConfigAndBuildDomainId
+  0x094CA0  %04X %04X
+  0x094CB0  %s %s
+  0x094CB8  Unrecognized bus type.
+  0x094CD0  Usb4HrdHal::HardwareAbstraction::GetBusId
+  0x094FF8  Unexpected for Host Router Reset(HRR) bit set to 1
+  0x095030  Usb4HrdHal::HardwareAbstraction::IssueHRROnHost
+  0x095060  HRR failed in PrepareHardware!
+  0x095089  ************************* 
+  0x0950A4  This version of Windows has not been validated with the USB4 host router attached to the system.
+  0x095105  If you encounter this error while testing a new platform or a host router, please enable test-signing 
+  0x09516C  and reload the driver or reboot your machine.************************* 
+  0x0951B8  Failed to create virtual power parent.
+  0x0951E0  Usb4Hrd::HostRouter::Initialize
+  0x095200  Failed to add Root Device Router!
+  0x095228  Unsupported PDO type attempted to be enumerated!
+  0x095260  Usb4Hrd::HostRouter::EvtDeviceListCreatePdoThunk
+  0x095298  Failed to create root device router.
+  0x0952C0  Usb4Hrd::HostRouter::CreateRootRouterPdo
+  0x0952F0  HR %s
+  0x095318  Context token does not exist.
+  0x095338  Usb4Hrd::HostRouter::IsCallerAdmin
+  0x095360  token != nullptr
+  0x095378  Not a valid debug interface client
+  0x0953A0  Usb4Hrd::HostRouter::EvtDebugIoDeviceControlCallback
+  0x0953D8  fileObjectContext->ValidDebugInterfaceClient
+  0x095408  true
+  0x095410  Invalid router handle passed for host router reset request IOCTL
+  0x095458  Usb4Hrd::HostRouter::IssueHostRouterReset
+  0x095488  Invalid request for host router reset, got handle from a non-root router
+  0x0955A8  Invalid, null input to RootRouterPoweredOn!
+  0x0955D8  Usb4Hrd::HwServicesInterface::RootRouterPoweredOn
+  0x095610  Non root router called RootRouterPoweredOn!
+  0x095640  Successful NTSTATUS returned on failed inter-domain tunnel create.
+  0x095688  Usb4Hrd::InterDomainDatapathManager::CreateInterdomainTunnelCallback
+  0x0956D0  !(((NTSTATUS)(status)) >= 0)
+  0x0956F0  Invalid tunnel handle for inter-domain tunnel destroy.
+  0x095728  Usb4Hrd::InterDomainDatapathManager::DestroyInterdomainTunnelCallback
+  0x095770  Destroying inter-domain tunnel when number of tunnels is already zero.
+  0x0957B8  Usb4Hrd::InterDomainDatapathManager::UpdateTunnelCountOnTunnelDestroy
+  0x095800  Outbound origin adapter for interdomain tunnel is not at the host.
+  0x095848  Usb4Hrd::InterDomainDatapathTunnel::Teardown
+  0x095878  m_outboundPath->GetStartProtocolAdapter()->GetTopologyId().ToUsb4TopologyId().Depth == 0
+  0x0958D8  Interdomain Rx frame buffers not 4KB aligned!
+  0x095908  Usb4HrdHal::InterDomainRxRing::AllocateAndInitializeRxRingBuffer
+  0x095950  Invalid frame index parameter in ProgramNetMemoryIdForUsb4FrameBinding
+  0x095998  Usb4HrdHal::InterDomainRxRing::ProgramNetMemoryIdForUsb4FrameBinding
+  0x0959E0  Virtual address mismatch in ProgramNetMemoryIdForUsb4FrameBinding
+  0x095A28  Interdomain Tx frame buffers not 128-byte aligned!
+  0x095A60  Usb4HrdHal::InterDomainTxRing::AllocateAndInitializeTxRingBuffer
+  0x095AA8  Usb4Hrd::PCIeTunnel::Configure
+  0x095AD0  DOWN
+  0x095CA8  Unknown Enumerator!
+  0x095CC0  Usb4Hrd::RootDeviceRouter::CreateAndInitialize
+  0x095CF0  Invalid ring size.
+  0x095D08  Usb4HrdHal::Ring<struct Usb4HrdHal::_RECEIVE_BUFFER_DESCRIPTOR>::Init
+  0x095D50  AllocateDescriptors()
+  0x095D68  Usb4HrdHal::Ring<struct Usb4HrdHal::_RECEIVE_BUFFER_DESCRIPTOR>::InitPreallocated
+  0x095DC0  Ring buffer was already allocated
+  0x095DE8  Usb4HrdHal::Ring<struct Usb4HrdHal::_RECEIVE_BUFFER_DESCRIPTOR>::AllocateDescriptors
+  0x095E40  m_ringBuffer == nullptr
+  0x095E58  WdfCommonBufferCreate(m_dmaEnabler, descriptorsBufferLength, nullptr, &m_ringBuffer)
+  0x095EB0  Duplicate registration of TMU requirement!
+  0x095EE0  Usb4Hrd::TmuDomainPolicy::ProcessReportTmuRequirementAndGetPolicyRequest
+  0x095F30  No TMU Mode callback registered!
+  0x095F58  Unexpected Ioctl Code forwarded to TMU Domain Policy!
+  0x095F90  Usb4Hrd::TmuDomainPolicy::OnTmuEventInternal
+  0x095FC0  TMU HiFi mode count underflow on router removal!
+  0x095FF8  Usb4Hrd::TmuDomainPolicy::CallbackUnregistered
+  0x096028  m_countHiFiVotes > 0
+  0x096040  Mis-ordered list! Root should be at front.
+  0x096070  Usb4Hrd::TmuDomainPolicy::DetermineAndApplyDomainPolicyLocked
+  0x0960B0  ctx->Depth == 0
+  0x0960C0  TMU HiFi mode count underflow on DP tunnel teardown!
+  0x0960F8  Usb4Hrd::TmuDomainPolicy::DpTunnelTeardown
+  0x096128  TM %s
+  0x096130  Trying to delete non-existent tunnel handle
+  0x096160  Usb4Hrd::TopologyManager::DestroyTunnelHandle
+  0x096190  Create Tunnel input not valid
+  0x0961B0  Usb4Hrd::TopologyManager::CreateTunnel
+  0x0961D8  Request to destroy a non existing tunnel
+  0x096208  Usb4Hrd::TopologyManager::DestroyTunnel
+  0x096230  Request to rebuild a tunnel without a valid handle
+  0x096268  Usb4Hrd::TopologyManager::RebuildTunnel
+  0x096290  No tunnels should be powered down before power down
+  0x0962C8  Usb4Hrd::TopologyManager::CacheTunnelHandleListOnPowerDown
+  0x096308  m_poweredDownTunnels.size() == 0
+  0x096330  Root Router Power Up wait failed!
+  0x096358  Domain Power Up Failed! (In standby, with updated notifications)
+  0x0963A0  Domain Power Up Failed! (Not in standby, with updated notifications)
+  0x0963E8  Domain Power Up Failed! (In LPE, Monitor off)
+  0x096418  Domain Power Up Failed! (In LPE, Monitor on)
+  0x096448  Domain Power Up Failed! (In LPE, Monitor dim)
+  0x096478  Domain Power Up Failed! (Not in LPE, Monitor off)
+  0x0964B0  Domain Power Up Failed! (Not in LPE, Monitor on)
+  0x0964E8  Domain Power Up Failed! (Not in LPE, Monitor dim)
+  0x096520  Domain Power Up Failed! (In LPE, Unknown Monitor Display State)
+  0x096560  Usb4Hrd::TopologyManager::WaitForTunnelPowerUpComplete_Old
+  0x0965A0  Domain Power Up Failed! (Not in LPE, Unknown Monitor Display State)
+  0x096620  Usb4HrdHal::Ring<struct Usb4HrdHal::_TRANSMIT_BUFFER_DESCRIPTOR>::Init
+  0x096668  Usb4HrdHal::Ring<struct Usb4HrdHal::_TRANSMIT_BUFFER_DESCRIPTOR>::InitPreallocated
+  0x0966C0  Usb4HrdHal::Ring<struct Usb4HrdHal::_TRANSMIT_BUFFER_DESCRIPTOR>::AllocateDescriptors
+  0x096920  Usb4Hrd::VirtualPowerPdo::CreateAndInitialize
+  0x096A40  VPP %s
+  0x096A48  No reference string supplied on close.
+  0x096A70  Usb4Hrd::VirtualPowerPdo::FileClose
+  0x096A98  Invalid reference string on close
+  0x096AC0  Failed to assign new reference string on open.
+  0x096AF0  Usb4Hrd::VirtualPowerPdo::StoreReferenceStringOnOpen
+  0x096B28  Failed to store new reference string on open.
+  0x096B58  File close with reference string that was not recorded previously.
+  0x096BA0  Usb4Hrd::VirtualPowerPdo::RemoveReferenceStringOnClose
+  0x0974C0  U4hrU4DH
+  0x0975A5  x@9h
+  0x097720  HRD Driver
+  0x098941  %,'`'
+  0x098959  "<#D)\)
+  0x098997  )0)T+
+  0x0989AD  #($`$
+  0x0989E1  )T*<+
+  0x098A0D  ,X.8/
+  0x098A21  !H!h'
+  0x098A7D  *</x/
+  0x098AA7   P"$#
+  0x098AAD  #X$L%
+  0x098AE0  X H!D"@#0$8%
+  0x098B04  H ,!
+  0x098B1F  - .$/
+  0x098B2C  $ X!
+  0x098B39  '\(<)
+  0x098B71   $,P,
+  0x098BA5  *@+l,
+  0x098BBB  !0"X"\%
+  0x098BED  &$'@'
+  0x098C11  &H'H)
+  0x098C24  p"\#
+  0x098C41  -H/d/
+  0x098C8D  "h*(+L+t+l,
+  0x098CAF   8!\!
+  0x098CC1  $$%x%
+  0x098CD7  ,|,0-
+  0x098CF5  +D-d.
+  0x098D04  d P*
+  0x098D51  (4(0*H*
+  0x098D90  8&0.
+  0x098DCD  "`$X+
+  0x098DE0  @+0,
+  0x098E1B  ,8- .
+  0x098E29  "0%@&
+  0x098E2F  'h+h,@/
+  0x098E40  \' )
+  0x098E57  #\$t&
+  0x098E6F  !@%D&
+  0x098E8B  &x)P+
+  0x098EA7  $8't+
+  0x098F05  )<*|+
+  0x098F11  -4-p-
+  0x098F3C  <!@"t"
+  0x098F50  8 D!
+  0x098FC3  *$+L+
+  0x098FF8  p$H(
+  0x099057  &$'d'
+  0x0990DB  "l#X%
+  0x099150  4!0'L(
+  0x099165  !x"P(
+  0x0991A9  $ &D+
+  0x0991C3  *8,h,
+  0x0991FD  *@*X*
+  0x099205  ,h-$.H.
+  0x099218  T 4!
+  0x099227  $H&`&
+  0x099250  ,&D&
+  0x09925C  4"$#
+  0x099274  `(X)
+  0x0992C3  #|-T.
+  0x0992DD  "0#D$
+  0x0992E3  $D(t(
+  0x0992FD  #X%x%
+  0x099303  % &D&h&
+  0x099320  $ P!
+  0x099390  H P!0"\"
+  0x0993BF  $((`(
+  0x0993C7  ,D-\-
+  0x0993D4  4 P!`'
+  0x0993FD  "x#d)
+  0x09941D  "D#t#
+  0x099427  $ %((T(
+  0x09944B  &`*4,\,H-|-P.D/
+  0x099464  H | X!
+  0x09946B  ! #H#L(x)8*0,4-
+  0x099491  ,8,(-L-
+  0x0994A1   x!|%`+
+  0x0994C8  H"0#
+  0x099521  )x*L+
+  0x099527  ,x-(/`/
+  0x0995D0  4%\%
+  0x09961C  ()|-
+  0x099647  !,!T!l!
+  0x09B442  N0L0
+  0x09B481  EGC;
+  0x09B486  F5h4
+  0x09B4E1  Washington1
+  0x09B4F6  Redmond1
+  0x09B508  Microsoft Corporation1.0,
+  0x09B527  %Microsoft Windows Production PCA 20110
+  0x09B551  250619181144Z
+  0x09B560  260617181144Z0p1
+  0x09B5AE  Microsoft Corporation1
+  0x09B5CE  Microsoft Windows0
+  0x09B6C2  |goV
+  0x09B6D4  1H:2JoT
+  0x09B759  :081
+  0x09B787  229879+5053260
+  0x09B7BD  P0N0L
+  0x09B7C7  Fhttp://www.microsoft.com/pkiops/crl/MicWinProPCA2011_2011-10-19.crl%200a
+  0x09B81B  U0S0Q
+  0x09B82B  Ehttp://www.microsoft.com/pkiops/certs/MicWinProPCA2011_2011-10-19.crt0
+  0x09B8BA  gV~q
+  0x09B8D1   o.J
+  0x09B8E3  NnMe
+  0x09B98F  zw+a0
+  0x09B9FD  Microsoft Corporation1200
+  0x09BA1C  )Microsoft Root Certificate Authority 20100
+  0x09BA4A  111019184142Z
+  0x09BA59  261019185142Z0
+  0x09BB39  -|by
+  0x09BB72  ;S5|
+  0x09BB96  %(\6
+  0x09BBC8  sD]}
+  0x09BCAE  O0M0K
+  0x09BCB8  Ehttp://crl.microsoft.com/pki/crl/products/MicRooCerAut_2010-06-23.crl0Z
+  0x09BD0B  N0L0J
+  0x09BD1B  >http://www.microsoft.com/pki/certs/MicRooCerAut_2010-06-23.crt0
+  0x09BD99  8.Ek
+  0x09BDBD  @26v
+  0x09BDD3  TlP0X
+  0x09BDE7  R!s4Z
+  0x09BE45  s9_>
+  0x09BFDD  %Microsoft Windows Production PCA 2011
+  0x09C074  M~0P
+  0x09C087  @14D1194461D61E82AD9EDAA59104298E791FB5DF78DE0E40DA90C82AD84818F10Z
+  0x09C0D6  1L0J
+  0x09C103   http://www.microsoft.com/windows0
+  0x09C13F  4`|%QY
+  0x09C206  W&;\&
+  0x09C20C  $9\v
+  0x09C2E3  20260517042225.665Z0
+  0x09C344  Microsoft Corporation1-0+
+  0x09C363  $Microsoft Ireland Operations Limited1'0%
+  0x09C393  nShield TSS ESN:4C1A-05E0-D9471%0#
+  0x09C3BC  Microsoft Time-Stamp Service
+  0x09C44E  Microsoft Corporation1&0$
+  0x09C46E  Microsoft Time-Stamp PCA 20100
+  0x09C48F  250814184825Z
+  0x09C49E  261113184825Z0
+  0x09C565  Microsoft Time-Stamp Service0
+  0x09C5FC  >!m$
+  0x09C633  }Z:76i
+  0x09C682  MQkq
+  0x09C691  aU@Y
+  0x09C6F9  TABe
+  0x09C7F7  X0V0T
+  0x09C801  Nhttp://www.microsoft.com/pkiops/crl/Microsoft%20Time-Stamp%20PCA%202010(1).crl0l
+  0x09C85D  `0^0\
+  0x09C86D  Phttp://www.microsoft.com/pkiops/certs/Microsoft%20Time-Stamp%20PCA%202010(1).crt0
+  0x09C937  90?.'
+  0x09C977  ~`0I
+  0x09C98C  1Z/5
+  0x09CBC8  210930182225Z
+  0x09CBD7  300930183225Z0|1
+  0x09CCD2  `}jR
+  0x09CCE9  q\Q17
+  0x09CCF7  &S|9a
+  0x09CD76  0\O,
+  0x09CDEA  s=CN
+  0x09CE26  !]_0t
+  0x09CE47  \RQ]
+  0x09CEBF  <F5)
+  0x09CF03  0A0?
+  0x09CF12  3http://www.microsoft.com/pkiops/Docs/Repository.htm0
+  0x09D096  >NGdx
+  0x09D0C0  fg:SM
+  0x09D0F6  xSu$W
+  0x09D146  as.,k{n?,
+  0x09D163  J>f;O
+  0x09D191  ctH,
+  0x09D1AA  WITd
+  0x09D1CA  !TkjE
+  0x09D1F1  Af=i
+  0x09D1F8  AI~~
+  0x09D22D  $5g+
+  0x09D23C  'B=%
+  0x09D242  tt[j
+  0x09D263  pcSM
+  0x09D394  ~0|1
+  0x09D427  Uy0"
+  0x09D42D  20260516204337Z
+  0x09D43E  20260517204337Z0w0=
+  0x09D45D  1/0-0
+  0x09D49C  1(0&0
+  0x09D50E  j,J2
+  0x09D516  zloFs
+  0x09D51C  \]d(
+  0x09D649  Microsoft Time-Stamp PCA 2010
+  0x09D825  7eN\&
+  0x09D834  e8<AS]
+  0x09D896  }M`F
+  0x09D8B4  <y4[
+  0x09D8C3  yL6'
+  0x09D937  q;&f
+  0x09D952  n\vSy
+  0x09D962  m1yVW
+  0x09D97A  X)Ij
+  0x09D995  NK3[
+  0x0531E8  Verify usb3&pcie does not exceed available upstream bandwidth
+  0x053268  Verify usb3&pcie does not exceed available downstream bandwidth
+  0x053B00  New USB3+PCIe upstream bandwidth shouldn't be less than in use
+  0x053B80  New USB3+PCIe downstream bandwidth shouldn't be less than in use
+  0x054EFE  dDPMain
+  0x054F10  DPInAux
+  0x054F20  DPOutAux
+  0x05502E  rDisplayPort
+  0x055398  USB4\
+  0x055968  Inbound
+  0x055978  Outbound
+  0x055A50  Host-To-Host
+  0x056A18  PCIe
+  0x0576C0  USB3
+  0x058140  TELASSERT
+  0x058158  Double initialization of BusesAssert defaultAssertConfig
+  0x0581D0  SwAssertActionPolicy
+  0x058200  Malformed registry value for SwAssertActionPolicy. Using default value.
+  0x058290  Invalid registry value for SwAssertActionPolicy. Using default value.
+  0x058320  HwAssertActionPolicy
+  0x058350  Malformed registry value for HwAssertActionPolicy. Using default value.
+  0x0583E0  Out of range registry value for HwAssertActionPolicy. Using default value.
+  0x058478  Cannot schedule work item - dump already in progress or deinitialization in progress.
+  0x058528  Unable to allocate memory for work item when generating live kernel dump.
+  0x0585C0  Unable to allocate memory for message when generating live kernel dump.
+  0x05B490  KmdfLibrary
+  0x0801E4  :<FHDF4
+  0x087F44  .0$&
+  0x0900C4  .0LN
+  0x093DA0  Usb3 + PCIe exceeds available downstream bandwidth on link (for DP estimated BW)
+  0x094890  PsGetVersion
+  0x0948B0  WmiTraceMessage
+  0x0948D0  WmiQueryTraceInformation
+  0x094908  EtwRegisterClassicProvider
+  0x094960  EnableDriverDisableable
+  0x094990  Usb4SoftwareAssertFreBreakDisabled
+  0x0949D8  Usb4HardwareAssertFreBreakDisabled
+  0x094A20  EnableUSB4v2Support
+  0x094A60  BugcheckOnDuplicateGfxRef
+  0x094A98  DisableCLxDomainWide
+  0x094AC8  EnableDebugInterface
+  0x094AF8  OverrideAsymmetricLinkThreshold
+  0x094B38  SkipRevertToDefaultSymmetryConfig
+  0x094B80  UserControlOfIdleSettings
+  0x094BC0  %I64x_%d
+  0x094D00  USB4HOSTROUTER:ALL
+  0x094D28  USB4HOSTROUTER
+  0x094D48  USB4HOSTROUTER:PCI\VEN_%04X
+  0x094D80  USB4HOSTROUTER:PCI\VEN_%04X&DEV_%04X
+  0x094DD0  USB4HOSTROUTER:PCI\VEN_%04X&DEV_%04X&REV_%02X
+  0x094E30  USB4HOSTROUTER:PCI\VEN_%04X&DEV_%04X&SUBSYS_%04X%04X
+  0x094EA0  USB4HOSTROUTER:PCI\VEN_%04X&DEV_%04X&SUBSYS_%04X%04X&REV_%02X
+  0x094F20  USB4HOSTROUTER:ACPI\VEN_%S
+  0x094F58  USB4HOSTROUTER:ACPI\VEN_%S&DEV_%S
+  0x094FA0  USB4HOSTROUTER:ACPI\VEN_%S&DEV_%S&REV_%04X
+  0x0952F8  \DEBUGINTERFACE
+  0x0954D8  ForceEnableDpBwAllocationMode
+  0x095518  DoNotSerializeAllocationsOnV2Domain
+  0x095560  EnableDpBwMinimalPreallocationMode
+  0x095AE0  USB4\ROOT_DEVICE_ROUTER
+  0x095B10  USB4\DEVICE_ROUTER
+  0x095B38  USB4\ROOT_DEVICE_ROUTER&VID_%04X&PID_%04X&REV_%04X
+  0x095BA0  USB4\ROOT_DEVICE_ROUTER&VID_%04X&PID_%04X
+  0x095BF8  USB4\ROOT_DEVICE_ROUTER&VID_%S&PID_%S&REV_%04X
+  0x095C58  USB4\ROOT_DEVICE_ROUTER&VID_%S&PID_%S
+  0x0965E8  UsePerHostRouterDomainUUID
+  0x096718  USB4\VIRTUAL_POWER_PDO
+  0x096748  USB4 Virtual power coordination device
+  0x096798  USB4 Domain
+  0x0967B0  USB4\VIRTUAL_POWER_PDO&VID_%04X&PID_%04X&REV_%04X
+  0x096818  USB4\VIRTUAL_POWER_PDO&VID_%04X&PID_%04X
+  0x096870  USB4\VIRTUAL_POWER_PDO&VID_%S&PID_%S&REV_%04X
+  0x0968D0  USB4\VIRTUAL_POWER_PDO&VID_%S&PID_%S
+  0x0969A0  Usb4-Host-Interface-
+  0x0969D0  %ws^%ws^%ws^CMID%u
+  0x0969F8  %ws^%ws^^CMID%u
+  0x096A18  %ws^^%ws^CMID%u
+  0x096BD8  SummaryCount
+  0x096BF8  NumLargeEventFailures
+  0x096C28  NumAllocationFailures
+  0x096C58  NumBucketLimitReached
+  0x096C88  MinEntriesFlushed
+  0x096CB0  MaxEntriesFlushed
+  0x096CD8  TotalEntriesFlushed
+  0x096D00  MaxEntriesStored
+  0x096D28  NumFlushes
+  0x097730  Usb4HRD.sys
+  0x097E66  VS_VERSION_INFO
+  0x097EC2  StringFileInfo
+  0x097EE6  040904B0
+  0x097EFE  CompanyName
+  0x097F18  Microsoft Corporation
+  0x097F4A  FileDescription
+  0x097F6C  USB4(TM) Host Router Driver
+  0x097FAA  FileVersion
+  0x097FC4  10.0.26100.8521 (WinBuild.160101.0800)
+  0x09801A  InternalName
+  0x098034  Usb4HostRouter.sys
+  0x098062  LegalCopyright
+  0x098082   Microsoft Corporation. All rights reserved.
+  0x0980E2  OriginalFilename
+  0x098132  ProductName
+  0x09814C  Microsoft
+  0x098160   Windows
+  0x098172   Operating System
+  0x09819E  ProductVersion
+  0x0981BC  10.0.26100.8521
+  0x0981E2  VarFileInfo
+  0x098202  Translation
+  0x09BC5E  SubC
+  0x09C0DD  "Microsoft Window
+
+--- imports ---
+  ntoskrnl.exe  (93)
+      MmGetSystemRoutineAddress
+      IoWMIRegistrationControl
+      RtlRecordFeatureUsage
+      RtlRegisterFeatureUsageProvider
+      RtlArmFeatureUsageProviderFlushNotification
+      RtlRegisterFeatureConfigurationChangeNotification
+      RtlQueryFeatureConfigurationChangeStamp
+      ZwPowerInformation
+      RtlUnregisterFeatureUsageProvider
+      RtlUnregisterFeatureConfigurationChangeNotification
+      ZwQuerySystemInformation
+      RtlCompareMemory
+      _vsnwprintf
+      RtlInitAnsiString
+      RtlUnicodeStringToAnsiString
+      RtlFreeAnsiString
+      RtlUnicodeStringToInteger
+      KseQueryDeviceFlags
+      KeDelayExecutionThread
+      MmMapIoSpaceEx
+      MmUnmapIoSpace
+      DbgPrintEx
+      RtlInitUnicodeString
+      RtlCompareUnicodeString
+      SeCaptureSubjectContext
+      SeLockSubjectContext
+      SeTokenIsAdmin
+      SeUnlockSubjectContext
+      SeReleaseSubjectContext
+      IoGetDeviceInterfaces
+      ExFreePoolWithTag
+      KeFlushQueuedDpcs
+      KeLeaveCriticalRegion
+      ExReleasePushLockExclusiveEx
+      ExAcquirePushLockExclusiveEx
+      PoRegisterPowerSettingCallback
+      KeReleaseSpinLockFromDpcLevel
+      KeAcquireSpinLockAtDpcLevel
+      ExAllocatePool2
+      KeBugCheck
+      KeSetEvent
+      PoUnregisterPowerSettingCallback
+      KeInitializeEvent
+      _vsnprintf
+      KeWaitForSingleObject
+      KeClearEvent
+      ZwUpdateWnfStateData
+      EtwActivityIdControl
+      ExUuidCreate
+      _purecall
+      KeInitializeSpinLock
+      KeAcquireSpinLockRaiseToDpc
+      KeReleaseSpinLock
+      IoSetDevicePropertyData
+      IoGetStackLimits
+      RtlCopyUnicodeString
+      IoQueryFullDriverPath
+      EtwSetInformation
+      DbgkWerCaptureLiveKernelDump
+      EtwUnregister
+      EtwRegister
+      KeQueryTimeIncrement
+      IoAllocateWorkItem
+      IoFreeWorkItem
+      IoQueueWorkItem
+      ExFreePool
+      KeGetCurrentThread
+      RtlRunOnceExecuteOnce
+      KeIsExecutingDpc
+      ExSetTimer
+      ExReleaseSpinLockExclusive
+      ExDeleteTimer
+      ExAllocateTimer
+      ExTryAcquirePushLockExclusiveEx
+      ExReleaseSpinLockSharedFromDpcLevel
+      ExQueueWorkItem
+      ExReleaseSpinLockShared
+      ExAcquireSpinLockShared
+      ExAcquireSpinLockSharedAtDpcLevel
+      ExAcquireSpinLockExclusive
+      ExReleasePushLockSharedEx
+      ExAllocatePoolWithTag
+      ExAcquirePushLockSharedEx
+      wcscpy_s
+      IoOpenDriverRegistryKey
+      ZwQueryValueKey
+      ZwClose
+      RtlQueryFeatureConfiguration
+      RtlNotifyFeatureUsage
+      KeBugCheckEx
+      KdRefreshDebuggerNotPresent
+      KeEnterCriticalRegion
+      EtwWriteTransfer
+  HAL.dll  (5)
+      KfLowerIrql
+      KeQueryPerformanceCounter
+      KeStallExecutionProcessor
+      KeGetCurrentIrql
+      KfRaiseIrql
+  WppRecorder.sys  (8)
+      WppAutoLogStop
+      WppAutoLogStart
+      imp_WppRecorderReplay
+      imp_WppRecorderLogSetIdentifier
+      imp_WppRecorderLogCreate
+      imp_WppRecorderLogDelete
+      WppAutoLogTrace
+      imp_WppRecorderConfigure
+  WDFLDR.SYS  (5)
+      WdfLdrQueryInterface
+      WdfVersionBind
+      WdfVersionUnbindClass
+      WdfVersionUnbind
+      WdfVersionBindClass

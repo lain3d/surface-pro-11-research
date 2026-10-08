@@ -1,0 +1,75 @@
+  mainline mipi_data_rate_1080mbps      0 registers
+  mainline mipi_data_rate_540mbps       0 registers
+  mainline mode_4224x3136_regs          188 registers
+  mainline mode_2112x1568_regs          188 registers
+  mainline mode_2112x1188_regs          188 registers
+  mainline mode_1056x784_regs           188 registers
+
+  blob table +0xb48    206 registers
+  blob table +0x2d20   206 registers
+  blob table +0x4dc0   206 registers
+  blob table +0x6ea5   1 registers
+
+best match for each blob table (overlap = registers present in both):
+
+  +0xb48    vs mode_4224x3136_regs          overlap 186  match 170  (91.4%)
+        0x3013: extracted 0x72, mainline 0x32
+        0x3801: extracted 0x40, mainline 0x00
+        0x3803: extracted 0xa0, mainline 0x08
+        0x3805: extracted 0x5f, mainline 0x9f
+        0x3806: extracted 0x0b, mainline 0x0c
+        0x3807: extracted 0xbf, mainline 0x57
+        0x3808: extracted 0x0f, mainline 0x10
+        0x3809: extracted 0xec, mainline 0x80
+        ... 8 more
+  +0x2d20   vs mode_4224x3136_regs          overlap 186  match 169  (90.9%)
+        0x3013: extracted 0x72, mainline 0x32
+        0x3801: extracted 0x40, mainline 0x00
+        0x3802: extracted 0x01, mainline 0x00
+        0x3803: extracted 0xa0, mainline 0x08
+        0x3805: extracted 0x5f, mainline 0x9f
+        0x3806: extracted 0x0a, mainline 0x0c
+        0x3807: extracted 0xbf, mainline 0x57
+        0x3808: extracted 0x0f, mainline 0x10
+        ... 9 more
+  +0x4dc0   vs mode_4224x3136_regs          overlap 186  match 169  (90.9%)
+        0x3013: extracted 0x72, mainline 0x32
+        0x3801: extracted 0xe0, mainline 0x00
+        0x3803: extracted 0xa0, mainline 0x08
+        0x3804: extracted 0x0f, mainline 0x10
+        0x3805: extracted 0xbf, mainline 0x9f
+        0x3806: extracted 0x0b, mainline 0x0c
+        0x3807: extracted 0xbf, mainline 0x57
+        0x3808: extracted 0x0e, mainline 0x10
+        ... 9 more
+  +0x6ea5    no overlap with any mainline table
+
+TOTAL: 508/558 matching (91.0%) across all overlapping registers
+
+186 registers in both; 16 differ
+
+  in the crop/window/timing block (0x3800-0x3813): 12
+      0x3801 h_crop_start_lo    blob 0x40  mainline 0x00
+      0x3803 v_crop_start_lo    blob 0xa0  mainline 0x08
+      0x3805 h_crop_end_lo      blob 0x5f  mainline 0x9f
+      0x3806 v_crop_end_hi      blob 0x0b  mainline 0x0c
+      0x3807 v_crop_end_lo      blob 0xbf  mainline 0x57
+      0x3808 h_output_hi        blob 0x0f  mainline 0x10
+      0x3809 h_output_lo        blob 0xec  mainline 0x80
+      0x380a v_output_hi        blob 0x0a  mainline 0x0c
+      0x380b v_output_lo        blob 0xf6  mainline 0x40
+      0x380f vts_lo             blob 0x88  mainline 0x8e
+      0x3811 h_win_off_lo       blob 0x1a  mainline 0x04
+      0x3813 v_win_off_lo       blob 0x14  mainline 0x05
+
+  outside it: 4
+      0x3013                    blob 0x72  mainline 0x32
+      0x3820                    blob 0xb0  mainline 0xa8
+      0x405e                    blob 0x00  mainline 0x20
+      0x4837                    blob 0x0d  mainline 0x0e
+
+mismatches by high byte:
+    0x30xx :   1 of   3 differ
+    0x38xx :  13 of  30 differ
+    0x40xx :   1 of  16 differ
+    0x48xx :   1 of   5 differ

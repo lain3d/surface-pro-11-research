@@ -1,0 +1,18 @@
+# These scripts run under WSL and on the Surface itself, so the repo is LF.
+# Declared here rather than relying on core.autocrlf, which is machine-local and
+# invisible - two clones can differ and neither knows why. A .sh that checks out
+# with CRLF fails under bash with "$'\r': command not found".
+* text=auto eol=lf
+
+# PowerShell runs on the Windows side, where CRLF is the native convention.
+*.ps1 text eol=crlf
+
+# Never normalise kernel images, UKIs, device trees or archives.
+*.efi   binary
+*.dtb   binary
+*.img   binary
+*.iso   binary
+*.deb   binary
+*.zst   binary
+*.gz    binary
+Image*  binary

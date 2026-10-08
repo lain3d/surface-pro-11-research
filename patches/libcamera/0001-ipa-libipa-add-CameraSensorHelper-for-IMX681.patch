@@ -1,0 +1,57 @@
+From: lain3d <eyeofsteiner@gmail.com>
+Subject: [PATCH] ipa: libipa: Add CameraSensorHelper for Sony IMX681
+
+The IMX681 is the front camera on the Surface Pro 11 (x1e80100), reached
+through the qcom-camss simple pipeline handler and the software ISP.
+
+Without a helper, IPASoft cannot convert an analogue gain code into a
+gain and logs:
+
+    IPASoft: Failed to create camera sensor helper for imx681
+
+Its AE loop then reasons with the wrong model. On this module it settles
+at exposure 3546 (the maximum) and gain code 18, which is 1.02x, while a
+dim indoor scene needs a code around 1014 (102x). Frames flow and the
+preview is black.
+
+The sensor uses Sony's usual reciprocal gain law, gain = 1024/(1024 - x),
+the same constants as IMX477 and IMX708. Determined by measurement rather
+than a datasheet: a gain sweep was captured through the qcom-camss RDI
+path and `gain = C/(D - code)` solved pairwise over the ten combinations
+of codes 900, 960, 1000, 1014 and 1020, using per-frame medians so that a
+few per cent of clipped highlights could not skew the fit. That gives
+D = 1026 at the measured black level, bracketing the conventional 1024.
+
+Black level is 0x40 at 10 bits, also measured: dark frames sit at 15-16
+of 255 on the high byte of each RAW10 pixel, i.e. 62-64 at 10 bits.
+
+Deliberately not adding a camera_sensor_properties entry: that needs the
+physical unit cell size, which is not known for this module, and guessing
+it would be worse than the current defaulted values.
+
+Signed-off-by: lain3d <eyeofsteiner@gmail.com>
+---
+ src/ipa/libipa/camera_sensor_helper.cpp | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+--- a/src/ipa/libipa/camera_sensor_helper.cpp
++++ b/src/ipa/libipa/camera_sensor_helper.cpp
+@@ -642,6 +642,18 @@
+ };
+ REGISTER_CAMERA_SENSOR_HELPER("imx477", CameraSensorHelperImx477)
+
++class CameraSensorHelperImx681 : public CameraSensorHelper
++{
++public:
++	CameraSensorHelperImx681()
++	{
++		/* Measured on a Surface Pro 11 module: 0x40 at 10 bits. */
++		blackLevel_ = 4096;
++		gain_ = AnalogueGainLinear{ 0, 1024, -1, 1024 };
++	}
++};
++REGISTER_CAMERA_SENSOR_HELPER("imx681", CameraSensorHelperImx681)
++
+ class CameraSensorHelperImx708 : public CameraSensorHelper
+ {
+ public:

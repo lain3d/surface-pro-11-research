@@ -1,0 +1,29 @@
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+index 861de4e06..7104d3c8a 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+@@ -4496,7 +4496,8 @@ static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_s
+ 	}
+ 
+ 	if (new_mode == qmp->qmpphy_mode) {
+-		dev_dbg(qmp->dev, "typec_mux_set: same qmpphy mode, bail out\n");
++		dev_info(qmp->dev, "typec_mux_set: already in mode %d, not touching the PHY\n",
++			 new_mode);
+ 		return 0;
+ 	}
+ 
+@@ -4912,7 +4913,13 @@ static int qmp_combo_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_node_put;
+ 
+-	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
++	/*
++	 * Assume firmware left the PHY carrying USB3 only, which is what it
++	 * does for a plain USB-C device. USB3DP here is the enum's zero value,
++	 * not an observation, and getting it wrong makes the first typec mux
++	 * notification power-cycle a PHY that is already passing traffic.
++	 */
++	qmp->qmpphy_mode = QMPPHY_MODE_USB3_ONLY;
+ 
+ 	/* Replace with DT provided mode */
+ 	if (of_find_property(dev->of_node, "qcom,combo-initial-mode", NULL)) {

@@ -1,0 +1,22 @@
+﻿CsiTestMode dump, 2026-08-07 19:52:07
+Source: HKLM\SYSTEM\CurrentControlSet\Control\Qualcomm\Camera
+Producer: qccammipicsi8380.sys on device teardown. All REG_DWORD;
+hex and decimal are the same four bytes shown twice. Nothing decoded.
+
+    CsiTestMode                  0x00000001   1
+    Csi2CommonStatus1            0x00000000   0
+    Csi2CommonStatus3            0x00000000   0
+    Csi2CommonStatus6            0x00000000   0
+    Csi2CommonStatus8            0x00000000   0
+    Csi2PhaseCtrl0Default        0x00000000   0
+    Csi2PhaseCtrl0LastUsed       0x00000000   0
+    Csi2PhaseLnckCtrl0Default    0x00000000   0
+    Csi2PhaseLnckCtrl0LastUsed   0x00000000   0
+    Csi2PhaseNumOfLanes          0x00000001   1
+    Csi2DataRateKbps             0x0053B484   5485700
+    Csi2PHYIndex                 0x00000000   0
+    Csi2PhasePhyMode             0x00000000   0
+    CsidRxStats                  0x00000017   23
+    CsidRxTotalPktsRcvd          0x000026F9   9977
+    CsidRxStatsEcc               0x00000000   0
+    CsidRxTotalCrcErrors         0x00000000   0

@@ -1,0 +1,251 @@
+CsiTestMode dumps, Surface Pro 11 (X1E80100), 2026-08-07
+Source: HKLM\SYSTEM\CurrentControlSet\Control\Qualcomm\Camera
+Producer: qccammipicsi8380.sys, on device teardown, with CsiTestMode = 1
+Device: FRONT camera, IMX681, C-PHY
+
+TWO SESSIONS, in deliberately different camera modes:
+
+    run 1   Windows Camera app opened in VIDEO mode, preview only
+    run 2   switched to PHOTO mode and took a snapshot
+            (exported: data/csitestmode-20260807-193517.reg / .txt)
+
+VERBATIM. Every value is REG_DWORD. Nothing here was decoded, computed or
+inferred -- the driver wrote these numbers and Get-ItemProperty read them back.
+Hex and decimal are the same four bytes shown twice.
+
+                                      run 1 (video)      run 2 (photo+still)
+    CsiTestMode                  0x00000001       1   0x00000001          1
+    Csi2CommonStatus1            0x00000000       0   0x00000000          0
+    Csi2CommonStatus3            0x00000000       0   0x00000000          0
+    Csi2CommonStatus6            0x00000000       0   0x00000000          0
+    Csi2CommonStatus8            0x00000000       0   0x00000000          0
+    Csi2PhaseCtrl0Default        0x00000000       0   0x00000000          0
+    Csi2PhaseCtrl0LastUsed       0x00000000       0   0x00000000          0
+    Csi2PhaseLnckCtrl0Default    0x00000000       0   0x00000000          0
+    Csi2PhaseLnckCtrl0LastUsed   0x00000000       0   0x00000000          0
+    Csi2PhaseNumOfLanes          0x00000001       1   0x00000001          1
+    Csi2DataRateKbps             0x0053B484 5485700   0x0053B484    5485700
+    Csi2PHYIndex                 0x00000000       0   0x00000000          0
+    Csi2PhasePhyMode             0x00000000       0   0x00000000          0
+    CsidRxStats                  0x00000017      23   0x00000017         23
+    CsidRxTotalPktsRcvd          0x0008884B  559179   0x000E0A33     920115
+    CsidRxStatsEcc               0x00000000       0   0x00000000          0
+    CsidRxTotalCrcErrors         0x00000000       0   0x00000000          0
+
+WHAT THE SECOND RUN ADDED
+
+  - The data rate is REPRODUCIBLE ACROSS MODES. Video preview and a photo-mode
+    still both give 5485700. That is the measurement the whole C-PHY rate
+    correction rests on, now confirmed twice under different conditions.
+
+  - The dump is LIVE, not stale. CsidRxTotalPktsRcvd moved 559179 -> 920115
+    with session length, so these really are that session's counters and not a
+    value baked in at install.
+
+  - CsidRxStats is 23 in BOTH runs, across a 65 % difference in packet count.
+    It is therefore not a traffic counter. Probably a register value or a fixed
+    readback. Still not traced; the earlier note here guessed "count" and that
+    guess is now excluded.
+
+  - Zero CRC and zero ECC errors now over 920,115 packets.
+
+  - Provenance correction: run 1's session was VIDEO mode, which this file
+    originally recorded only as "preview". The distinction matters because
+    video and photo select different sensor modes -- and the point of running
+    the second session was that they might have selected different link rates.
+    They did not.
+
+RUN 3 -- the Camera app set to 4032x3024. RESULT: UNDETERMINED
+(exported: data/csitestmode-20260807-195207.reg / .txt)
+
+    Csi2DataRateKbps       5485700    <- index 1 again, NOT 4564114
+    CsidRxTotalPktsRcvd    9977
+    Csi2PhasePhyMode       0          }  C-PHY signature, see the Hello note
+    Csi2PhaseCtrl0*        0          }
+    everything else        as before
+
+  The saved JPEG is a 4032x3024, 12.19 MP file:
+
+      WIN_20260807_19_48_04_Pro.jpg   4032 x 3024   aspect 1.3333
+      Make "Microsoft Surface"  Model MSHW0490  Software "Qualcomm JPEG Encoder"
+      ExposureTime 33333332/1000000000 = 1/30 s     ISO 500
+
+  THIS RUN DOES NOT DISTINGUISH WHAT IT WAS RUN TO DISTINGUISH.
+
+  An earlier version of this section concluded "upscaled". That was wrong --
+  not in the sense of being disproved, but in the sense of never having been
+  supported. The reasoning is retracted and the reason it failed is worth more
+  than the claim was.
+
+  Csi2DataRateKbps is ONE slot, written on every CameraMIPIPHY_Start, read at
+  teardown. A photo session runs at least two configurations -- preview, then
+  the capture -- and the app drops back into preview the moment the shutter
+  fires. So:
+
+      hypothesis A: the still ran an index-1 mode. Reads 5485700.
+      hypothesis B: the still ran mode 0, and preview overwrote it a second
+                    later.                            Reads 5485700.
+
+  The measurement is identical under both. It has no power to separate them.
+
+  CsidRxTotalPktsRcvd = 9977 was cited as evidence for A ("too short for a long
+  preview afterwards"). That argues the wrong way if anything: 9977 packets is
+  about 3-4 frames, which is too few for a whole session including framing and
+  capture, so the counter is very likely reset per stream-on. In that case it
+  describes the LAST stream -- and 3-4 frames looks more like a brief
+  post-capture preview than a capture sequence.
+
+  TWO IMAGE-FORENSIC TESTS WERE TRIED. BOTH ARE BLIND. Recorded so nobody
+  repeats them:
+
+    1. Stop-band cliff. An upscale cannot contain detail above the source
+       Nyquist; 3520->4032 predicts a cliff at 0.873. Positive control: the
+       same image deliberately downscaled to 3520x2640 and back, re-encoded
+       with the original's quantisation tables. The known upscale measured
+       -1.1 dB and the real capture -1.2 dB. JPEG quantisation noise is
+       broadband and fills the stop band, so the cliff is invisible even when
+       it is certainly present.
+
+    2. Resampling correlation. Interpolation leaves a periodic correlation at
+       |1 - 1/1.14545| = 0.1270 cycles/sample in a second-difference residual.
+       Fatally, JPEG's 8-pixel block grid sits at 0.1250. Known upscale +16.5
+       dB, real capture +16.9 dB, and the "resample" and "jpeg-grid" figures
+       came out identical -- the detector is measuring the block grid.
+
+    Both were run with a positive control precisely so their blindness would be
+    detected rather than mistaken for a result. That part worked.
+
+  WHAT WOULD SETTLE IT: make the still the last stream before teardown. Take
+  the photo and immediately hard-kill the Camera app (taskkill) so preview
+  never restarts, then reboot and read. Nothing else on the Windows side
+  distinguishes the two hypotheses, because the driver has one slot.
+
+  WHAT IS UNAFFECTED: which mode the Linux side should stream. 3520x2640 and
+  the other index-1 modes have a rate measured three times; 4032x3024's is
+  derived. That is a sufficient reason to prefer the former and it holds under
+  both hypotheses.
+
+      modes 1-5 (index 1)   op_sys_clk 2400.0 MHz -> 5485700 kbps   MEASURED x3
+      mode 0    (index 0)   op_sys_clk 1996.8 MHz -> 4564114 kbps   DERIVED
+
+  For comparison, run 2's still was 3840x2160 (8.29 MP, 16:9) -- modes 4/5,
+  index 1, also 5485700.
+
+RUN 4 -- 4032x3024 captured with NO PREVIEW AT ALL. The ambiguity is gone.
+(exported: data/csitestmode-20260807-201107.reg / .txt)
+
+  probes/CaptureNoPreview drives Windows.Media.Capture directly: it selects the
+  video profile whose PHOTO description is 4032x3024, leaves the preview
+  description unset, never calls StartPreviewAsync, and captures one still. One
+  configuration per session, so nothing can overwrite the still's.
+
+    Csi2DataRateKbps       5485700    <- STILL index 1
+    CsidRxTotalPktsRcvd    55524      ~18 frames, i.e. 3A convergence
+    CsidRxTotalCrcErrors   0
+    Csi2CommonStatus1      0x20       <- first non-zero status word ever seen
+    Csi2PhaseNumOfLanes    1
+    file written           4032x3024, 12.19 MP
+
+  FOUR measurements now, across every configuration reachable from Windows:
+  video preview; photo preview + still; the Camera app at 4032x3024; and a
+  preview-free 4032x3024 still. Every one reads 5,485,700 kbps.
+
+  So: whatever sensor mode serves a full-resolution still on this device, its
+  link runs at 2400 MSps, not the 1996.8 MSps that imx681.c's mode 0 register
+  table implies (0x030d = 2, 0x030e/0x030f = 208, EXTCLK 19.2 MHz).
+
+  THAT IS A CONTRADICTION AND IT IS NOT RESOLVED HERE. At least three things
+  could explain it and this data does not choose between them:
+
+    - the register table recovered as "4032x3024" is actually some other mode,
+      i.e. the mode-to-table assignment made during the blob decode is wrong;
+    - Windows never streams 4032x3024 off the sensor and the 12.19 MP output is
+      produced from an index-1 mode;
+    - op_sys_clk_div is not 1 for that mode specifically, which imx681.c's
+      header already flags as an assumption.
+
+  Do not pick one without evidence. What is measured is the rate.
+
+  PRACTICAL CONSEQUENCE, and it is a simplification: there is no evidence of any
+  second link rate on this part. Set cphy_datarate_kbps=5485700 explicitly on
+  the Linux side rather than letting the driver derive it from link_freq. The
+  parameter exists for exactly this, the value is measured four times, and it
+  removes imx681.c's link_freq_menu_items from the path entirely.
+
+  WORKFLOW: no reboot is needed. The driver reads CsiTestMode when the device
+  context is created and writes the dump when it is torn down, and closing the
+  capture app is enough for both. Arm, run, read -- seconds, not two reboots.
+  Runs 1-3 each cost two reboots for no reason.
+
+  Csi2CommonStatus1 = 0x20 is the first non-zero status word in any run. Windows
+  saves it by name and this project has no bit definitions for it. Worth
+  chasing: it is a working link reporting something, which is a better thing to
+  decode than the Linux side's 00 04 01 on a link that does not work.
+
+WINDOWS HELLO IS NOT CONTAMINATING THIS -- and the data says so itself
+
+  Reasonable worry: Hello's face unlock runs at the login screen on the reboot
+  between the camera session and the read, so its sensor could tear down last
+  and overwrite these values.
+
+  It does not, and the dump carries its own discriminator. Csi2PhaseCtrl0*,
+  Csi2PhaseLnckCtrl0* and Csi2PhasePhyMode are written ONLY inside FUN_140006b50,
+  which returns immediately unless is3Phase == 0 -- that is, only for a D-PHY
+  device. It sets PhaseCtrl0Default 0x8e, PhaseLnckCtrl0Default 0x80 and
+  PhasePhyMode 1 or 2.
+
+  The Hello IR sensor (VD55G0) is D-PHY. So a dump left by Hello would show
+  those fields non-zero. All three runs show them zero, which means the last
+  teardown recorded was the C-PHY device -- the IMX681 -- every time.
+
+  Keep checking them. Non-zero phase values mean the reading belongs to the IR
+  camera and should be discarded.
+
+PROVENANCE
+
+  Run 1 was deleted without an export, so it survives only as this file --
+  transcribed by hand from console output. Run 2 is exported to
+  data/csitestmode-20260807-193517.reg and .txt and can be diffed against any
+  future run.
+
+  `sp11-csitestmode.ps1 read` now exports before printing, and `off` refuses to
+  delete unless an export exists. Both were added because of run 1.
+
+READING NOTES  -- these are interpretation, unlike everything above
+
+  Csi2DataRateKbps 5485700
+      The measurement that mattered. 5.4857 Gbps against the 1.9968 Gbps every
+      C-PHY run had programmed. Cross-checks against the sensor's own PLL
+      registers: EXTCLK 19.2 MHz, op_pre_pll_clk_div 3, op_pll_multiplier 375
+      -> op_sys_clk 2400.0 MHz, and 5485700000 / 2400000000 = 16/7 to five
+      figures. So op_sys_clk is the C-PHY symbol rate and the data rate is
+      symbols * 16/7.
+
+  Csi2PhaseNumOfLanes 1
+      Written from *(u8 *)ctx, the nNumOfDataLane field. One trio, stated by
+      the vendor stack rather than inferred.
+
+  Csi2PhasePhyMode, Csi2PhaseCtrl0*, Csi2PhaseLnckCtrl0*  all 0
+      Not "the driver measured zero" -- these are set only inside FUN_140006b50,
+      which returns immediately when is3Phase is set. Their staying 0 is itself
+      a C-PHY confirmation, not a reading.
+
+  Csi2PHYIndex 0
+      UNRELIABLE. The write path remaps ctx+0x50 through a check on a value that
+      must be 0x22b or 0x27b, and leaves the slot at its initialised 0 otherwise.
+      Do not read this as contradicting camss's "phy 2".
+
+  Csi2CommonStatus1/3/6/8  all 0
+      Copied from the four globals the ISR fills. Zero across a working session
+      is the known-good baseline the Linux side has never had -- it reads
+      00 04 01 in three status words in every configuration.
+
+  CsidRxTotalPktsRcvd 559179, CsidRxStatsEcc 0, CsidRxTotalCrcErrors 0
+      A working link: half a million packets, no CRC errors. Note ECC is 0 here
+      too, on a link that works -- so a 0 in that counter distinguishes nothing.
+
+  CsidRxStats 23
+      MEANING UNKNOWN, but narrowed by run 2: identical across two sessions
+      whose packet counts differ by 65 %, so it is not a traffic counter.
+      A register value or a fixed readback. Not yet traced. The coincidence
+      with mission 11's 23-packet Linux run is exactly that.

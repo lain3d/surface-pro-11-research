@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  sp11-boottrace.wprp - Windows boot trace of platform bring-up on the
+  Surface Pro 11 (X1E80100), for diffing against a Linux boot of the same event.
+
+  WHY THIS EXISTS
+
+  The camera case for tracing Windows was rejected on evidence: neither
+  qccamisp8380.sys nor qccammipicsi8380.sys logs sensor register writes, and the
+  register tables were recovered statically from the sensor module blob anyway.
+
+  USB4 and Type-C are the opposite. The providers below are Microsoft-authored
+  and manifest-based, so they decode with no TMF and no Ghidra. Windows works
+  with a Thunderbolt dock and Linux does no USB4 at all, so there is a real
+  behavioural gap to diff rather than a confirmation exercise. And the boot
+  window is where our ALTMODE_PAN_EN race lives - fatal at 6 s, harmless at
+  66 s - which is currently papered over with pmic_glink_altmode.pan_enable=0
+  plus a deferral service.
+
+  NO BITLOCKER RISK
+
+  wpr -addboot uses the Autologger registry mechanism, NOT the boot
+  configuration database. Nothing here touches bcdedit, so it does not trip
+  BitLocker recovery. (Kernel debugging would; do not go that route casually on
+  this machine.)
+
+  USAGE - from an ELEVATED prompt
+
+      wpr -addboot tools\sp11-boottrace.wprp!SP11Platform -filemode
+      shutdown /r /t 0
+      ...boot, and if tracing a dock, have it attached or plug it in early...
+      wpr -stopboot %USERPROFILE%\Documents\sp11-boot.etl "dock cold boot"
+
+  WHAT IT LOOKS LIKE - verified by an arm/cancel round trip, 2026-08-09
+
+  -addboot prints NOTHING on success. What it actually does is create two
+  registry keys, and those are the only reliable evidence it worked:
+
+      HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\
+          WPR_initiated_WprApp_boottr_SP11 Platform Collector    Start = 1
+          WPR_initiated_WprApp_boottr_WPR System Collector       Start = 1
+
+  TRAP: while armed, `wpr -status` reports "WPR is not recording". That is
+  correct - the session does not start until the next boot - but it reads like
+  the arm failed, and arming twice is the obvious wrong response. Check the
+  registry key, not -status.
+
+  Confirmed at the same time: bcdedit /enum {current} shows no debug or bootlog
+  flags after -addboot. The boot configuration really is untouched.
+
+  CANCELLING - just an elevated prompt, no recovery media, no reboot:
+
+      wpr -cancelboot
+          "Boottrace is scheduled but has not started. Canceling the Autologger."
+
+  Arming a boot trace CANNOT make the machine unbootable; it is an ETW session,
+  not a boot setting. The worst case is a slow boot and a large file. So
+  -cancelboot is not an emergency tool - its real job is stopping the trace from
+  re-arming on every subsequent boot, because the Autologger persists until
+  stopped. If you somehow could not log in at all, the deep version is deleting
+  the two registry keys above, which from WinRE means loading the SYSTEM hive.
+
+  SIZE: the default output lands in %TEMP% on C:. A full boot with six providers
+  plus the system keywords gets big; use -recordtempto <path> to put it
+  somewhere with room. -filemode is not optional for a full boot.
+
+  READING IT
+
+      wpa.exe sp11-boot.etl            (Windows Performance Analyzer)
+      tracerpt sp11-boot.etl -o dump.xml -of XML       (no-GUI text dump)
+
+  The Linux-side counterpart, for a comparable trace: initcall_debug plus
+  trace_event= on the kernel command line, with ramoops to survive a bad boot.
+  This board already has a ramoops node.
+-->
+<WindowsPerformanceRecorder Version="1.0" Author="arm64-egpu" Comments="SP11 platform bring-up">
+  <Profiles>
+
+    <SystemCollector Id="SystemCollector_SP11" Name="NT Kernel Logger">
+      <BufferSize Value="1024" />
+      <Buffers Value="512" />
+    </SystemCollector>
+
+    <EventCollector Id="EventCollector_SP11" Name="SP11 Platform Collector">
+      <BufferSize Value="1024" />
+      <Buffers Value="512" />
+    </EventCollector>
+
+    <!-- Driver load order and device init are the point; Power and Interrupt
+         are here because the Type-C/alt-mode work is a power-sequencing race. -->
+    <SystemProvider Id="SystemProvider_SP11">
+      <Keywords>
+        <Keyword Value="Loader" />
+        <Keyword Value="ProcessThread" />
+        <Keyword Value="Drivers" />
+        <Keyword Value="Power" />
+        <Keyword Value="Interrupt" />
+        <Keyword Value="DPC" />
+        <!-- The USB/Type-C stack is KMDF, so its work lands here. -->
+        <Keyword Value="WDFInterrupt" />
+        <Keyword Value="WDFDPC" />
+      </Keywords>
+    </SystemProvider>
+
+    <!-- GUIDs verified against `logman query providers` on this machine,
+         2026-08-09. Named rather than trusted from memory. -->
+
+    <!-- Type-C connector manager: alt-mode entry/exit, partner negotiation.
+         The closest Windows analogue to our pmic_glink altmode path. -->
+    <EventProvider Id="EP_UcmUcsiCx"   Name="569D11AA-5068-5EE5-DA22-CE541C0B1481" Level="5" />
+
+    <!-- USB4 router: discovery and tunnel setup. Linux does none of this today
+         because parade,disable-usb4 is set on both retimers. -->
+    <EventProvider Id="EP_Usb4Router"  Name="D07E8C3F-78FB-4C22-B77C-2203D00BFDF3" Level="5" />
+
+    <EventProvider Id="EP_UsbHub3"     Name="AC52AD17-CC01-4F85-8DF5-4DCE4333C99B" Level="5" />
+    <EventProvider Id="EP_UsbXhci"     Name="30E1D284-5D88-459C-83FD-6345B39B19EC" Level="5" />
+
+    <!-- Device arrival ordering, to diff against Linux probe order. -->
+    <EventProvider Id="EP_KernelPnp"   Name="9C205A39-1250-487D-ABD7-E831C6290539" Level="5" />
+
+    <!-- Qualcomm's own subsystem driver. WPP-backed, so payloads may need the
+         format strings mined out of the .sys files; included because the event
+         timing alone is useful even when the payload is opaque. -->
+    <EventProvider Id="EP_QcomSubsys"  Name="6312E0ED-E7A9-4667-B03D-308F80D13A3B" Level="5" />
+
+    <Profile Id="SP11Platform.Verbose.File"
+             Name="SP11Platform"
+             Description="SP11 bring-up: USB4, Type-C, PnP, Qualcomm subsystem"
+             LoggingMode="File"
+             DetailLevel="Verbose">
+      <Collectors Operation="Add">
+        <SystemCollectorId Value="SystemCollector_SP11">
+          <SystemProviderId Value="SystemProvider_SP11" />
+        </SystemCollectorId>
+        <EventCollectorId Value="EventCollector_SP11">
+          <EventProviders Operation="Add">
+            <EventProviderId Value="EP_UcmUcsiCx" />
+            <EventProviderId Value="EP_Usb4Router" />
+            <EventProviderId Value="EP_UsbHub3" />
+            <EventProviderId Value="EP_UsbXhci" />
+            <EventProviderId Value="EP_KernelPnp" />
+            <EventProviderId Value="EP_QcomSubsys" />
+          </EventProviders>
+        </EventCollectorId>
+      </Collectors>
+    </Profile>
+
+    <!-- WPR requires a Light detail level to exist alongside Verbose. -->
+    <Profile Id="SP11Platform.Light.File"
+             Name="SP11Platform"
+             Description="SP11 bring-up: USB4, Type-C, PnP, Qualcomm subsystem"
+             Base="SP11Platform.Verbose.File"
+             LoggingMode="File"
+             DetailLevel="Light" />
+
+  </Profiles>
+</WindowsPerformanceRecorder>

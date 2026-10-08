@@ -1,0 +1,74 @@
+From: lain3d <eyeofsteiner@gmail.com>
+Subject: [PATCH 5/5] soc: qcom: pmic_glink_altmode: make PAN_EN optional
+
+Diagnostic patch, not proposed for upstream as-is.
+
+ALTMODE_PAN_EN is where Linux announces itself to charger_pd and asks to be told
+about Type-C port state. charger_pd runs on the ADSP, is started by firmware
+long before Linux, and already owns the port. Everything downstream - the
+per-port USBC_NOTIFY_IND, pmic_glink_altmode_worker(), the PAN_ACK - follows
+from that one request.
+
+On a Surface Pro 11 (X1E80100) booting from a USB-C disk, the root filesystem
+intermittently dies 14.9-16.3ms after the notification arrives, across three
+independent failures:
+
+  usb 4-1: cmd cmplt err -71
+  sd 0:0:0:0: [sda] FAILED Result: hostbyte=DID_NO_CONNECT
+
+Nothing on the Linux side touches the hardware in that window. The ps8830
+retimer reports "no change, not touching the chip" and the QMP combo PHY reports
+"already in mode 2, not touching the PHY"; USB_QUIRK_NO_LPM does not prevent it
+either. Blacklisting qcom_q6v5_pas so Linux never attaches to the ADSP gave ten
+consecutive clean boots.
+
+That last result removes the ADSP entirely, which also costs the CDSP, battery
+reporting and any prospect of audio. This parameter separates the two questions:
+the ADSP attaches normally and everything else it serves comes back, but Linux
+never joins the PD conversation.
+
+  pmic_glink_altmode.pan_enable=0
+
+Cost when disabled: no Type-C port notifications, so no USB-C DisplayPort alt
+mode and no orientation/mux updates from firmware. The DP HPD bridges are still
+allocated at probe, so the MSM display component driver still binds.
+
+Signed-off-by: lain3d <eyeofsteiner@gmail.com>
+---
+ drivers/soc/qcom/pmic_glink_altmode.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+--- a/drivers/soc/qcom/pmic_glink_altmode.c
++++ b/drivers/soc/qcom/pmic_glink_altmode.c
+@@ -30,6 +30,19 @@
+ #define ALTMODE_PAN_EN		0x10
++
++/*
++ * PAN_EN is where Linux announces itself to charger_pd, which is already
++ * running on the ADSP and already owns the port. On a machine whose root
++ * filesystem hangs off that port, joining the conversation has been observed
++ * to drop the USB link ~15ms later. Allow it to be suppressed so the ADSP can
++ * still be attached for everything else it serves.
++ */
++static bool pan_enable = true;
++module_param(pan_enable, bool, 0444);
++MODULE_PARM_DESC(pan_enable,
++		 "Request Type-C port notifications from the remote (default 1)");
++
+ #define ALTMODE_PAN_ACK		0x11
+
+@@ -545,6 +558,15 @@ static void pmic_glink_altmode_enable_worker(struct work_struct *work)
+ 	struct pmic_glink_altmode *altmode = work_to_altmode(work);
+ 	int ret;
+
++	if (!pan_enable) {
++		dev_info(altmode->dev,
++			 "pan_enable=0, not requesting altmode notifications\n");
++		return;
++	}
++
++	dev_info(altmode->dev, "requesting altmode notifications (PAN_EN)\n");
++
+ 	ret = pmic_glink_altmode_request(altmode, ALTMODE_PAN_EN, 0);
+ 	if (ret)
+ 		dev_err(altmode->dev, "failed to request altmode notifications: %d\n", ret);

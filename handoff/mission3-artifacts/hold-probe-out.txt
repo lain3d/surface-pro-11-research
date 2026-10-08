@@ -1,0 +1,29 @@
+### power the sensor, program nothing
+runtime_status: active
+privacy LED brightness while powered-not-streaming: 0
+
+### bus + power positive control (ground rule 2: EEPROM at 0x50)
+  0x50 ACKs on i2c-1 -- this is the camera CCI bus and the module is powered
+
+### read positive control: sensor_model_id 0x0016 (expect 0x0681)
+  0x0016 = 0x06 0x81
+
+### the measurement: grouped parameter hold 0x0104
+  0x0104 baseline          = 0x00
+  write 0x0104 = 1         : rc=0
+  0x0104 read back         = 0x01
+
+### write positive control, SAME power state, SAME run
+  0x0136 extclk baseline   = 0x18 0x00
+  wrote 0x0136 = 0x1234
+  0x0136 read back         = 0x12 0x34
+  0x022a exposure baseline = 0x03 0xe8
+  wrote 0x022a = 0x0123
+  0x022a read back         = 0x01 0x23
+
+### release the hold
+  write 0x0104 = 0         : rc=0
+  0x0104 read back         = 0x00
+
+### restore and drop power
+runtime_status: suspended

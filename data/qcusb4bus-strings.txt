@@ -1,0 +1,13 @@
+﻿=== C:\Users\Crazy\projs\arm64-egpu\data\bin\QcUsb4Bus8380.sys ===
+
+--- strings (4) ---
+  0x027410  WdfCustomType_DMF_Bridge
+  0x0278A8  WdfCustomType_UDECXUSBENDPOINT
+  0x02A89F  ;DMF_CONTEXT_Bridge
+  0x04E338  Bridge
+
+--- imports ---
+  WppRecorder.sys  (8)
+  ext-ms-win-ntos-werkernel-l1-1-1.dll  (5)
+  ntoskrnl.exe  (56)
+  WDFLDR.SYS  (5)

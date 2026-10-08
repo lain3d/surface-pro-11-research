@@ -1,0 +1,391 @@
+﻿===== C:\Users\Crazy\AppData\Local\Temp\claude\C--Users-Crazy-projs-arm64-egpu\b880cc65-8196-4cec-b3fe-5e6f6a4ce1cb\scratchpad\CAMF_RES_MSHW0490.bin =====
+magic=b'AeoB' size=1843 (file 1843) version=1
+[
+  'DEVICE'
+  0x85 (133)
+  '\\_SB.CAMF'
+  [
+    'COMPONENT'
+    0x0 (0)
+    FSTATE             0x0 (0)
+  ]
+  [
+    'DSTATE'
+    0x0 (0)
+    [
+      'NPARESOURCE'
+                         0x1 (1)  '/arc/client/rail_mmcx'  0x40 (64)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_xo_clk  0x1 (1)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_ahb_clk 0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_gdsc_clk    0x1 (1)
+    ]
+    [
+      'FOOTSWITCH'
+      cam_cc_titan_top_gdsc 0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_cpas_ahb_clk 0x8 (8)  0x4c4b400 (80000000)  0x3 (3)
+    ]
+    [
+      'TLMMGPIO'
+                         0xed (237)  0x0 (0)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'CLOCK'
+      cam_cc_mclk4_clk   0x8 (8)  0x124f800 (19200000)  0x3 (3)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO3_M 0x1 (1)  0x1b7740 (1800000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO7_B 0x1 (1)  0x2ab980 (2800000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'TLMMGPIO'
+                         0xed (237)  0x1 (1)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0xa (10)
+    ]
+  ]
+  [
+    'DSTATE'
+    0x3 (3)
+    [
+      'TLMMGPIO'
+                         0xed (237)  0x0 (0)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_mclk4_clk   0xc (12)  0x0 (0)  0x3 (3)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO7_B 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO3_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'CLOCK'
+      cam_cc_cpas_ahb_clk 0x2 (2)
+    ]
+    [
+      'FOOTSWITCH'
+      cam_cc_titan_top_gdsc 0x2 (2)
+    ]
+    [
+      'CLOCK'
+      cam_cc_gdsc_clk    0x2 (2)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_ahb_clk 0x2 (2)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_xo_clk  0x2 (2)
+    ]
+    [
+      'NPARESOURCE'
+                         0x1 (1)  '/arc/client/rail_mmcx'  0x0 (0)
+    ]
+  ]
+]
+
+===== C:\Users\Crazy\AppData\Local\Temp\claude\C--Users-Crazy-projs-arm64-egpu\b880cc65-8196-4cec-b3fe-5e6f6a4ce1cb\scratchpad\CAMS_RES_MSHW0491.bin =====
+magic=b'AeoB' size=2293 (file 2293) version=1
+[
+  'DEVICE'
+  0x85 (133)
+  '\\_SB.CAMS'
+  [
+    'COMPONENT'
+    0x0 (0)
+    FSTATE             0x0 (0)
+  ]
+  [
+    'DSTATE'
+    0x0 (0)
+    [
+      'NPARESOURCE'
+                         0x1 (1)  '/arc/client/rail_mmcx'  0x40 (64)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_xo_clk  0x1 (1)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_ahb_clk 0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_gdsc_clk    0x1 (1)
+    ]
+    [
+      'FOOTSWITCH'
+      cam_cc_titan_top_gdsc 0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_cpas_ahb_clk 0x8 (8)  0x4c4b400 (80000000)  0x3 (3)
+    ]
+    [
+      'TLMMGPIO'
+                         0x6e (110)  0x0 (0)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO6_M 0x1 (1)  0x1b7740 (1800000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO1_M 0x1 (1)  0x124f80 (1200000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO5_M 0x1 (1)  0x2ab980 (2800000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO16_B 0x1 (1)  0x2c4020 (2900000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'CLOCK'
+      cam_cc_mclk1_clk   0x8 (8)  0x124f800 (19200000)  0x3 (3)
+    ]
+    [
+      'TLMMGPIO'
+                         0x6e (110)  0x1 (1)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0xa (10)
+    ]
+  ]
+  [
+    'DSTATE'
+    0x3 (3)
+    [
+      'TLMMGPIO'
+                         0x6e (110)  0x0 (0)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_mclk1_clk   0xc (12)  0x0 (0)  0x3 (3)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO16_B 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO5_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO1_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO6_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'CLOCK'
+      cam_cc_cpas_ahb_clk 0x2 (2)
+    ]
+    [
+      'FOOTSWITCH'
+      cam_cc_titan_top_gdsc 0x2 (2)
+    ]
+    [
+      'CLOCK'
+      cam_cc_gdsc_clk    0x2 (2)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_ahb_clk 0x2 (2)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_xo_clk  0x2 (2)
+    ]
+    [
+      'NPARESOURCE'
+                         0x1 (1)  '/arc/client/rail_mmcx'  0x0 (0)
+    ]
+  ]
+]
+
+===== C:\Users\Crazy\AppData\Local\Temp\claude\C--Users-Crazy-projs-arm64-egpu\b880cc65-8196-4cec-b3fe-5e6f6a4ce1cb\scratchpad\CAMI_RES_MSHW0492.bin =====
+magic=b'AeoB' size=2187 (file 2187) version=1
+[
+  'DEVICE'
+  0x85 (133)
+  '\\_SB.CAMI'
+  [
+    'COMPONENT'
+    0x0 (0)
+    FSTATE             0x0 (0)
+  ]
+  [
+    'DSTATE'
+    0x0 (0)
+    [
+      'NPARESOURCE'
+                         0x1 (1)  '/arc/client/rail_mmcx'  0x40 (64)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_xo_clk  0x1 (1)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_ahb_clk 0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_gdsc_clk    0x1 (1)
+    ]
+    [
+      'FOOTSWITCH'
+      cam_cc_titan_top_gdsc 0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_cpas_ahb_clk 0x8 (8)  0x4c4b400 (80000000)  0x3 (3)
+    ]
+    [
+      'TLMMGPIO'
+                         0x6d (109)  0x0 (0)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'CLOCK'
+      cam_cc_mclk0_clk   0x8 (8)  0x124f800 (19200000)  0x3 (3)
+    ]
+    [
+      'DELAY'
+                         0x2 (2)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO4_M 0x1 (1)  0x1b7740 (1800000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO2_M 0x1 (1)  0x118c30 (1150000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO7_M 0x1 (1)  0x2ab980 (2800000)  0x1 (1)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'TLMMGPIO'
+                         0x6d (109)  0x1 (1)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+  ]
+  [
+    'DSTATE'
+    0x3 (3)
+    [
+      'TLMMGPIO'
+                         0x6d (109)  0x0 (0)  0x0 (0)  0x1 (1)  0x0 (0)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x5 (5)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO7_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'DELAY'
+                         0x1 (1)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO2_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'PMICVREGVOTE'
+      PPP_RESOURCE_ID_LDO4_M 0x1 (1)  0x0 (0)  0x0 (0)  0x7 (7)  0x0 (0)
+    ]
+    [
+      'CLOCK'
+      cam_cc_mclk0_clk   0xc (12)  0x0 (0)  0x3 (3)
+    ]
+    [
+      'CLOCK'
+      cam_cc_cpas_ahb_clk 0x2 (2)
+    ]
+    [
+      'FOOTSWITCH'
+      cam_cc_titan_top_gdsc 0x2 (2)
+    ]
+    [
+      'CLOCK'
+      cam_cc_gdsc_clk    0x2 (2)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_ahb_clk 0x2 (2)
+    ]
+    [
+      'CLOCK'
+      gcc_camera_xo_clk  0x2 (2)
+    ]
+    [
+      'NPARESOURCE'
+                         0x1 (1)  '/arc/client/rail_mmcx'  0x0 (0)
+    ]
+  ]
+]
+

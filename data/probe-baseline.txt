@@ -1,0 +1,192 @@
+﻿
+=== IDENTITY ===
+
+
+Manufacturer : Microsoft Corporation
+Model        : Microsoft Surface Pro, 11th Edition
+SystemType   : ARM64-based PC
+
+
+
+
+
+
+Caption        : Microsoft Windows 11 Home
+Version        : 10.0.26200
+BuildNumber    : 26200
+OSArchitecture : ARM 64-bit Processor
+
+
+
+
+
+=== SECURITY POSTURE ===
+VBS status: 2
+Security services running: 2,3
+Available security properties: 1,2,3,5,7
+TestSigning / integrity: 
+
+hypervisorlaunchtype    Auto
+
+
+
+
+=== PCI HOST BRIDGES (PNP0A08 / PNP0A03) ===
+
+InstanceId     Status  Present FriendlyName            
+----------     ------  ------- ------------            
+ACPI\PNP0A08\0 Unknown   False PCI Express Root Complex
+ACPI\PNP0A08\1 Unknown   False PCI Express Root Complex
+ACPI\PNP0A08\4 OK         True PCI Express Root Complex
+ACPI\PNP0A08\6 OK         True PCI Express Root Complex
+
+
+
+
+=== PCI DEVICES AND PARENTAGE ===
+
+Name                                                        Id                                                             Pare
+                                                                                                                           nt  
+----                                                        --                                                             ----
+Standard NVM Express Controller                             PCI\VEN_15B7&DEV_5015&SUBSYS_501515B7&REV_01\4&3606B996&0&0000 PCI\
+                                                                                                                           VEN_
+                                                                                                                           17CB
+                                                                                                                           &DEV
+                                                                                                                           _011
+                                                                                                                           1&SU
+                                                                                                                           BSYS
+                                                                                                                           _000
+                                                                                                                           0000
+                                                                                                                           0&RE
+                                                                                                                           V_00
+                                                                                                                           \3&7
+                                                                                                                           1811
+                                                                                                                           bb&0
+                                                                                                                           &00 
+PCI Express Root Port                                       PCI\VEN_17CB&DEV_0111&SUBSYS_00000000&REV_00\3&71811BB&0&00    ACPI
+                                                                                                                           \PNP
+                                                                                                                           0A08
+                                                                                                                           \6  
+PCI Express Root Port                                       PCI\VEN_17CB&DEV_0111&SUBSYS_00000000&REV_00\3&2C8B7305&0&00   ACPI
+                                                                                                                           \PNP
+                                                                                                                           0A08
+                                                                                                                           \4  
+Qualcomm(R) FastConnect(TM) 7800 Mobile Connectivity System PCI\VEN_17CB&DEV_1107&SUBSYS_110717CB&REV_01\4&CDACDEC&0&0000  PCI\
+                                                                                                                           VEN_
+                                                                                                                           17CB
+                                                                                                                           &DEV
+                                                                                                                           _011
+                                                                                                                           1&SU
+                                                                                                                           BSYS
+                                                                                                                           _000
+                                                                                                                           0000
+                                                                                                                           0&RE
+                                                                                                                           V_00
+                                                                                                                           \3&2
+                                                                                                                           c8b7
+                                                                                                                           305&
+                                                                                                                           0&00
+
+
+
+
+=== PCI DEVICES WITH PROBLEMS (code 12 = insufficient resources) ===
+
+Name                     Id             Status  Problem
+----                     --             ------  -------
+PCI Express Root Complex ACPI\PNP0A08\0 Unknown        
+PCI Express Root Complex ACPI\PNP0A08\1 Unknown        
+
+
+
+
+=== MEMORY RESOURCES ASSIGNED TO PCI DEVICES ===
+
+StartingAddress EndingAddress Name                                 
+--------------- ------------- ----                                 
+        1114112       1376255 0x0000000000110000-0x000000000014FFFF
+        4194304       5242879 0x0000000000400000-0x00000000004FFFFF
+        8404992       8765439 0x0000000000804000-0x000000000085BFFF
+        8994816       9011199 0x0000000000894000-0x0000000000897FFF
+       10502144      10862591 0x0000000000A04000-0x0000000000A5BFFF
+       11042816      11059199 0x0000000000A88000-0x0000000000A8BFFF
+       11108352      11124735 0x0000000000A98000-0x0000000000A9BFFF
+       11550720      11911167 0x0000000000B04000-0x0000000000B5BFFF
+       12058624      12075007 0x0000000000B80000-0x0000000000B83FFF
+       12091392      12107775 0x0000000000B88000-0x0000000000B8BFFF
+       12107776      12124159 0x0000000000B8C000-0x0000000000B8FFFF
+       12124160      12140543 0x0000000000B90000-0x0000000000B93FFF
+       12173312      12189695 0x0000000000B9C000-0x0000000000B9FFFF
+       16580608      16711679 0x0000000000FD0000-0x0000000000FEFFFF
+       25694236      25694239 0x000000000188101C-0x000000000188101F
+       25694244      25694247 0x0000000001881024-0x0000000001881027
+       25694248      25694251 0x0000000001881028-0x000000000188102B
+       25694268      25694271 0x000000000188103C-0x000000000188103F
+       25698316      25698319 0x000000000188200C-0x000000000188200F
+       31211520      31375359 0x0000000001DC4000-0x0000000001DEBFFF
+       63963136      64614399 0x0000000003D00000-0x0000000003D9EFFF
+       64618496      64880639 0x0000000003DA0000-0x0000000003DDFFFF
+      113262592     113393663 0x0000000006C04000-0x0000000006C23FFF
+      113508352     113688575 0x0000000006C40000-0x0000000006C6BFFF
+      171966464     173015038 0x000000000A400000-0x000000000A4FFFFE
+      174063616     175112190 0x000000000A600000-0x000000000A6FFFFE
+      176160768     177209342 0x000000000A800000-0x000000000A8FFFFE
+      178257920     179306495 0x000000000AA00000-0x000000000AAFFFFF
+      179306496     180355071 0x000000000AB00000-0x000000000ABFFFFF
+      180432896     180436991 0x000000000AC13000-0x000000000AC13FFF
+      180441088     180445183 0x000000000AC15000-0x000000000AC15FFF
+      180445184     180449279 0x000000000AC16000-0x000000000AC16FFF
+      180457472     180506623 0x000000000AC19000-0x000000000AC24FFF
+      180527104     180531199 0x000000000AC2A000-0x000000000AC2AFFF
+      180531200     180535295 0x000000000AC2B000-0x000000000AC2BFFF
+      181182464     181198847 0x000000000ACCA000-0x000000000ACCDFFF
+      181288960     181297151 0x000000000ACE4000-0x000000000ACE5FFF
+      181297152     181305343 0x000000000ACE6000-0x000000000ACE7FFF
+      181305344     181313535 0x000000000ACE8000-0x000000000ACE9FFF
+      181321728     181329919 0x000000000ACEC000-0x000000000ACEDFFF
+      181362688     181363711 0x000000000ACF6000-0x000000000ACF63FF
+      181366784     181367807 0x000000000ACF7000-0x000000000ACF73FF
+      181370880     181371903 0x000000000ACF8000-0x000000000ACF83FF
+      182452224     184549375 0x000000000AE00000-0x000000000AFFFFFF
+      187170816     187236351 0x000000000B280000-0x000000000B28FFFF
+      205520896     210763775 0x000000000C400000-0x000000000C8FFFFF
+      252706816     268435455 0x000000000F100000-0x000000000FFFFFFF
+      268435456     268763135 0x0000000010000000-0x000000001004FFFF
+      301989888     335544319 0x0000000012000000-0x0000000013FFFFFF
+      352321536     353370111 0x0000000015000000-0x00000000150FFFFF
+      354418688     356515839 0x0000000015200000-0x00000000153FFFFF
+      369098752     385875967 0x0000000016000000-0x0000000016FFFFFF
+      469762048     472715263 0x000000001C000000-0x000000001C2D0FFF
+      639631360     641728511 0x0000000026200000-0x00000000263FFFFF
+     1882193920    1882210303 0x0000000070300000-0x0000000070303FFF
+     2083520512    2113929215 0x000000007C300000-0x000000007DFFFFFF
+     2084569088    2086666239 0x000000007C400000-0x000000007C5FFFFF
+     2180112384    2180120575 0x0000000081F1E000-0x0000000081F1FFFF
+     2180120576    2180120623 0x0000000081F20000-0x0000000081F2002F
+     2180120640    2180120686 0x0000000081F20040-0x0000000081F2006E
+
+
+
+
+=== USB4 STACK ===
+
+InstanceId                Status Class  FriendlyName                        
+----------                ------ -----  ------------                        
+ACPI\QCOM0C6D\2&DABA3FF&0 OK     System Qualcomm(R) USB4(TM) Host Router Bus
+
+
+
+QcUsb4Bus : state=Running start=Manual path=C:\Windows\system32\DriverStore\FileRepository\qcusb4bus8380.inf_arm64_ab0636ce7eeb3605\QcUsb4Bus8380.sys
+Usb4HostRouter : state=Stopped start=Manual path=C:\Windows\system32\DriverStore\FileRepository\usb4hostrouter.inf_arm64_5d9384fae7d83f3d\Usb4HostRouter.sys
+
+=== USB-C / RETIMER ===
+
+InstanceId                                        Status FriendlyName                 
+----------                                        ------ ------------                 
+ACPI\USBC000\5                                    OK     UCM-UCSI ACPI Device         
+ACPI\QCOM0CA4\2&DABA3FF&0                         OK     Qualcomm(R) USB Type-C Device
+UEFI\RES_{59B50971-4C23-41E5-B168-0F1C0896C6EE}\0 OK     Surface USB4 Retimer (Port 1)
+UEFI\RES_{05575D61-005D-4BC9-8E90-13EF293AA632}\0 OK     Surface USB4 Retimer (Port 0)
+
+
+

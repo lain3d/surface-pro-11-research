@@ -1,0 +1,40 @@
+sp11 boot baseline
+
+source tree      integration/iso2 @ 029174f90
+kernel built at  config/boot-payload @ f2cc827b6
+                 (DT-only commits separate the two; the C code is identical)
+kernel release   7.1.3-sp11-integ-gf2cc827b6b89
+built with       make LOCALVERSION=-sp11-integ Image
+
+artifacts (C:\sp11-stage):
+  integ-Image                            52623872  b0784d0842f1a170
+  integ-Image-fwcompress                 52754944  532e5fd8db9f1073
+  initrd-sp11log.img                     57351989  a8a0df7d16e87269
+  integ-denali-l2m.dtb                     219998  0c15de93030726e9
+  linuxaa64-259.efi.stub                   108032  2484474a4f3a0933
+  config-fwcompress                        321484  ef2d781519e97171
+  BOOTAA64-integ7.efi                   110286336  925d4dfc8d776e80
+  BOOTAA64-integ8.efi                   110417408  11045aff35ce5dff
+  BOOTAA64-stock-KNOWN-GOOD.efi         103233024  68975ce36899ad67
+
+installed  \EFI\BOOT\BOOTAA64.EFI  = BOOTAA64-integ8.efi
+previous   BOOTAA64-integ7.efi        identical except .linux
+fallback   \EFI\sp11\stock-fallback.efi   one copy restores a working machine
+
+cmdline
+  root=UUID=803b0fd3-9905-4cb7-8c44-a6dbcac1d4fd ro loglevel=7 console=tty0
+  clk_ignore_unused pd_ignore_unused arm64.nopauth modprobe.blacklist=thunderbolt
+
+config delta vs the tree config (config-fwcompress)
+  > CONFIG_EXFAT_DEFAULT_IOCHARSET="utf8"
+  > CONFIG_EXFAT_FS=y
+  > CONFIG_FW_LOADER_COMPRESS=y
+  > CONFIG_FW_LOADER_COMPRESS_XZ=y
+  > CONFIG_FW_LOADER_COMPRESS_ZSTD=y
+  < CONFIG_PSTORE_RAM=m
+  > CONFIG_PSTORE_RAM=y
+  < CONFIG_REED_SOLOMON=m
+  > CONFIG_REED_SOLOMON=y
+  > CONFIG_SQUASHFS_LZO=y
+  > CONFIG_SQUASHFS_XZ=y
+  > CONFIG_SQUASHFS_ZSTD=y

@@ -1,0 +1,20 @@
+=== sanity: sensor answers and is streaming ===
+  0x0016 = 0x0681   (expect 0x0681)
+  0x0100 = 1   (1 = driver has it streaming)
+  vfe0=0 csid0=3
+
+=== A  CONTROL: stop, rewrite, start -- NO hold ===
+    replayed 566 writes in 0.10s
+    0x0100 reads back = 1
+    vfe0  0 -> 0   (delta 0)
+    csid0 3 -> 3   (delta 0)
+
+=== B  TEST:    stop, HOLD, rewrite, release, start ===
+    0x0104 after set = 1
+    replayed 566 writes in 0.09s
+    0x0104 after release = 0
+    0x0100 reads back = 1
+    vfe0  0 -> 0   (delta 0)
+    csid0 3 -> 3   (delta 0)
+
+final: 0x0100=1 0x0104=0 vfe0=0 csid0=3

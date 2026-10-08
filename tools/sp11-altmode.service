@@ -1,0 +1,45 @@
+[Unit]
+Description=Enable pmic_glink Type-C altmode notifications when the desktop appears
+Documentation=file:///home/lain/surface/surface-pro-11-linux/design/session-state-20260806.md
+ConditionPathIsReadWrite=/sys/module/pmic_glink_altmode/parameters/pan_enable
+
+# Hung off the display manager, not multi-user.target.
+#
+# The original 30s sleep was a guess made when ALTMODE_PAN_EN was dangerous:
+# announcing Linux to charger_pd at ~6s dropped the USB-C root disk on roughly
+# one boot in six, and 66-72s was safe twice out of two. The boundary between
+# was never measured, so the wait was made generous.
+#
+# Two things have changed since. The dracut pre-mount hook restarts the ADSP at
+# ~3.9s, which destroys the firmware-negotiated port state PAN_EN used to
+# disturb - from ~6.6s the port is plain USB and stays that way. And PAN_EN is
+# now observably inert: at 71.5s it produces only
+#
+#   qmp_combo_mux_set() enter mode=1 ... typec_mux_set: already in mode 2,
+#   not touching the PHY
+#
+# There is nothing left on that port for it to disrupt, and nothing about the
+# port differs between 22s and 72s.
+#
+# Measured on 2026-08-06: gdm.service starts at 20.4s of uptime, multi-user at
+# 37.3s, graphical-session.target at 58.8s, and the old chain put pan_enable at
+# 71.5s with the connector reset ~5s later - about 18s after the desktop was
+# already up, which is what this is fixing.
+#
+# NOTE the deliberate absence of After=multi-user.target: on this machine
+# multi-user is reached SEVENTEEN SECONDS AFTER gdm, so adding it would undo the
+# whole point. WantedBy=graphical.target gives the implicit ordering before that
+# target, and gdm is Before=graphical.target too, so there is no cycle.
+After=display-manager.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+# Enough for gdm to have the console, not enough to be noticed.
+ExecStartPre=/bin/sleep 2
+ExecStart=/bin/sh -c 'echo 1 > /sys/module/pmic_glink_altmode/parameters/pan_enable'
+ExecStartPost=/bin/sh -c 'echo "sp11-altmode: pan_enable=$(cat /sys/module/pmic_glink_altmode/parameters/pan_enable)" > /dev/kmsg'
+
+[Install]
+WantedBy=graphical.target

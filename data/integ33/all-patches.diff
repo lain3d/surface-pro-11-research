@@ -1,0 +1,277 @@
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+index 861de4e06..7104d3c8a 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+@@ -4496,7 +4496,8 @@ static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_s
+ 	}
+ 
+ 	if (new_mode == qmp->qmpphy_mode) {
+-		dev_dbg(qmp->dev, "typec_mux_set: same qmpphy mode, bail out\n");
++		dev_info(qmp->dev, "typec_mux_set: already in mode %d, not touching the PHY\n",
++			 new_mode);
+ 		return 0;
+ 	}
+ 
+@@ -4912,7 +4913,13 @@ static int qmp_combo_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_node_put;
+ 
+-	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
++	/*
++	 * Assume firmware left the PHY carrying USB3 only, which is what it
++	 * does for a plain USB-C device. USB3DP here is the enum's zero value,
++	 * not an observation, and getting it wrong makes the first typec mux
++	 * notification power-cycle a PHY that is already passing traffic.
++	 */
++	qmp->qmpphy_mode = QMPPHY_MODE_USB3_ONLY;
+ 
+ 	/* Replace with DT provided mode */
+ 	if (of_find_property(dev->of_node, "qcom,combo-initial-mode", NULL)) {
+diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
+index 939a444eb..7d8a3db54 100644
+--- a/drivers/soc/qcom/pmic_glink_altmode.c
++++ b/drivers/soc/qcom/pmic_glink_altmode.c
+@@ -542,11 +542,84 @@ static void pmic_glink_altmode_put_switch(void *data)
+ 	typec_switch_put(data);
+ }
+ 
++/*
++ * PAN_EN is where Linux announces itself to charger_pd, which is already
++ * running on the ADSP and already owns the port. On a machine whose root
++ * filesystem hangs off that port, joining the conversation has been observed to
++ * drop the USB link ~15ms later - but only ever during boot, never afterwards.
++ *
++ * So the parameter is writable: boot with 0, then once userspace is up
++ *
++ *     echo 1 > /sys/module/pmic_glink_altmode/parameters/pan_enable
++ *
++ * requests notifications with nothing hammering the disk. Suppressing it
++ * outright costs USB-C DisplayPort entirely, because drm_aux_hpd_bridge_notify()
++ * is only ever called from the worker those notifications drive.
++ */
++static bool pan_enable = true;
++
++/*
++ * The single probed instance, so a runtime write can reach its enable_work.
++ * Cleared on unbind - this driver does not unbind in practice, but the struct is
++ * devm-allocated and a dangling pointer would be wrong either way.
++ */
++static struct pmic_glink_altmode *pan_altmode;
++static DEFINE_MUTEX(pan_lock);
++
++static void pmic_glink_altmode_clear_instance(void *unused)
++{
++	guard(mutex)(&pan_lock);
++	pan_altmode = NULL;
++}
++
++static int pan_enable_set(const char *val, const struct kernel_param *kp)
++{
++	bool was = pan_enable;
++	int ret;
++
++	guard(mutex)(&pan_lock);
++
++	ret = param_set_bool(val, kp);
++	if (ret)
++		return ret;
++
++	/*
++	 * Only the off -> on edge does anything. There is no way to un-request
++	 * notifications once the remote is sending them, so writing 0 later only
++	 * records the intent for the next boot.
++	 */
++	if (pan_enable && !was && pan_altmode) {
++		dev_info(pan_altmode->dev,
++			 "pan_enable turned on at runtime, requesting notifications\n");
++		schedule_work(&pan_altmode->enable_work);
++	}
++
++	return 0;
++}
++
++static const struct kernel_param_ops pan_enable_ops = {
++	.set = pan_enable_set,
++	.get = param_get_bool,
++};
++
++module_param_cb(pan_enable, &pan_enable_ops, &pan_enable, 0644);
++MODULE_PARM_DESC(pan_enable,
++		 "Request Type-C port notifications from the remote (default 1). "
++		 "Writable: boot with 0, write 1 once userspace is up to defer it.");
++
+ static void pmic_glink_altmode_enable_worker(struct work_struct *work)
+ {
+ 	struct pmic_glink_altmode *altmode = work_to_altmode(work);
+ 	int ret;
+ 
++	if (!pan_enable) {
++		dev_info(altmode->dev,
++			 "pan_enable=0, not requesting altmode notifications\n");
++		return;
++	}
++
++	dev_info(altmode->dev, "requesting altmode notifications (PAN_EN)\n");
++
+ 	ret = pmic_glink_altmode_request(altmode, ALTMODE_PAN_EN, 0);
+ 	if (ret)
+ 		dev_err(altmode->dev, "failed to request altmode notifications: %d\n", ret);
+@@ -696,6 +769,13 @@ static int pmic_glink_altmode_probe(struct auxiliary_device *adev,
+ 
+ 	pmic_glink_client_register(altmode->client);
+ 
++	scoped_guard(mutex, &pan_lock)
++		pan_altmode = altmode;
++
++	ret = devm_add_action_or_reset(dev, pmic_glink_altmode_clear_instance, NULL);
++	if (ret)
++		return ret;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/usb/typec/mux/ps883x.c b/drivers/usb/typec/mux/ps883x.c
+index 30cf5556d..cff0a7b56 100644
+--- a/drivers/usb/typec/mux/ps883x.c
++++ b/drivers/usb/typec/mux/ps883x.c
+@@ -148,6 +148,7 @@ static int ps883x_configure(struct ps883x_retimer *retimer, int cfg0,
+ 			    int cfg1, int cfg2, bool reset)
+ {
+ 	struct device *dev = &retimer->client->dev;
++	unsigned int cur0, cur1, cur2;
+ 	int ret;
+ 
+ 	if (reset) {
+@@ -167,6 +168,22 @@ static int ps883x_configure(struct ps883x_retimer *retimer, int cfg0,
+ 		retimer->in_reset = false;
+ 	}
+ 
++	/*
++	 * Do not rewrite values the retimer already holds. These are plain
++	 * regmap_write()s, so an identical write still pokes the chip's
++	 * connection state machine, and doing that to a link firmware brought
++	 * up costs a USB -EPROTO about 18ms later. On a machine booting from a
++	 * USB-C disk, that link is the root filesystem.
++	 */
++	if (!regmap_read(retimer->regmap, REG_USB_PORT_CONN_STATUS_0, &cur0) &&
++	    !regmap_read(retimer->regmap, REG_USB_PORT_CONN_STATUS_1, &cur1) &&
++	    !regmap_read(retimer->regmap, REG_USB_PORT_CONN_STATUS_2, &cur2) &&
++	    cur0 == cfg0 && cur1 == cfg1 && cur2 == cfg2) {
++		dev_info(dev, "conn_status already %02x/%02x/%02x, not reprogramming\n",
++			 cfg0, cfg1, cfg2);
++		return 0;
++	}
++
+ 	ret = regmap_write(retimer->regmap, REG_USB_PORT_CONN_STATUS_0, cfg0);
+ 	if (ret) {
+ 		dev_err(dev, "failed to write conn_status_0: %d\n", ret);
+@@ -293,6 +310,11 @@ static int ps883x_sw_set(struct typec_switch_dev *sw,
+ 
+ 	guard(mutex)(&retimer->lock);
+ 
++	dev_info(&retimer->client->dev, "sw_set: cached=%d notified=%d -> %s\n",
++		 retimer->orientation, orientation,
++		 retimer->orientation == orientation ?
++		 "no change, not touching the chip" : "updating conn_status_0");
++
+ 	if (retimer->orientation != orientation) {
+ 		retimer->orientation = orientation;
+ 
+@@ -382,6 +404,7 @@ static int ps883x_retimer_probe(struct i2c_client *client)
+ {
+ 	struct device *dev = &client->dev;
+ 	struct typec_switch_desc sw_desc = { };
++	int configured;
+ 	struct typec_retimer_desc rtmr_desc = { };
+ 	struct ps883x_retimer *retimer;
+ 	int ret;
+@@ -442,9 +465,43 @@ static int ps883x_retimer_probe(struct i2c_client *client)
+ 	}
+ 
+ 	/* skip resetting if already configured */
+-	if (regmap_test_bits(retimer->regmap, REG_USB_PORT_CONN_STATUS_0,
+-			     CONN_STATUS_0_CONNECTION_PRESENT) == 1) {
++	configured = regmap_test_bits(retimer->regmap, REG_USB_PORT_CONN_STATUS_0,
++				      CONN_STATUS_0_CONNECTION_PRESENT);
++	dev_info(dev, "probe: CONNECTION_PRESENT=%d -> %s\n", configured,
++		 configured == 1 ? "leaving retimer running" : "resetting retimer");
++
++	if (configured == 1) {
++		unsigned int st0;
++
+ 		gpiod_direction_output(retimer->reset_gpio, 0);
++
++		/*
++		 * Seed the cached orientation from what firmware left in the
++		 * chip. Without this it stays at the zero devm_kzalloc gave it,
++		 * TYPEC_ORIENTATION_NONE, and the first orientation
++		 * notification looks like a change even when nothing changed -
++		 * so ps883x_sw_set() reaches for a live retimer's
++		 * REG_USB_PORT_CONN_STATUS_0 and the link drops ~16ms later.
++		 */
++		if (!regmap_read(retimer->regmap, REG_USB_PORT_CONN_STATUS_0, &st0)) {
++			retimer->orientation = (st0 & CONN_STATUS_0_ORIENTATION_REVERSED) ?
++					       TYPEC_ORIENTATION_REVERSE :
++					       TYPEC_ORIENTATION_NORMAL;
++			dev_info(dev, "probe: conn_status_0=%02x -> seeding orientation=%d\n",
++				 st0, retimer->orientation);
++		}
++
++		/*
++		 * Firmware left this retimer configured and passing traffic, so
++		 * leave it running. Do NOT fall through to the reset below: on a
++		 * machine that boots from a USB-C disk that traffic is the root
++		 * filesystem, and asserting reset drops the link a few
++		 * milliseconds later with "cmd cmplt err -71" and a disconnect.
++		 *
++		 * in_reset stays false, so the first ps883x_configure() writes the
++		 * connection-status registers directly, which is what a chip that
++		 * is already out of reset needs.
++		 */
+ 	} else {
+ 		gpiod_direction_output(retimer->reset_gpio, 1);
+ 
+@@ -455,10 +512,10 @@ static int ps883x_retimer_probe(struct i2c_client *client)
+ 
+ 		/* firmware initialization delay */
+ 		msleep(60);
+-	}
+ 
+-	/* Keep the retimer in reset until a Type-C notification comes */
+-	ps883x_reset(retimer);
++		/* Keep the retimer in reset until a Type-C notification comes */
++		ps883x_reset(retimer);
++	}
+ 
+ 	sw_desc.drvdata = retimer;
+ 	sw_desc.fwnode = dev_fwnode(dev);
+diff --git a/drivers/usb/typec/ucsi/ucsi_glink.c b/drivers/usb/typec/ucsi/ucsi_glink.c
+index 12e07b9fe..36b8d5304 100644
+--- a/drivers/usb/typec/ucsi/ucsi_glink.c
++++ b/drivers/usb/typec/ucsi/ucsi_glink.c
+@@ -323,9 +323,22 @@ static void pmic_glink_ucsi_register(struct work_struct *work)
+ 	if (!ucsi->ucsi_registered && pd_running) {
+ 		ucsi_register(ucsi->ucsi);
+ 		ucsi->ucsi_registered = true;
+-	} else if (ucsi->ucsi_registered && !pd_running) {
+-		ucsi_unregister(ucsi->ucsi);
+-		ucsi->ucsi_registered = false;
++	} else if (ucsi->ucsi_registered && pd_running) {
++		/*
++		 * The protection domain restarted underneath us. Re-read the
++		 * connector state rather than tearing the port down: an
++		 * ucsi_unregister() here reaches ucsi_unregister_partner(),
++		 * which calls typec_set_mode(con->port, TYPEC_STATE_SAFE) and
++		 * puts the Type-C mux into safe state - electrically
++		 * disconnecting whatever is attached. On a machine booting
++		 * from a USB-C disk that kills the root filesystem, and the
++		 * device never comes back: re-attach needs a connect event,
++		 * and the cable never moved.
++		 *
++		 * A PDR is a transient supplier outage, not a disconnect.
++		 * qcom_battmgr already treats it that way.
++		 */
++		ucsi_resume(ucsi->ucsi);
+ 	}
+ }
+ 

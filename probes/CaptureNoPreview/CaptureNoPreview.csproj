@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!-- The Windows10 TFM pulls in the CsWinRT projections, so
+         Windows.Media.Capture is usable directly with no winmd wrangling. -->
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>CaptureNoPreview</AssemblyName>
+    <RootNamespace>CaptureNoPreview</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+</Project>

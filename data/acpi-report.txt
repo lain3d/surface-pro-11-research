@@ -1,0 +1,284 @@
+﻿
+ACPI dir: C:\Users\Crazy\projs\arm64-egpu\data\acpi
+
+==============================================================================
+MCFG  -- PCIe ECAM configuration space segments
+==============================================================================
+  segment 0: ECAM base 0x000400000000  buses   0-255 (256 buses, 256MB of config space)
+  segment 1: ECAM base 0x000500000000  buses   0-255 (256 buses, 256MB of config space)
+  segment 2: ECAM base 0x006000000000  buses   0-255 (256 buses, 256MB of config space)
+  segment 3: ECAM base 0x000740000000  buses   0-1   (2 buses, 2MB of config space)
+  segment 4: ECAM base 0x00007C000000  buses   0-1   (2 buses, 2MB of config space)
+  segment 5: ECAM base 0x00007E000000  buses   0-1   (2 buses, 2MB of config space)
+  segment 6: ECAM base 0x000070000000  buses   0-1   (2 buses, 2MB of config space)
+  segment 7: ECAM base 0x000074000000  buses   0-1   (2 buses, 2MB of config space)
+
+==============================================================================
+DSDT  -- PCI host bridges and the MMIO windows firmware reserves for them
+==============================================================================
+  DSDT size: 283657 bytes
+
+  Found 16 host-bridge _HID sites, 21 address-space descriptors in DSDT.
+
+  --- Device PCI0  (_HID PNP0A08, DSDT offset 0x3B341) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI0  (_HID PNP0A03, DSDT offset 0x3B34B) ---
+      Memory    0x000040000000-0x00004FFFFFFF  len     256MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      Memory    0x000410000000-0x0004FFFFFFFF  len    3.75GB  (64-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..255  (count 256)
+
+  --- Device PCI1  (_HID PNP0A08, DSDT offset 0x3B7DE) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI1  (_HID PNP0A03, DSDT offset 0x3B7E8) ---
+      Memory    0x000050000000-0x00005FFFFFFF  len     256MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      Memory    0x000510000000-0x0005FFFFFFFF  len    3.75GB  (64-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..255  (count 256)
+
+  --- Device PCI2  (_HID PNP0A08, DSDT offset 0x3BC7C) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI2  (_HID PNP0A03, DSDT offset 0x3BC86) ---
+      Memory    0x000060000000-0x00006FFFFFFF  len     256MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      Memory    0x006010000000-0x006FFFFFFFFF  len   63.75GB  (64-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..255  (count 256)
+
+  --- Device PCI3  (_HID PNP0A08, DSDT offset 0x3C11F) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI3  (_HID PNP0A03, DSDT offset 0x3C129) ---
+      Memory    0x00007A000000-0x00007BFFFFFF  len      32MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      Memory    0x000740200000-0x00077FFFFFFF  len    1022MB  (64-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..1  (count 2)
+
+  --- Device PCI4  (_HID PNP0A08, DSDT offset 0x3C67A) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI4  (_HID PNP0A03, DSDT offset 0x3C684) ---
+      Memory    0x00007C300000-0x00007DFFFFFF  len      29MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..1  (count 2)
+
+  --- Device PCI5  (_HID PNP0A08, DSDT offset 0x3CB3F) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI5  (_HID PNP0A03, DSDT offset 0x3CB49) ---
+      Memory    0x00007E300000-0x00007FFFFFFF  len      29MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..1  (count 2)
+
+  --- Device PCI6  (_HID PNP0A08, DSDT offset 0x3D017) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI6  (_HID PNP0A03, DSDT offset 0x3D021) ---
+      Memory    0x000070300000-0x000071FFFFFF  len      29MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..1  (count 2)
+
+  --- Device PCI7  (_HID PNP0A08, DSDT offset 0x3D481) ---
+      no inline resource template found (likely a dynamic _CRS method)
+
+  --- Device PCI7  (_HID PNP0A03, DSDT offset 0x3D48B) ---
+      Memory    0x000074300000-0x000075FFFFFF  len      29MB  (32-bit) non-cacheable/RW  [gflags=0x0C tflags=0x01]
+      BusNumber bus 0..1  (count 2)
+
+==============================================================================
+IORT  -- IOMMU (SMMU) topology and DMA address limits
+==============================================================================
+  revision 0, 30 nodes
+
+  [SMMUv1/v2] id=0x0 len=844 maps=0
+        base 0x000015000000 span 1MB, model 3
+  [SMMUv1/v2] id=0x0 len=276 maps=0
+        base 0x000003DA0000 span 256KB, model 3
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 0, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x0 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 1, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x10000 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 2, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x20000 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 3, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x30000 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 4, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x40000 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 5, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x50000 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 6, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x60000 @0x1486 [SMMUv3]
+  [Root complex] id=0x0 len=56 maps=1
+        PCI segment 7, memory address size limit 40 bits (1TB), coherent=True, ATS=no
+        map: input 0xFFFF..0xFFFF -> output 0x70000 @0x1486 [SMMUv3]
+  [Named component] id=0x0 len=81 maps=1
+        name: $\_SB.SISP
+        map: input 0x0..0xA0030000 -> output 0x0 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=501 maps=22
+        name: 0\_SB.GPU0
+        map: input 0x0..0x3030000 -> output 0x0 @0x37C [SMMUv1/v2]
+        map: input 0x0..0x3030020 -> output 0x1 @0x37C [SMMUv1/v2]
+        map: input 0x0..0x3030040 -> output 0x4 @0x37C [SMMUv1/v2]
+        map: input 0x0..0x3030060 -> output 0x5 @0x37C [SMMUv1/v2]
+        map: input 0x0..0x3030080 -> output 0x7 @0x37C [SMMUv1/v2]
+        map: input 0x0..0x30A0000 -> output 0x2 @0x37C [SMMUv1/v2]
+        map: input 0x0..0x30000 -> output 0x1C00 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x30001 -> output 0x1C02 @0x30 [SMMUv1/v2]
+        map: input 0x0..0xA0000 -> output 0x1C01 @0x30 [SMMUv1/v2]
+        map: input 0x0..0xC030000 -> output 0x480 @0x30 [SMMUv1/v2]
+        map: input 0x0..0xC030020 -> output 0x481 @0x30 [SMMUv1/v2]
+        map: input 0x0..0xC090000 -> output 0x483 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x4030000 -> output 0x1940 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x4030020 -> output 0x1947 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x4090000 -> output 0x1941 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x4090001 -> output 0x1945 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x40A0000 -> output 0x1943 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x40B0000 -> output 0x1944 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1B030000 -> output 0x1880 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1B090000 -> output 0x1885 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1B0A0000 -> output 0x1883 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1B0B0000 -> output 0x1884 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: $\_SB.JPGE
+        map: input 0x0..0x2030000 -> output 0x18E0 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=941 maps=44
+        name: $\_SB.ARPC
+        map: input 0x0..0x17030000 -> output 0xC01 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030001 -> output 0xC21 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030020 -> output 0xC02 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030021 -> output 0xC22 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030040 -> output 0xC03 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030041 -> output 0xC23 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030060 -> output 0xC04 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030061 -> output 0xC24 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030080 -> output 0xC05 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030081 -> output 0xC25 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170300A0 -> output 0xC06 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170300A1 -> output 0xC26 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170300C0 -> output 0xC27 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170300C1 -> output 0xC07 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170300E0 -> output 0xC28 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170300E1 -> output 0xC08 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030100 -> output 0xC2C @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030101 -> output 0xC0C @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030120 -> output 0xC2D @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030121 -> output 0xC0D @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030140 -> output 0xC2E @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030141 -> output 0xC0E @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030160 -> output 0xC2F @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030161 -> output 0xC0F @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030180 -> output 0x1063 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030181 -> output 0x1003 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030182 -> output 0x1083 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301A0 -> output 0x1064 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301A1 -> output 0x1004 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301A2 -> output 0x1084 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301C0 -> output 0x1065 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301C1 -> output 0x1005 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301C2 -> output 0x1085 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301E0 -> output 0x1066 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301E1 -> output 0x1006 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170301E2 -> output 0x1086 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030200 -> output 0x1067 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030201 -> output 0x1007 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030202 -> output 0x1087 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x17030220 -> output 0xC0B @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170A0000 -> output 0xC29 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x170A0001 -> output 0xC09 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x16030000 -> output 0x10C3 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x16030020 -> output 0x10D6 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=601 maps=27
+        name: $\_SB.NSPM
+        map: input 0x0..0x18030000 -> output 0xC01 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030001 -> output 0xC21 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030020 -> output 0xC02 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030021 -> output 0xC22 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030040 -> output 0xC03 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030041 -> output 0xC23 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030060 -> output 0xC04 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030061 -> output 0xC24 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030080 -> output 0xC05 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030081 -> output 0xC25 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180300A0 -> output 0xC06 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180300A1 -> output 0xC26 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180300C0 -> output 0xC27 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180300C1 -> output 0xC07 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180300E0 -> output 0xC28 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180300E1 -> output 0xC08 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030100 -> output 0xC2C @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030101 -> output 0xC0C @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030120 -> output 0xC2D @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030121 -> output 0xC0D @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030140 -> output 0xC2E @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030141 -> output 0xC0E @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030160 -> output 0xC2F @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030161 -> output 0xC0F @0x30 [SMMUv1/v2]
+        map: input 0x0..0x18030220 -> output 0xC0B @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180A0000 -> output 0xC29 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x180A0001 -> output 0xC09 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: $\_SB.USBA
+        map: input 0x0..0x7030000 -> output 0x100B @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=101 maps=2
+        name: (\_SB.QDSS
+        map: input 0x0..0x19030000 -> output 0x4E0 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x19030020 -> output 0x500 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=121 maps=3
+        name: $\_SB.ADSP.ADCM
+        map: input 0x0..0x7030020 -> output 0x1061 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x7030021 -> output 0x1001 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x7030022 -> output 0x1081 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=101 maps=2
+        name: (\_SB.SDC2
+        map: input 0x0..0x86030000 -> output 0x520 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x86030020 -> output 0x160 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: (\_SB.UFS0
+        map: input 0x0..0x81030000 -> output 0x1A0 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: (\_SB.URS0
+        map: input 0x0..0x80030000 -> output 0x1420 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: (\_SB.URS1
+        map: input 0x0..0x80030020 -> output 0x1460 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: (\_SB.URS2
+        map: input 0x0..0x80030040 -> output 0x14A0 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: (\_SB.USB3
+        map: input 0x0..0x80030060 -> output 0x1400 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=121 maps=3
+        name: (\_SB.UBF0
+        map: input 0x0..0x80030080 -> output 0x1440 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x800300A0 -> output 0x1480 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x800300C0 -> output 0x14C0 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=81 maps=1
+        name: (\_SB.USB4
+        map: input 0x0..0x800300E0 -> output 0x14E0 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=301 maps=12
+        name: $\_SB.GPU0.AVS0
+        map: input 0x0..0x1030000 -> output 0x18A0 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030001 -> output 0x800 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030002 -> output 0x860 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030003 -> output 0x840 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030004 -> output 0x820 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030020 -> output 0x1900 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030021 -> output 0x1980 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030022 -> output 0x19A0 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030023 -> output 0x1840 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030024 -> output 0x1860 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030025 -> output 0x1820 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1030026 -> output 0x1800 @0x30 [SMMUv1/v2]
+  [Named component] id=0x0 len=121 maps=3
+        name: $\_SB.EVA0
+        map: input 0x0..0x1A030000 -> output 0x1920 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1A0A0000 -> output 0x1923 @0x30 [SMMUv1/v2]
+        map: input 0x0..0x1A0B0000 -> output 0x1924 @0x30 [SMMUv1/v2]
+  [SMMUv3] id=0x0 len=88 maps=1
+        base 0x000015400000, flags 0x1
+        map: input 0x7FFFF..0x7FFFF -> output 0x80000 @0x14DE [ITS group]
+  [ITS group] id=0x0 len=24 maps=0
+        1 ITS block(s): [0]
+

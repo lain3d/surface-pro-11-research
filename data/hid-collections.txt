@@ -1,0 +1,190 @@
+﻿DEV	\\?\hid#target_kip&category_hid&col03#4&73cc7ad&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AE ver=0x1234 manu="" prod=""
+  usagePage=0x000C usage=0x01  inputLen=3 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=1024,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#mshw0485&col01#3&3b13a23&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFF0B usage=0x0B  inputLen=7488 outputLen=2 featureLen=511
+  caps: linkNodes=0 in(btn=3,val=1) out(btn=11,val=1) feat(btn=1,val=0)
+
+DEV	\\?\hid#mshw0485&col07#3&3b13a23&0&0006#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0x000D usage=0x02  inputLen=16 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=2,val=5) out(btn=12,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col03#4&c274bfe&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09B0 ver=0x1234 manu="" prod=""
+  usagePage=0xFFF4 usage=0x01  inputLen=12 outputLen=28 featureLen=8
+  caps: linkNodes=0 in(btn=7,val=4) out(btn=8,val=2) feat(btn=8,val=3)
+    input report id=84  value-fields=80 bits -> 10 bytes (7 button caps not counted)
+    input report id=110 value-fields=80 bits -> 10 bytes (7 button caps not counted)
+    feature report id=86  value-fields=48 bits -> 6 bytes (8 button caps not counted)
+    feature report id=115 value-fields=16 bits -> 2 bytes (8 button caps not counted)
+
+DEV	\\?\hid#target_kip&category_hid&col04#4&73cc7ad&0&0003#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AE ver=0x1234 manu="" prod=""
+  usagePage=0x0001 usage=0x13  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=1,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#hid_device_system_vhf&col01#4&15d956b6&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0xF002 ver=0x0001 manu="Microsoft" prod="HID VHF Driver"
+  usagePage=0x0001 usage=0x0D  inputLen=2 outputLen=0 featureLen=2
+  caps: linkNodes=0 in(btn=6,val=5) out(btn=5,val=0) feat(btn=0,val=5)
+
+DEV	\\?\hid#mshw0485&col02#3&3b13a23&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0x000D usage=0x0F  inputLen=7488 outputLen=64 featureLen=120
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=18,val=0) feat(btn=1,val=0)
+
+DEV	\\?\hid#hid_device_system_vhf&col02#4&15d956b6&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0xF002 ver=0x0001 manu="Microsoft" prod="HID VHF Driver"
+  usagePage=0x000C usage=0x01  inputLen=3 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=1024,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#hid_device_system_vhf#7&fce77fb&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x0000 pid=0x0000 ver=0x0000 manu="Microsoft" prod="HID VHF Driver"
+  usagePage=0x0001 usage=0x0D  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=3) out(btn=3,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#mshw0485&col08#3&3b13a23&0&0007#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFFA1 usage=0x60  inputLen=3 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=1,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#mshw0485&col03#3&3b13a23&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFF0F usage=0x50  inputLen=61 outputLen=61 featureLen=17
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=9,val=0) feat(btn=1,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col01#4&2da44242&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AF ver=0x1234 manu="" prod=""
+  usagePage=0x0001 usage=0x02  inputLen=4 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=2,val=1) out(btn=4,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#mshw0485&col0a#3&3b13a23&0&0009#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFF0D usage=0x01  inputLen=10 outputLen=6 featureLen=11
+  caps: linkNodes=0 in(btn=6,val=0) out(btn=3,val=0) feat(btn=3,val=0)
+
+DEV	\\?\hid#mshw0485&col09#3&3b13a23&0&0008#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFF0F usage=0x51  inputLen=0 outputLen=0 featureLen=59
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=0,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col02#4&2da44242&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AF ver=0x1234 manu="" prod=""
+  usagePage=0x000D usage=0x05  inputLen=30 outputLen=0 featureLen=34
+  caps: linkNodes=0 in(btn=6,val=11) out(btn=28,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col03#4&2da44242&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AF ver=0x1234 manu="" prod=""
+  usagePage=0x000D usage=0x0E  inputLen=0 outputLen=0 featureLen=2
+  caps: linkNodes=0 in(btn=3,val=0) out(btn=0,val=0) feat(btn=0,val=2)
+    feature report id=7   value-fields=8 bits -> 1 bytes (0 button caps not counted)
+
+DEV	\\?\hid#converteddevice&col01#6&16b2e87e&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}\kbd
+  vid=0x045E pid=0x0000 ver=0x0000 manu="" prod=""
+  usagePage=0x0001 usage=0x06  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=8) out(btn=8,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#hid_device_system_vhf&col01#4&2fe1f27&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}\kbd
+  vid=0x045E pid=0xF001 ver=0x0001 manu="Microsoft" prod="HID VHF Driver"
+  usagePage=0x0001 usage=0x06  inputLen=3 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=2) out(btn=110,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col04#4&2da44242&0&0003#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AF ver=0x1234 manu="" prod=""
+  usagePage=0xFF07 usage=0x01  inputLen=39 outputLen=21 featureLen=2
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=2,val=0) feat(btn=2,val=0)
+
+DEV	\\?\hid#hid_device_system_vhf&col02#4&2fe1f27&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0xF001 ver=0x0001 manu="Microsoft" prod="HID VHF Driver"
+  usagePage=0x000C usage=0x01  inputLen=3 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=1024,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col05#4&2da44242&0&0004#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AF ver=0x1234 manu="" prod=""
+  usagePage=0xFF05 usage=0x04  inputLen=60 outputLen=60 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=3,val=0) feat(btn=3,val=0)
+
+DEV	\\?\hid#mshw0485&col04#3&3b13a23&0&0003#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0x000D usage=0x04  inputLen=6 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=3,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col01#4&1870f2d0&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09D3 ver=0x1234 manu="" prod=""
+  usagePage=0xFF05 usage=0x01  inputLen=35 outputLen=35 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=2,val=0) feat(btn=2,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col01#4&c274bfe&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}\kbd
+  vid=0x045E pid=0x09B0 ver=0x1234 manu="" prod=""
+  usagePage=0x0001 usage=0x06  inputLen=3 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=2) out(btn=11,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col02#4&1870f2d0&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09D3 ver=0x1234 manu="" prod=""
+  usagePage=0xFF0B usage=0x101  inputLen=61 outputLen=61 featureLen=61
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=34,val=0) feat(btn=35,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col03#4&1870f2d0&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09D3 ver=0x1234 manu="" prod=""
+  usagePage=0xFF05 usage=0x04  inputLen=261 outputLen=261 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=3,val=0) feat(btn=3,val=0)
+
+DEV	\\?\hid#converteddevice&col02#9&358e38ac&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0000 ver=0x0000 manu="" prod=""
+  usagePage=0x000C usage=0x01  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=3) out(btn=3,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#mshw0485&col05#3&3b13a23&0&0004#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFFF4 usage=0x01  inputLen=12 outputLen=28 featureLen=8
+  caps: linkNodes=0 in(btn=7,val=4) out(btn=8,val=2) feat(btn=8,val=3)
+    input report id=84  value-fields=80 bits -> 10 bytes (7 button caps not counted)
+    input report id=110 value-fields=80 bits -> 10 bytes (7 button caps not counted)
+    feature report id=86  value-fields=48 bits -> 6 bytes (8 button caps not counted)
+    feature report id=115 value-fields=16 bits -> 2 bytes (8 button caps not counted)
+
+DEV	\\?\hid#converteddevice&col03#9&358e38ac&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0000 ver=0x0000 manu="" prod=""
+  usagePage=0x0001 usage=0x80  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=1,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#converteddevice&col01#9&358e38ac&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}\kbd
+  vid=0x045E pid=0x0000 ver=0x0000 manu="" prod=""
+  usagePage=0x0001 usage=0x06  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=8) out(btn=8,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col02#4&73cc7ad&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09AE ver=0x1234 manu="" prod=""
+  usagePage=0x0001 usage=0x80  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=3) out(btn=3,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col01#4&73cc7ad&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}\kbd
+  vid=0x045E pid=0x09AE ver=0x1234 manu="" prod=""
+  usagePage=0x0001 usage=0x06  inputLen=12 outputLen=2 featureLen=7
+  caps: linkNodes=0 in(btn=2,val=2) out(btn=154,val=1) feat(btn=3,val=0)
+
+DEV	\\?\hid#mshw0485&col06#3&3b13a23&0&0005#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0C83 ver=0x0004 manu="Microsoft" prod="HIDSPI Device"
+  usagePage=0xFF0B usage=0x101  inputLen=61 outputLen=61 featureLen=61
+  caps: linkNodes=0 in(btn=1,val=0) out(btn=9,val=0) feat(btn=5,val=0)
+
+DEV	\\?\hid#converteddevice&col02#6&16b2e87e&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0000 ver=0x0000 manu="" prod=""
+  usagePage=0x000C usage=0x01  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=3) out(btn=3,val=0) feat(btn=0,val=0)
+
+DEV	\\?\hid#target_kip&category_hid&col02#4&c274bfe&0&0001#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x09B0 ver=0x1234 manu="" prod=""
+  usagePage=0xFFF4 usage=0x0A  inputLen=9 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=2,val=3) out(btn=5,val=0) feat(btn=0,val=0)
+    input report id=20  value-fields=56 bits -> 7 bytes (2 button caps not counted)
+
+DEV	\\?\hid#converteddevice&col03#6&16b2e87e&0&0002#{4d1e55b2-f16f-11cf-88cb-001111000030}
+  vid=0x045E pid=0x0000 ver=0x0000 manu="" prod=""
+  usagePage=0x0001 usage=0x80  inputLen=2 outputLen=0 featureLen=0
+  caps: linkNodes=0 in(btn=1,val=1) out(btn=1,val=0) feat(btn=0,val=0)
+

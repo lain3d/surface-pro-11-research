@@ -1,0 +1,895 @@
+﻿=== C:\Users\Crazy\projs\arm64-egpu\data\bin\QcUsb4Bus8380.sys ===
+
+--- strings (812) ---
+  0x00004D  !This program cannot be run in DOS mode.
+  0x0000E8  Richz
+  0x000210  .text
+  0x000237  h.rdata
+  0x00025F  H.data
+  0x000288  .pdata
+  0x0002AF  HPAGE
+  0x0002D7  `INIT
+  0x0002FF  b.rsrc
+  0x000327  B.reloc
+  0x002F68  *%@xj
+  0x00308D  $@xi
+  0x003A9E  @9?m
+  0x003AAA  @9?e
+  0x003B23  R !@
+  0x003C33  4 !@
+  0x003DC7  R`fA
+  0x004047  T(OA
+  0x004673  T)CD
+  0x0047A3  T(CD
+  0x004B77  * !@
+  0x005437  S(-@
+  0x0057D8  hrA9
+  0x0057DF  4`2@
+  0x0083A3  4f2@
+  0x0084DD  C@96
+  0x0084E7  R`2@
+  0x0085E4  h&O9h
+  0x0085EB  4izA
+  0x008607  TizA
+  0x0086D8  Dmf0Dmf2Dmf3Dmf1
+  0x008F1F  Ti"@
+  0x00D873  TiBD
+  0x00DB4B  9t*@
+  0x00DBC3  *f2@
+  0x00DD4F  ThN@
+  0x00DD5B  ThV@
+  0x00E50B  *$C:
+  0x00E96F  THOA
+  0x0122A0  ($A) 
+  0x012304  y&A)v
+  0x014D8B  9hVA
+  0x014E9B  Rt"O9h"
+  0x014F3B  TiCD
+  0x014FF3  9HOA
+  0x01506B  9u*@
+  0x0150DB  ThCD
+  0x015278  BPMo
+  0x0163AF  Th&@
+  0x01656F  Rt&@
+  0x016A75  BA9H
+  0x01721C  hRK9
+  0x017E20  Dmf7
+  0x017F1B  T(}@
+  0x017FFC  dju8
+  0x01816C  (yhx
+  0x018245  ;@y 
+  0x018251  7@yh
+  0x018259  3@yh
+  0x018261  ?@yh
+  0x018269  C@yh
+  0x018271  G@yh
+  0x018279  K@yh
+  0x018281  O@yh
+  0x018BF7  THCD
+  0x018C57  TICD
+  0x0192F3  Rb"?
+  0x01931F  Rc"?
+  0x01963B  *`fA
+  0x0198DB  4HOA
+  0x01995F  R gA
+  0x0199B7  * gA
+  0x019D4F  ThBD
+  0x01A963  Rh+@
+  0x01B383  9(Hi8H
+  0x01B38B  J(H)8hh@
+  0x01BDCB  4h&A
+  0x01BEF3  4i"@
+  0x01BF64  i"G)
+  0x01BF7F  Th6@
+  0x01C00F  Ta&B
+  0x01C31B  SsB"
+  0x01C637  7sB7
+  0x01C7A7  Ri:@
+  0x01D43C  DD33""
+  0x01D7DF  Tj*@
+  0x01DA0F  *dB=
+  0x01DA83  R`gA
+  0x01E6C7  *HgA
+  0x020406  @)!1
+  0x020C52  X6i~`
+  0x020C5B  4jz`
+  0x020C6F  TkB*
+  0x020CEB  TaB(
+  0x020D03  Rj~`
+  0x020EA1  z3xV
+  0x021EF2  _HB<
+  0x021F91  |_HB<
+  0x022491  |_HC
+  0x022D31  |fHf
+  0x022E31  |&Hf
+  0x024951  0a8_
+  0x0249C1  0!8_
+  0x024DEE  06  
+  0x024E06   6 p
+  0x024EF0    @L!
+  0x024EF8  $ @L!
+  0x024F64    @L` 
+  0x024F82   6!@
+  0x024F8C   p@L`p
+  0x025020  )&&&&&&&&&&&&&&&&
+  0x025220   (@z
+  0x02533B  =_ @
+  0x02564E  _8(ho8
+  0x025976  @x_@
+  0x025E98  hhb8c
+  0x025F91  $@x($@x
+  0x026021  $@x($@xc
+  0x0262B0  DriverEntry failed 0x%x for driver %wZ
+  0x0262D8  FxStubInitTypes: invalid driver image, the address of symbol __KMDF_TYPE_INIT_START 0x%p is greater than the address of symbol __KMDF_TYPE_INIT_END 0x%p, status 0x%x
+  0x026380  FxGetNextObjectContextTypeInfo failed
+  0x0263A8  FxStubBindClasses: invalid driver image, the address of symbol __KMDF_CLASS_BIND_START 0x%p is greater than the address of symbol __KMDF_CLASS_BIND_END 0x%p, status 0x%x
+  0x026458  FxGetNextClassBindInfo failed
+  0x026478  FxStubBindClasses: ClientBindClass %p, WDF_CLASS_BIND_INFO 0x%p, class %S, returned status 0x%x
+  0x0264E0  FxStubBindClasses: VersionBindClass WDF_CLASS_BIND_INFO 0x%p, class %S, returned status 0x%x
+  0x0265B8  NULL
+  0x026610  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Framework\DmfCall.c
+  0x026650  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Framework\Modules.Core\Dmf_LiveKernelDump.c
+  0x0266A8  Invalid Module Handle Passed (Lock)
+  0x0266D0  Invalid Module Handle Passed (Unlock)
+  0x0266F8  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Framework\Modules.Core\Dmf_BranchTrack.c
+  0x026770  %s %02x
+  0x026778  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Modules.Library\Dmf_Rundown.c
+  0x0267C0  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Modules.Library\Dmf_IoctlHandler.c
+  0x026810  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Modules.Library\Dmf_CrashDump.c
+  0x026890  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Modules.Library\Dmf_RingBuffer.c
+  0x0268D8  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Modules.Library\Dmf_BufferPool.c
+  0x026920  DMF_BufferPool signature mismatch
+  0x026948  DMF_BufferPool data sentinel mismatch
+  0x026970  DMF_BufferPool context sentinel mismatch
+  0x0269A0  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Modules.Library\Dmf_HashTable.c
+  0x0272AC  o=mN
+  0x0272C9  LMT,
+  0x0272E7  tWdfCustomType_DMF_BranchTrack
+  0x027308  WdfCustomType_DMF_LiveKernelDump
+  0x027330  WdfCustomType_DMF_BufferPool
+  0x027350  WdfCustomType_DMF_HashTable
+  0x027370  WdfCustomType_DMF_RingBuffer
+  0x027390  WdfCustomType_DMF_BufferQueue
+  0x0273B0  WdfCustomType_DMF_IoctlHandler
+  0x0273D0  WdfCustomType_DMF_String
+  0x0273F0  WdfCustomType_DMF_CrashDump
+  0x027410  WdfCustomType_DMF_Bridge
+  0x027430  DMF_INTERFACE_PROTOCOL_ComponentFirmwareUpdate_DECLARATION_DATA
+  0x027470  DMF_INTERFACE_TRANSPORT_ComponentFirmwareUpdate_DECLARATION_DATA
+  0x0274B8  DMF_INTERFACE_PROTOCOL_BusTarget_DECLARATION_DATA
+  0x0274F0  DMF_INTERFACE_TRANSPORT_BusTarget_DECLARATION_DATA
+  0x027530  DMF_INTERFACE_PROTOCOL_SystemManagementFramework_DECLARATION_DATA
+  0x027580  DMF_INTERFACE_TRANSPORT_SystemManagementFramework_DECLARATION_DATA
+  0x0275C8  WdfCustomType_DMF_ComponentFirmwareUpdate
+  0x0275F8  WdfCustomType_DMF_Doorbell
+  0x027618  WdfCustomType_DMF_ScheduledTask
+  0x027638  WdfCustomType_DMF_QueuedWorkItem
+  0x027660  WdfCustomType_DMF_Thread
+  0x027680  WdfCustomType_DMF_AcpiNotification
+  0x0276A8  WdfCustomType_DMF_AcpiPepDevice
+  0x0276C8  WdfCustomType_DMF_AcpiPepDeviceFan
+  0x0276F0  WdfCustomType_DMF_AlertableSleep
+  0x027718  WdfCustomType_DMF_ConnectedStandby
+  0x027740  WdfCustomType_DMF_File
+  0x027758  WdfCustomType_DMF_InterruptResource
+  0x027780  WdfCustomType_DMF_NotifyUserWithEvent
+  0x0277A8  WdfCustomType_DMF_NotifyUserWithRequest
+  0x0277D0  WdfCustomType_DMF_NotifyUserWithRequestMultiple
+  0x027800  WdfCustomType_DMF_Pdo
+  0x027818  WdfCustomType_DMF_Registry
+  0x027838  WdfCustomType_DMF_Rundown
+  0x027858  WdfCustomType_DMF_ThermalCoolingInterface
+  0x027888  WdfCustomType_UDECXUSBDEVICE
+  0x0278A8  WdfCustomType_UDECXUSBENDPOINT
+  0x0278C8  WdfCustomType_DMF_UdeClient
+  0x0278E8  WdfCustomType_DMF_UefiLogs
+  0x027908  WdfCustomType_DMF_UefiOperation
+  0x027928  WdfCustomType_DMF_Time
+  0x027940  WdfCustomType_DMF_PingPongBuffer
+  0x027968  WdfCustomType_DMF_ThreadedBufferQueue
+  0x027990  WdfCustomType_DMF_Stack
+  0x0279A8  WdfCustomType_DMF_GpioTarget
+  0x0279C8  WdfCustomType_DMF_I2cTarget
+  0x0279E8  WdfCustomType_DMF_RequestTarget
+  0x027A08  WdfCustomType_DMF_ContinuousRequestTarget
+  0x027A38  WdfCustomType_DMF_DefaultTarget
+  0x027A58  WdfCustomType_DMF_DeviceInterfaceTarget
+  0x027A80  WdfCustomType_DMF_DeviceInterfaceMultipleTarget
+  0x027AB0  WdfCustomType_DMF_AcpiTarget
+  0x027AD0  WdfCustomType_DMF_SelfTarget
+  0x027AF0  WdfCustomType_DMF_SmbiosWmi
+  0x027B10  WdfCustomType_DMF_SpbTarget
+  0x027B30  WdfCustomType_DMF_SpiTarget
+  0x027B50  WdfCustomType_DMF_EyeGazeIoctl
+  0x027B70  WdfCustomType_DMF_HidPortableDeviceButtons
+  0x027BA0  WdfCustomType_DMF_HidDeviceListener
+  0x027BC8  WdfCustomType_DMF_VirtualEyeGaze
+  0x027BF0  WdfCustomType_DMF_VirtualHidAmbientColorSensor
+  0x027C20  WdfCustomType_DMF_VirtualHidAmbientLightSensor
+  0x027C50  WdfCustomType_DMF_VirtualHidDeviceVhf
+  0x027C78  WdfCustomType_DMF_VirtualHidKeyboard
+  0x027CA0  WdfCustomType_DMF_HingeAngle
+  0x027CC0  WdfCustomType_DMF_MobileBroadband
+  0x027CE8  WdfCustomType_DMF_Wmi
+  0x027D00  WdfCustomType_DMF_HidTarget
+  0x027D20  WdfCustomType_DMF_ResourceHub
+  0x027D40  WdfCustomType_DMF_SerialTarget
+  0x027D60  WdfCustomType_DMF_VirtualHidMini
+  0x027D88  WdfCustomType_DMF_ComponentFirmwareUpdateHidTransport
+  0x027DC0  USB4BUS_DMF_DEVICE_CONTEXT
+  0x027DE0  USB4BUS_DEVICE_CONTEXT
+  0x027E3E  '<2o
+  0x027FAA  kI%o
+  0x027FB7  /WdfCustomType_DMFMODULE_TYPE
+  0x027FD8  WdfCustomType_DMFCOLLECTION_TYPE
+  0x028000  WdfCustomType_DMFINTERFACE_TYPE
+  0x028020  DMFMODULE
+  0x028030  PDO_DEVICE_DATA
+  0x0280E0  g7ZS
+  0x028139  /)NC
+  0x0281A1  -v+N
+  0x0282AC  EricF.Nelson
+  0x02835A  OhOT
+  0x028362  D="r
+  0x02837C  O`RM
+  0x0283C3  -qZ~C
+  0x02846C  Y3@(
+  0x028560  8/gH
+  0x0285A2  la^iEE
+  0x028672  i*``
+  0x0286A7  D.rS
+  0x0286BB  *njkH
+  0x0286CC  o8,L
+  0x0286E1  3V^\
+  0x028732  DfUD
+  0x028738   ;bN
+  0x02888C  [|CN
+  0x0288E4  O`RMf
+  0x028A73  K$ZQH
+  0x028A8C  70q)
+  0x028AD9  A4^V
+  0x028CC1  J:zt
+  0x028CFF  Zv`/
+  0x028D10  i>Lh
+  0x028DF1   O(J
+  0x028E82  D5,)
+  0x028EE6  #ddMb
+  0x028FE0  {i3[
+  0x02902B  $3VeK
+  0x029091  |!Wf^
+  0x0290BB  }4Oi#
+  0x0290FC  Y3@)A
+  0x029102  ]$C9"D
+  0x029134  k~.D
+  0x0291F1  1"EYg-
+  0x0292E1  PDNya
+  0x029361  fAo)
+  0x0293C2  +M\}
+  0x029419  HrGm
+  0x02942C  3]X+
+  0x0294F3  .+h>I
+  0x02950C  AptF
+  0x02952D  iun8r3
+  0x029539  `O7I
+  0x029560  [?6R
+  0x029593  dJ:uM
+  0x029647  <!|D'
+  0x02968A  `.QS
+  0x0296D4  O`RMn
+  0x029701  7F4\
+  0x029721  xMLe
+  0x029831  3!XI-X
+  0x029849  1\Q4
+  0x029934  dqDc=
+  0x029941  LRO#
+  0x0299F8  Q2ST
+  0x029AE9  YZ7L
+  0x029B41  uO0D
+  0x029C74  .\!R}9
+  0x029DAC  j><K
+  0x029E06  G:Q=
+  0x02A23B  h=@,E
+  0x02A297  ]DMF_DEVICE_CONTEXT
+  0x02A2CE  Zl*m
+  0x02A2DF  (Generic
+  0x02A634  B c0
+  0x02A654  s2R"
+  0x02A670  b$C4 
+  0x02A690  S6r&
+  0x02A719  >2.Q
+  0x02A749  P%@Fpg`
+  0x02A76B  RwbVr
+  0x02A788  ftGd$T
+  0x02A7A8  Wfvv
+  0x02A7AD  F4VL
+  0x02A7C0  DXeH
+  0x02A7E0  uJTZ7j
+  0x02A803  ld\EL
+  0x02A821  n6~UNt^
+  0x02A83F  _DMF_CONTEXT_ScheduledTask
+  0x02A89F  ;DMF_CONTEXT_Bridge
+  0x02A8D8  DMF_CONTEXT_LiveKernelDump
+  0x02A908  DMF_CONTEXT_BranchTrack
+  0x02A964  ;pe4
+  0x02A980  DMF_CONTEXT_Rundown
+  0x02A9A8  DMF_CONTEXT_IoctlHandler
+  0x02A9D4  -e iDMF_CONTEXT_BufferQueue
+  0x02AA00  DMF_CONTEXT_CrashDump
+  0x02AA28  DMF_CONTEXT_RingBuffer
+  0x02AA47  9<Ct
+  0x02AA50  DMF_CONTEXT_BufferPool
+  0x02AA68  WdfCustomType_DMF_BufferPool_Buffer
+  0x02AA90  BUFFERPOOL_TIMER_CONTEXT
+  0x02AAC0  DMF_CONTEXT_HashTable
+  0x02AADC  _S3<7
+  0x02AD80  RSDS
+  0x02AD98  Z:\b\WP\QcUsb4Bus\rel\10.9\ARM64\Release\QcUsb4Bus8380.pdb
+  0x02ADD4  GCTL
+  0x02ADF0  .text$mn
+  0x02AE04  .text$mn$00
+  0x02AE18  .text$mn$21
+  0x02AE2C  .text$s
+  0x02AE3C  .text$x
+  0x02AE4C  .idata$5
+  0x02AE60  .00cfg
+  0x02AE70  .gfids
+  0x02AE80  .rdata
+  0x02AE90  .rdata$CastGuardVftablesA
+  0x02AEB4  .rdata$CastGuardVftablesC
+  0x02AED8  .rdata$zzzdbg
+  0x02AEF0  .xdata
+  0x02AF00  .data
+  0x02AF10  .data$00
+  0x02AF24  .kmdfclassbind$a
+  0x02AF40  .kmdfclassbind$c
+  0x02AF5C  .kmdfclassbind$d
+  0x02AF78  .kmdftypeinit$a
+  0x02AF90  .kmdftypeinit$c
+  0x02AFA8  .bss
+  0x02AFC8  PAGE
+  0x02AFD8  PAGE$s
+  0x02AFE8  INIT
+  0x02AFF8  .idata$2
+  0x02B00C  .idata$3
+  0x02B020  .idata$4
+  0x02B034  .idata$6
+  0x02B048  .rsrc$01
+  0x02B05C  .rsrc$02
+  0x02F715  +B9(
+  0x030D77  7HOA
+  0x0311F0  PdoM
+  0x031323  4hOA
+  0x031503  =(#@
+  0x0315C0  (3@9
+  0x0318A4  E%@xe
+  0x031A13  R(%A
+  0x032A93  T(G@
+  0x032BF2  K90A
+  0x032C68  Brid
+  0x033081  `C9(
+  0x0340B8  h:A9
+  0x034BC8  H[A9
+  0x034D74  h^A9
+  0x034F0C  hbA9
+  0x03517F  6(OA
+  0x0351C8  Dmf5
+  0x03560B  9Ju@
+  0x0356B4  I#@9
+  0x035B81  &A9h
+  0x035F59  F@9h
+  0x0360E4  Dmf6Dmf8
+  0x036281  B@9h
+  0x036775  CA9i
+  0x036A3A  @9(!
+  0x037100  Dmf0
+  0x037218  Dmf1
+  0x037728  Dmf2
+  0x037730  Dmf3
+  0x03783C  hBN9tz
+  0x03785B  4a"@
+  0x037C2D  &A9(A
+  0x037D57  5h.@
+  0x037F1F  4&3@
+  0x0386A9  #@95
+  0x038958  Dmf4Dmf0
+  0x03896C  Dmf2Dmf3
+  0x0395A5  3@9H
+  0x03B98C  h?A9
+  0x03C15C  hOA9
+  0x03C9FC  H_A9
+  0x03CC88  HcA9
+  0x043080  h&J)
+  0x0430A7  )hZ@
+  0x045E77  *$#?
+  0x046497  *(OA
+  0x04678B  R$#?
+  0x04685B  R@gA
+  0x046EA3  *(9A
+  0x047F06  @9eN@y
+  0x047F10  dJ@y
+  0x048A78  CDMo
+  0x049760  I!L)H
+  0x04A4D3  7h~@
+  0x04A860  i!L)H
+  0x04B524  CDMo>
+  0x04BFEC  RBMo
+  0x04C099  Z@)v
+  0x04CB7C  h&@)(
+  0x04CD90  HTMo
+  0x04CEDC  i"@)(
+  0x04D4D8  TDat
+  0x04DC60  DumpBlob
+  0x04DE50  LKMDTEL: WerLiveKernelCreateReport failed with status 0x%X
+  0x04DE90  LKMDTEL: WerPolicy is WerLiveKernelPolicyNoDump, no dump is allowed.
+  0x04DED8  LKMDTEL: WerLiveCancelReport failed, status 0x%X
+  0x04DFB0  LKMDTEL: Secondary size updated. Max Report Size = %d, Max Secondary Data Size = %d
+  0x04E008  LKMDTEL: LkmdTelpWriteDumpFile: WerLiveKernelOpenDumpFile failed, status 0x%X
+  0x04E058  LKMDTEL: LkmdTelSubmitReport: LkmdTelpWriteDumpFile failed, status 0x%X
+  0x04E0A8  LKMDTEL: LkmdTelSubmitReport: WerLiveKernelSubmitReport failed, status 0x%X
+  0x04E0F8  LKMDTEL: LkmdTelSubmitReport: WerLiveKernelCancelReport failed, status 0x%X
+  0x04E148  LKMDTEL: LkmdTelSubmitReport: WerLiveKernelCloseHandle failed, status 0x%X
+  0x04E2A8  BranchTrack
+  0x04E2B8  LiveKernelDump
+  0x04E2C8  X:\qcdksrc\rel\10.9\b\src\dmf\src\Dmf\Framework\DmfCore.c
+  0x04E310  ScheduledTask
+  0x04E338  Bridge
+  0x04E368  DataBufferSource
+  0x04E380  LiveKernelDumpBufferQueue
+  0x04E410  Rundown
+  0x04E418  IoctlHandler
+  0x04E428  BufferPoolProducer
+  0x04E440  BufferPoolConsumer
+  0x04E458  BufferQueue
+  0x04E468  DataSourceRingBuffer
+  0x04E480  %08X%04X%04X%02X%02X%02X%02X%02X%02X%02X%02X
+  0x04E4F0  CrashDump
+  0x04E500  RingBuffer
+  0x04E510  BufferPool
+  0x04E568  Invalid Pool/Lock combination
+  0x04E588  HashTable
+  0x04E890  QUFB
+  0x04EC12  WppAutoLogStart
+  0x04EC24  imp_WppRecorderReplay
+  0x04EC3C  WppAutoLogTrace
+  0x04EC4E  WppAutoLogStop
+  0x04EC5E  WppRecorder.sys
+  0x04EC70  WerLiveKernelCloseHandle
+  0x04EC8C  WerLiveKernelOpenDumpFile
+  0x04ECA8  WerLiveKernelCancelReport
+  0x04ECC4  WerLiveKernelCreateReport
+  0x04ECE0  WerLiveKernelSubmitReport
+  0x04ECFA  ext-ms-win-ntos-werkernel-l1-1-1.dll
+  0x04ED22  IoSynchronousCallDriver
+  0x04ED3C  IoFreeIrp
+  0x04ED48  ObfDereferenceObject
+  0x04ED60  RtlInitUnicodeString
+  0x04ED78  MmGetSystemRoutineAddress
+  0x04ED94  IoAllocateIrp
+  0x04EDA4  IoWMIRegistrationControl
+  0x04EDC0  IofCompleteRequest
+  0x04EDD6  IoGetAttachedDeviceReference
+  0x04EDF6  __C_specific_handler
+  0x04EE0E  wcsnlen
+  0x04EE18  _vsnwprintf
+  0x04EE26  RtlEqualUnicodeString
+  0x04EE3E  wcsncmp
+  0x04EE48  KeAcquireSpinLockRaiseToDpc
+  0x04EE66  KeGetCurrentThread
+  0x04EE7C  KeInitializeSpinLock
+  0x04EE94  KeReleaseSpinLock
+  0x04EEA8  ExFreePoolWithTag
+  0x04EEBC  strncpy_s
+  0x04EEC8  _vsnprintf
+  0x04EED6  RtlAssert
+  0x04EEE2  ExRundownCompleted
+  0x04EEF8  KeWaitForMultipleObjects
+  0x04EF14  ExWaitForRundownProtectionRelease
+  0x04EF38  ExReInitializeRundownProtection
+  0x04EF5A  ExInitializeRundownProtection
+  0x04EF7A  KeSetEvent
+  0x04EF88  RtlGetVersion
+  0x04EF98  ExAcquireRundownProtection
+  0x04EFB6  KeInitializeEvent
+  0x04EFCA  KeWaitForSingleObject
+  0x04EFE2  KeResetEvent
+  0x04EFF2  ExReleaseRundownProtection
+  0x04F010  KeDelayExecutionThread
+  0x04F02A  RtlTimeFieldsToTime
+  0x04F040  ExLocalTimeToSystemTime
+  0x04F05A  RtlTimeToTimeFields
+  0x04F070  ObOpenObjectByPointer
+  0x04F088  ZwSetSecurityObject
+  0x04F09E  ZwClose
+  0x04F0A8  sprintf_s
+  0x04F0B4  ZwOpenKey
+  0x04F0C0  ZwQueryValueKey
+  0x04F0D2  ExAllocatePoolWithTag
+  0x04F0EA  KeCapturePersistentThreadState
+  0x04F10C  ZwWriteFile
+  0x04F11A  NtBuildNumber
+  0x04F12A  DbgPrintEx
+  0x04F138  RtlCaptureContext
+  0x04F14C  SeTokenIsAdmin
+  0x04F15E  KeRegisterBugCheckReasonCallback
+  0x04F182  KeDeregisterBugCheckReasonCallback
+  0x04F1A8  RtlCompareMemory
+  0x04F1BA  ntoskrnl.exe
+  0x04F1CA  imp_WppRecorderLogGetDefault
+  0x04F1EA  imp_WppRecorderIsDefaultLogAvailable
+  0x04F212  imp_WppRecorderLogDelete
+  0x04F22E  imp_WppRecorderLogCreate
+  0x04F24A  RtlCopyUnicodeString
+  0x04F262  WdfVersionBind
+  0x04F274  WdfLdrQueryInterface
+  0x04F28C  WdfVersionUnbind
+  0x04F2A0  WdfVersionBindClass
+  0x04F2B6  WdfVersionUnbindClass
+  0x04F2CC  WDFLDR.SYS
+  0x04F2DA  strcmp
+  0x04FC42  N0L0
+  0x04FC80  VdfC
+  0x04FCDD  DigiCert Inc1
+  0x04FCF4  www.digicert.com1$0"
+  0x04FD0F  DigiCert Assured ID Root CA0
+  0x04FD2E  220801000000Z
+  0x04FD3D  311109235959Z0b1
+  0x04FD7B  www.digicert.com1!0
+  0x04FD96  DigiCert Trusted Root G40
+  0x04FDD7  ]J<0"0i3
+  0x04FE3D  t;mq
+  0x04FECC  u]xf
+  0x04FEF9  v=Y]Bv
+  0x04FF48  p,A`
+  0x04FF7A  RQGt
+  0x04FF9D  |Lu?c
+  0x04FFA6   Qko
+  0x04FFFD  q]dL
+  0x05004A  m0k0$
+  0x05005B  http://ocsp.digicert.com0C
+  0x050080  7http://cacerts.digicert.com/DigiCertAssuredIDRootCA.crt0E
+  0x0500C0  >0<0:
+  0x0500CA  4http://crl3.digicert.com/DigiCertAssuredIDRootCA.crl0
+  0x050158  Jz/-
+  0x0501B2  5FjiT
+  0x0501C7  wZ\T
+  0x0501FD  ~qj#k"
+  0x050206  T-'~
+  0x050240  (f*^[0
+  0x0502BC  220323000000Z
+  0x0502CB  370322235959Z0c1
+  0x0502F2  DigiCert, Inc.1;09
+  0x05030A  2DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA0
+  0x050365  =rIQU
+  0x0503ED  |jWz
+  0x050409  !hn7!
+  0x050468  {un'%
+  0x050494  +Xt@(
+  0x0504CF  u($A
+  0x0504D8  fIRP
+  0x0504E5  ,W5y+
+  0x050590  /s)v
+  0x0505F1  k0i0$
+  0x050602  http://ocsp.digicert.com0A
+  0x050627  5http://cacerts.digicert.com/DigiCertTrustedRootG4.crt0C
+  0x050665  <0:08
+  0x05066F  2http://crl3.digicert.com/DigiCertTrustedRootG4.crl0 
+  0x050719   %41g
+  0x050739  i?Gw
+  0x0507E7  ',=?k
+  0x050824  Axz8
+  0x05096E  210429000000Z
+  0x05097D  360428235959Z0i1
+  0x0509A4  DigiCert, Inc.1A0?
+  0x0509BC  8DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA10
+  0x050A5D  >Mp$d
+  0x050A66  }4}L
+  0x050A9B  !xE.
+  0x050AAA  IpB2
+  0x050B51  6*f(_
+  0x050BAD  [K]taM?
+  0x050BC2  m&vh
+  0x050BD7  J>@G_
+  0x050BE2  #!Y`
+  0x050BF4  x8E0
+  0x050C02  SA|X=G
+  0x050D27  2http://crl3.digicert.com/DigiCertTrustedRootG4.crl0
+  0x050D8C  :#D=
+  0x050DC0  :]Hm
+  0x050DD5  v~7q
+  0x050E69  !usR
+  0x050E78  ov7,
+  0x050F24  /"lA
+  0x050F3E  jj@0HK4
+  0x050F89  VxN0
+  0x051023  240926000000Z
+  0x051032  351125235959Z0B1
+  0x051059  DigiCert1 0
+  0x05106C  DigiCert Timestamp 20240
+  0x0510D4  ymIXa+
+  0x0510E3  GW3K;
+  0x05111E  o~R}a
+  0x051188  z9XxGT
+  0x0511D4  <Jisu
+  0x051219  jSDx
+  0x051269  7!5B
+  0x051351  S0Q0O
+  0x05135B  Ihttp://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl0
+  0x0513C6  http://ocsp.digicert.com0X
+  0x0513EB  Lhttp://cacerts.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crt0
+  0x0514A2  Mm*V;
+  0x0514C4  Z +J
+  0x051585  MzE @t
+  0x051622  5dz?g
+  0x0516E9  241029000000Z
+  0x0516F8  250318235959Z0
+  0x051730  Delaware1
+  0x051743  Private Organization1
+  0x051762  22711601
+  0x051781  California1
+  0x051796  San Diego1
+  0x0517AA  QUALCOMM Inc.1#0!
+  0x0517C2  Windows Mobile Integration1
+  0x0517E7  QUALCOMM Inc.0
+  0x051887  od.^
+  0x05189C  {HK8
+  0x0518CE  2:t4$
+  0x0519E9  UL2]TG
+  0x051A6A  60402
+  0x051A76  0)0'
+  0x051A86  http://www.digicert.com/CPS0
+  0x051ADB  Mhttp://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl0S
+  0x051B30  Mhttp://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl0
+  0x051B9F  http://ocsp.digicert.com0\
+  0x051BC4  Phttp://cacerts.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crt0
+  0x051C72  "(!P
+  0x051C88  P+O8uv
+  0x051E2F  j~XBO1
+  0x051E3F  0}0i1
+  0x051E73  8DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1
+  0x0520DA  f}EC
+  0x052138  #_>4]
+  0x05217C  0w0c1
+  0x0521B0  2DigiCert Trusted G4 RSA4096 SHA256 TimeStamping CA
+  0x052231  241030085118Z0/
+  0x052304  VxAH
+  0x0523E4  qD!Cb
+  0x052456  S_>)=@
+  0x05256F  Washington1
+  0x052584  Redmond1
+  0x052596  Microsoft Corporation1806
+  0x0525B5  /Microsoft Windows Third Party Component CA 20120
+  0x0525E9  240516221606Z
+  0x0525F8  250514221606Z0
+  0x052647  Microsoft Corporation1;09
+  0x052666  2Microsoft Windows Hardware Compatibility Publisher0
+  0x05274B  ,3<M@
+  0x052780  e:MK
+  0x05281F  :081
+  0x05282D  Microsoft Corporation1
+  0x05284D  232825+5023010
+  0x05286F  !vOR
+  0x052883  m0k0i
+  0x05288D  chttp://www.microsoft.com/pkiops/crl/Microsoft%20Windows%20Third%20Party%20Component%20CA%202012.crl0
+  0x0528FF  u0s0q
+  0x05290F  ehttp://www.microsoft.com/pkiops/certs/Microsoft%20Windows%20Third%20Party%20Component%20CA%202012.crt0
+  0x0529A3  d_rj
+  0x0529AC  j_K-/o
+  0x052A83  ^_]]=
+  0x052B01  Microsoft Corporation1200
+  0x052B20  )Microsoft Root Certificate Authority 20100
+  0x052B4E  120418234838Z
+  0x052B5D  270418235838Z0
+  0x052C2F  ^W1&
+  0x052C89  -g<'<V
+  0x052CEE  }PH.=C
+  0x052DBC  O0M0K
+  0x052DC6  Ehttp://crl.microsoft.com/pki/crl/products/MicRooCerAut_2010-06-23.crl0Z
+  0x052E19  N0L0J
+  0x052E29  >http://www.microsoft.com/pki/certs/MicRooCerAut_2010-06-23.crt0
+  0x052E8F  i+w#
+  0x052EB3  ip(sf
+  0x052EE1  83ha
+  0x052F11  p%|Yi1$
+  0x052F5D  pCq<
+  0x052FA3  fvr`
+  0x052FE9  /^ r
+  0x05305A  ot?`
+  0x0530EB  /Microsoft Windows Third Party Component CA 2012
+  0x0531CD  1J0H
+  0x0531F0  (https://www.microsoft.com/en-us/windows 0
+  0x053267  ;CZrO9
+  0x0532CC  ,T5K
+  0x0533D8  20241104133953.577Z0
+  0x053439  Microsoft Corporation1-0+
+  0x053458  $Microsoft Ireland Operations Limited1'0%
+  0x053488  nShield TSS ESN:401A-05E0-D9471%0#
+  0x0534B1  Microsoft Time-Stamp Service
+  0x053543  Microsoft Corporation1&0$
+  0x053563  Microsoft Time-Stamp PCA 20100
+  0x053584  240725183118Z
+  0x053593  251022183118Z0
+  0x05365A  Microsoft Time-Stamp Service0
+  0x0536C7  `u"x
+  0x0536EE  Ecwm
+  0x05371D  23uS
+  0x053736  a_KT yU
+  0x053800  8Zx;
+  0x0538EC  X0V0T
+  0x0538F6  Nhttp://www.microsoft.com/pkiops/crl/Microsoft%20Time-Stamp%20PCA%202010(1).crl0l
+  0x053952  `0^0\
+  0x053962  Phttp://www.microsoft.com/pkiops/certs/Microsoft%20Time-Stamp%20PCA%202010(1).crt0
+  0x053A38  3Z1p
+  0x053A8D  zGn1
+  0x053AE0  1=PQ`
+  0x053B08  ^97V
+  0x053B10  k{~30
+  0x053BBA  2lD3
+  0x053CBD  210930182225Z
+  0x053CCC  300930183225Z0|1
+  0x053DC7  `}jR
+  0x053DDE  q\Q17
+  0x053DEC  &S|9a
+  0x053E6B  0\O,
+  0x053EDF  s=CN
+  0x053F1B  !]_0t
+  0x053F3C  \RQ]
+  0x053FB4  <F5)
+  0x053FE5  U0S0Q
+  0x053FF8  0A0?
+  0x054007  3http://www.microsoft.com/pkiops/Docs/Repository.htm0
+  0x05418B  >NGdx
+  0x0541B5  fg:SM
+  0x0541EB  xSu$W
+  0x05423B  as.,k{n?,
+  0x054258  J>f;O
+  0x054286  ctH,
+  0x05429F  WITd
+  0x0542BF  !TkjE
+  0x0542E6  Af=i
+  0x0542ED  AI~~
+  0x054322  $5g+
+  0x054331  'B=%
+  0x054337  tt[j
+  0x054358  pcSM
+  0x054489  ~0|1
+  0x054522  20241104090408Z
+  0x054533  20241105090408Z0t0:
+  0x054552  1,0*0
+  0x05458E  1(0&0
+  0x054628  :2H^
+  0x054666  bu8wK
+  0x05466D  f*))!
+  0x05469A  -_dX
+  0x0546B1  #6'\
+  0x05473B  Microsoft Time-Stamp PCA 2010
+  0x0547BD  TlV];
+  0x054808  (ty0
+  0x0548E6  fwK]
+  0x054950  ,[*X
+  0x054971  *MM1
+  0x054A2A  Ux"a
+  0x054A6F  >b)lq:
+  0x054A87  {;g!6
+  0x054AD2  l>q7
+  0x026548  USB4\QCOM0CD10001
+  0x026570  QC USB4 BUS 0
+  0x026590  USB4_DEVICE_%02d
+  0x0265C0  ExAllocatePool2
+  0x026748  IoGetActivityIdIrp
+  0x026858  KeAddTriageDumpDataBlock
+  0x027260  KmdfLibrary
+  0x04DF10  MaxReportSizeInMB
+  0x04DF38  \Registry\Machine\SYSTEM\CurrentControlSet\Control\LKMDTel
+  0x04E198  PsGetVersion
+  0x04E1B8  WmiTraceMessage
+  0x04E1D8  WmiQueryTraceInformation
+  0x04E210  EtwRegisterClassicProvider
+  0x04E248  EtwUnregister
+  0x04E268  ACPI\ACPI0015
+  0x04E288  USB4 HR PDO
+  0x04E320  TimesRun
+  0x04E340  BranchTrackEnabled
+  0x04E3A8  (error retrieving name)
+  0x04E3D8  (error retrieving location)
+  0x04E4B0  KeInitializeTriageDumpDataArray
+  0x04F466  VS_VERSION_INFO
+  0x04F4C2  StringFileInfo
+  0x04F4E6  040904b0
+  0x04F4FE  CompanyName
+  0x04F518  Qualcomm Technologies, Inc.
+  0x04F556  FileDescription
+  0x04F578  Qualcomm(R) Bus Device
+  0x04F5AE  FileVersion
+  0x04F5C8  1.0.0.1789
+  0x04F5E6  InternalName
+  0x04F600  QcUsb4Bus8380.sys
+  0x04F62A  LegalCopyright
+  0x04F648  Copyright (C) 2013 Qualcomm Technologies, Inc. All rights reserved.
+  0x04F6D6  OriginalFilename
+  0x04F722  ProductName
+  0x04F73C  Qualcomm Snapdragon
+  0x04F76A  ProductVersion
+  0x04F7A6  VarFileInfo
+  0x04F7C6  Translation
+  0x052D6C  SubC
+  0x0531D6  Qualcomm In
+
+--- imports ---
+  WppRecorder.sys  (8)
+      imp_WppRecorderReplay
+      imp_WppRecorderLogCreate
+      imp_WppRecorderLogDelete
+      imp_WppRecorderIsDefaultLogAvailable
+      imp_WppRecorderLogGetDefault
+      WppAutoLogTrace
+      WppAutoLogStop
+      WppAutoLogStart
+  ext-ms-win-ntos-werkernel-l1-1-1.dll  (5)
+      WerLiveKernelOpenDumpFile
+      WerLiveKernelCancelReport
+      WerLiveKernelCreateReport
+      WerLiveKernelSubmitReport
+      WerLiveKernelCloseHandle
+  ntoskrnl.exe  (56)
+      wcsnlen
+      _vsnwprintf
+      RtlEqualUnicodeString
+      wcsncmp
+      KeAcquireSpinLockRaiseToDpc
+      KeGetCurrentThread
+      KeInitializeSpinLock
+      KeReleaseSpinLock
+      ExFreePoolWithTag
+      strncpy_s
+      _vsnprintf
+      RtlAssert
+      ExRundownCompleted
+      KeWaitForMultipleObjects
+      ExWaitForRundownProtectionRelease
+      ExReInitializeRundownProtection
+      ExInitializeRundownProtection
+      ObfDereferenceObject
+      RtlGetVersion
+      ExAcquireRundownProtection
+      KeInitializeEvent
+      KeWaitForSingleObject
+      KeResetEvent
+      IoGetAttachedDeviceReference
+      KeDelayExecutionThread
+      RtlTimeFieldsToTime
+      ExLocalTimeToSystemTime
+      RtlTimeToTimeFields
+      ObOpenObjectByPointer
+      ZwSetSecurityObject
+      ZwClose
+      sprintf_s
+      ZwOpenKey
+      ZwQueryValueKey
+      ExAllocatePoolWithTag
+      KeCapturePersistentThreadState
+      ZwWriteFile
+      NtBuildNumber
+      DbgPrintEx
+      RtlCaptureContext
+      SeTokenIsAdmin
+      KeRegisterBugCheckReasonCallback
+      KeDeregisterBugCheckReasonCallback
+      RtlCompareMemory
+      IoFreeIrp
+      IoSynchronousCallDriver
+      __C_specific_handler
+      IofCompleteRequest
+      IoWMIRegistrationControl
+      RtlCopyUnicodeString
+      IoAllocateIrp
+      MmGetSystemRoutineAddress
+      ExReleaseRundownProtection
+      RtlInitUnicodeString
+      KeSetEvent
+      strcmp
+  WDFLDR.SYS  (5)
+      WdfVersionUnbindClass
+      WdfVersionBind
+      WdfLdrQueryInterface
+      WdfVersionUnbind
+      WdfVersionBindClass

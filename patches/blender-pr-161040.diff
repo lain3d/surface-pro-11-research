@@ -1,0 +1,285 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 141fdaf9fea7..8e23559c23b1 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -641,7 +641,7 @@ mark_as_advanced(CYCLES_TEST_DEVICES)
+ mark_as_advanced(WITH_CYCLES_TEST_OSL)
+ 
+ # NVIDIA CUDA & OptiX
+-if(NOT APPLE AND NOT (WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "ARM64"))
++if(NOT APPLE)
+   option(WITH_CYCLES_DEVICE_CUDA "Enable Cycles NVIDIA CUDA compute support" ON)
+   option(WITH_CYCLES_DEVICE_OPTIX "Enable Cycles NVIDIA OptiX support" ON)
+   mark_as_advanced(WITH_CYCLES_DEVICE_CUDA)
+diff --git a/build_files/build_environment/cmake/llvm.cmake b/build_files/build_environment/cmake/llvm.cmake
+index 16bcc64593a2..713da99f8bc5 100644
+--- a/build_files/build_environment/cmake/llvm.cmake
++++ b/build_files/build_environment/cmake/llvm.cmake
+@@ -24,7 +24,9 @@ if(APPLE)
+   set(BUILD_CLANG_TOOLS ON)
+ elseif(MSVC AND BLENDER_PLATFORM_ARM)
+   set(LLVM_EXTRA_PROJECTS ^^lld)
+-else()
++endif()
++
++if(NOT APPLE)
+   # NVIDIA PTX for OSL on Windows and Linux.
+   set(LLVM_TARGETS ${LLVM_TARGETS}$<SEMICOLON>NVPTX)
+ endif()
+diff --git a/build_files/build_environment/cmake/openimagedenoise.cmake b/build_files/build_environment/cmake/openimagedenoise.cmake
+index 2ddcbd630d12..e044c309c349 100644
+--- a/build_files/build_environment/cmake/openimagedenoise.cmake
++++ b/build_files/build_environment/cmake/openimagedenoise.cmake
+@@ -19,6 +19,7 @@ else()
+   set(OIDN_EXTRA_ARGS
+     ${OIDN_EXTRA_ARGS}
+     -DOIDN_DEVICE_CPU=ON
++    -DOIDN_DEVICE_CUDA=ON
+     -DLEVEL_ZERO_ROOT=${LIBDIR}/level-zero
+   )
+ 
+@@ -28,15 +29,9 @@ else()
+       ${OIDN_EXTRA_ARGS}
+       -DOIDN_DEVICE_SYCL=ON
+       -DOIDN_DEVICE_SYCL_AOT=OFF
+-      -DOIDN_DEVICE_CUDA=ON
+       -DOIDN_DEVICE_HIP=ON)
+-  elseif(UNIX)
+-    set(OIDN_EXTRA_ARGS
+-      ${OIDN_EXTRA_ARGS}
+-      -DOIDN_DEVICE_CUDA=ON)
+   endif()
+ 
+-
+   if(BLENDER_PLATFORM_ARM AND UNIX)
+     # Target ARMv8.2-A with dot product and half float.
+     # There is no -march=armv8.2-a+dotprod+fp16+lse flag for ISPC, so we target
+@@ -87,8 +82,11 @@ endif()
+ 
+ set(OIDN_PATCH_COMMAND
+   ${PATCH_CMD} --verbose -p 1 -N -d
+-  ${BUILD_DIR}/openimagedenoise/src/external_openimagedenoise <
+-  ${PATCH_DIR}/oidn.diff
++    ${BUILD_DIR}/openimagedenoise/src/external_openimagedenoise <
++    ${PATCH_DIR}/oidn.diff &&
++  ${PATCH_CMD} --verbose -p 1 -N -d
++    ${BUILD_DIR}/openimagedenoise/src/external_openimagedenoise <
++    ${PATCH_DIR}/oidn_cuda.diff
+ )
+ 
+ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+diff --git a/build_files/build_environment/cmake/osl.cmake b/build_files/build_environment/cmake/osl.cmake
+index d5e4ef8ed4f4..c70d78e11308 100644
+--- a/build_files/build_environment/cmake/osl.cmake
++++ b/build_files/build_environment/cmake/osl.cmake
+@@ -57,7 +57,7 @@ set(OSL_EXTRA_ARGS
+   -Dlibdeflate_DIR=${LIBDIR}/deflate/lib/cmake/libdeflate
+ )
+ 
+-if(NOT (APPLE OR BLENDER_PLATFORM_WINDOWS_ARM))
++if(NOT APPLE)
+   list(APPEND OSL_EXTRA_ARGS
+     -DOSL_USE_OPTIX=ON
+     -DCUDA_TARGET_ARCH=sm_50
+diff --git a/build_files/build_environment/patches/oidn_cuda.diff b/build_files/build_environment/patches/oidn_cuda.diff
+new file mode 100644
+index 000000000000..217c7797d07f
+--- /dev/null
++++ b/build_files/build_environment/patches/oidn_cuda.diff
+@@ -0,0 +1,72 @@
++diff --git a/devices/cuda/CMakeLists.txt b/devices/cuda/CMakeLists.txt
++--- a/devices/cuda/CMakeLists.txt
+++++ b/devices/cuda/CMakeLists.txt
++@@ -100,7 +100,16 @@ target_include_directories(OpenImageDenoise_device_cuda
++ 
++ if(OIDN_DEVICE_CUDA_API STREQUAL "Driver")
++   add_library(curtn STATIC curtn.cpp)
++-  target_link_libraries(curtn PUBLIC CUDA::cuda_driver)
+++  if(WIN32)
+++    find_program(LIB_EXE NAMES lib llvm-lib REQUIRED)
+++    add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/cuda.lib" COMMAND "${LIB_EXE}" /nologo /def:"${CMAKE_CURRENT_SOURCE_DIR}/cuda_driver.def" /out:"${CMAKE_CURRENT_BINARY_DIR}/cuda.lib" DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/cuda_driver.def")
+++    add_library(cuda_driver INTERFACE "${CMAKE_CURRENT_BINARY_DIR}/cuda.lib")
+++    target_link_libraries(cuda_driver INTERFACE "${CMAKE_CURRENT_BINARY_DIR}/cuda.lib")
+++    target_include_directories(cuda_driver INTERFACE "${CUDAToolkit_INCLUDE_DIRS}")
+++    target_link_libraries(curtn PUBLIC cuda_driver)
+++  else()
+++    target_link_libraries(curtn PUBLIC CUDA::cuda_driver)
+++  endif()
++ 
++   target_compile_definitions(OpenImageDenoise_device_cuda PRIVATE OIDN_DEVICE_CUDA_API_DRIVER)
++   target_link_libraries(OpenImageDenoise_device_cuda PRIVATE curtn)
++diff --git a/devices/cuda/cuda_driver.def b/devices/cuda/cuda_driver.def
++--- /dev/null
+++++ b/devices/cuda/cuda_driver.def
++@@ -0,0 +1,47 @@
+++LIBRARY nvcuda
+++EXPORTS
+++  cuGetErrorString
+++  cuInit
+++  cuDriverGetVersion
+++  cuDeviceGet
+++  cuDeviceGetCount
+++  cuDeviceGetName
+++  cuDeviceGetUuid_v2
+++  cuDeviceGetLuid
+++  cuDeviceTotalMem_v2
+++  cuDeviceGetAttribute
+++  cuDevicePrimaryCtxRetain
+++  cuDevicePrimaryCtxRelease_v2
+++  cuCtxPushCurrent_v2
+++  cuCtxPopCurrent_v2
+++  cuCtxGetCurrent
+++  cuCtxGetId
+++  cuModuleLoadFatBinary
+++  cuModuleUnload
+++  cuModuleGetFunction
+++  cuMemAlloc_v2
+++  cuMemFree_v2
+++  cuMemAllocHost_v2
+++  cuMemFreeHost
+++  cuMemAllocManaged
+++  cuMemcpy
+++  cuMemcpyHtoD_v2
+++  cuMemcpyDtoH_v2
+++  cuMemcpyDtoD_v2
+++  cuMemcpyAsync
+++  cuMemcpyHtoDAsync_v2
+++  cuMemcpyDtoHAsync_v2
+++  cuMemcpyDtoDAsync_v2
+++  cuMemsetD8Async
+++  cuPointerGetAttributes
+++  cuStreamAddCallback
+++  cuStreamSynchronize
+++  cuFuncSetAttribute
+++  cuLaunchKernel
+++  cuImportExternalMemory
+++  cuExternalMemoryGetMappedBuffer
+++  cuDestroyExternalMemory
+++  cuImportExternalSemaphore
+++  cuSignalExternalSemaphoresAsync
+++  cuWaitExternalSemaphoresAsync
+++  cuDestroyExternalSemaphore
+diff --git a/build_files/cmake/config/blender_release.cmake b/build_files/cmake/config/blender_release.cmake
+index 5bfa0b78600f..919f855e574d 100644
+--- a/build_files/cmake/config/blender_release.cmake
++++ b/build_files/cmake/config/blender_release.cmake
+@@ -89,6 +89,9 @@ if(UNIX AND NOT APPLE)
+ endif()
+ 
+ if(NOT APPLE)
++  set(WITH_CYCLES_DEVICE_OPTIX    ON  CACHE BOOL "" FORCE)
++  set(WITH_CYCLES_CUDA_BINARIES   ON  CACHE BOOL "" FORCE)
++
+   set(_is_win32_arm64_target OFF)
+   if(WIN32)
+     if(DEFINED ENV{VSCMD_ARG_TGT_ARCH})
+@@ -102,8 +105,6 @@ if(NOT APPLE)
+   if(NOT _is_win32_arm64_target)
+     set(WITH_TBB_MALLOC_PROXY       ON  CACHE BOOL "" FORCE)
+     set(WITH_CYCLES_DEVICE_HIPRT    ON  CACHE BOOL "" FORCE)
+-    set(WITH_CYCLES_DEVICE_OPTIX    ON  CACHE BOOL "" FORCE)
+-    set(WITH_CYCLES_CUDA_BINARIES   ON  CACHE BOOL "" FORCE)
+     set(WITH_CYCLES_HIP_BINARIES    ON  CACHE BOOL "" FORCE)
+     set(WITH_CYCLES_DEVICE_ONEAPI   ON  CACHE BOOL "" FORCE)
+     set(WITH_CYCLES_ONEAPI_BINARIES ON  CACHE BOOL "" FORCE)
+diff --git a/build_files/windows/configure_msbuild.cmd b/build_files/windows/configure_msbuild.cmd
+index 2f5a1fec7f64..0f558de67e2c 100644
+--- a/build_files/windows/configure_msbuild.cmd
++++ b/build_files/windows/configure_msbuild.cmd
+@@ -17,7 +17,7 @@ if "%WITH_CLANG%"=="1" (
+ 
+ 	REM This is required as per https://learn.microsoft.com/en-us/cpp/build/clang-support-msbuild?view=msvc-170#custom_llvm_location
+ 	REM Which allows any copy of LLVM to be used, not just the one that ships with VS
+-	echo ^<Project^> >> %BUILD_DIR%\Directory.build.props
++	echo ^<Project^> > %BUILD_DIR%\Directory.build.props
+ 	echo   ^<PropertyGroup^> >> %BUILD_DIR%\Directory.build.props
+ 	echo     ^<LLVMInstallDir^>%LLVM_DIR%^</LLVMInstallDir^> >> %BUILD_DIR%\Directory.build.props
+ 	echo     ^<LLVMToolsVersion^>%CLANG_VERSION%^</LLVMToolsVersion^> >> %BUILD_DIR%\Directory.build.props
+@@ -26,7 +26,7 @@ if "%WITH_CLANG%"=="1" (
+ )
+ 
+ if "%WITH_ASAN%"=="1" (
+-		set ASAN_CMAKE_ARGS=-DWITH_COMPILER_ASAN=On
++	set ASAN_CMAKE_ARGS=-DWITH_COMPILER_ASAN=On
+ )
+ 
+ if "%WITH_PYDEBUG%"=="1" (
+diff --git a/build_files/windows/detect_msvc_vswhere.cmd b/build_files/windows/detect_msvc_vswhere.cmd
+index dc4a58abd278..d0a88d70a5cc 100644
+--- a/build_files/windows/detect_msvc_vswhere.cmd
++++ b/build_files/windows/detect_msvc_vswhere.cmd
+@@ -19,6 +19,9 @@ if "%BUILD_ARCH%" == "arm64" (
+ 	set VSWHERE_ARCH=x86.x64
+ )
+ 
++set VS_InstallDir=
++set VSWhere_ClangFound=
++
+ if NOT "%verbose%" == "" (
+ 	echo "%vs_where%" -latest %VSWHERE_ARGS% -version ^[%BUILD_VS_VER%.0^,%BUILD_VS_VER%.99^) -requires Microsoft.VisualStudio.Component.VC.Tools.%VSWHERE_ARCH%
+ )
+@@ -31,16 +34,14 @@ if NOT "%verbose%" == "" (
+ )
+ 
+ if "%VS_InstallDir%"=="" (
+-	if NOT "%verbose%" == "" (
+-		echo.
+-		echo Visual Studio is detected but no suitable installation was found. 
+-		echo.
+-		echo Check the "Desktop development with C++" workload has been installed. 
+-		echo. 
+-		echo If you are attempting to use either Visual Studio Preview version or the Visual C++ Build tools, Please see 'make help' on how to opt in to those toolsets.
+-		echo. 
+-		goto FAIL
+-	)
++	echo.
++	echo Visual Studio is detected but no suitable installation was found. 
++	echo.
++	echo Check the "Desktop development with C++" workload has been installed. 
++	echo. 
++	echo If you are attempting to use either Visual Studio Preview version or the Visual C++ Build tools, Please see 'make help' on how to opt in to those toolsets.
++	echo. 
++	goto FAIL
+ )
+ 
+ rem If we are using Clang + MSBuild, check to make sure the clang tools are installed
+@@ -49,7 +50,6 @@ if "%WITH_CLANG%" == "1" (
+ 		if NOT "%verbose%" == "" (
+ 			echo "%vs_where%" -latest %VSWHERE_ARGS% -version ^[%BUILD_VS_VER%.0^,%BUILD_VS_VER%.99^) -requires Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset
+ 		)
+-
+ 		for /f "usebackq tokens=1* delims=: " %%i in (`"%vs_where%" -latest -version ^[%BUILD_VS_VER%.0^,%BUILD_VS_VER%.99^) %VSWHERE_ARGS% -requires Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset`) do (
+ 			if /i "%%i"=="installationName" set VSWhere_ClangFound=%%j
+ 		)
+diff --git a/intern/cycles/cmake/external_libs.cmake b/intern/cycles/cmake/external_libs.cmake
+index cc0e4bbc6aa9..990d301e1ca0 100644
+--- a/intern/cycles/cmake/external_libs.cmake
++++ b/intern/cycles/cmake/external_libs.cmake
+@@ -7,6 +7,12 @@
+ ###########################################################################
+ 
+ if(WITH_CYCLES_DEVICE_CUDA AND (WITH_CYCLES_CUDA_BINARIES OR NOT WITH_CUDA_DYNLOAD))
++  if(CMAKE_SYSTEM_PROCESSOR STREQUAL "ARM64")
++    # FindCUDA does not handle arm64 library path and fails finding required cudart
++    # It is not needed in Cycles anyway though, so just force it to some dummy value
++    set(CUDA_CUDART_LIBRARY cudart)
++  endif()
++
+   find_package(CUDA) # Try to auto locate CUDA toolkit
+   set_and_warn_library_found("CUDA compiler" CUDA_FOUND WITH_CYCLES_CUDA_BINARIES)
+ 
+diff --git a/intern/cycles/kernel/device/cuda/CMakeLists.txt b/intern/cycles/kernel/device/cuda/CMakeLists.txt
+index ac63c2cc489e..db8c7aeabb66 100644
+--- a/intern/cycles/kernel/device/cuda/CMakeLists.txt
++++ b/intern/cycles/kernel/device/cuda/CMakeLists.txt
+@@ -38,6 +38,10 @@ function(cuda_add_common_flags cuda_version arch in_flags out_flags)
+     set(flags ${flags} -ccbin="${CUDA_HOST_COMPILER}")
+   endif()
+ 
++  if(WIN32 AND CMAKE_C_COMPILER_ID MATCHES "Clang")
++    set(flags ${flags} --force-cl-env-setup)
++  endif()
++
+   set(flags ${flags}
+     # Helps with compatibility when using recent clang host compiler.
+     "-std=c++17"

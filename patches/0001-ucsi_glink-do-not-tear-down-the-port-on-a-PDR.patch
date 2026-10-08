@@ -1,0 +1,30 @@
+diff --git a/drivers/usb/typec/ucsi/ucsi_glink.c b/drivers/usb/typec/ucsi/ucsi_glink.c
+index 12e07b9fe..36b8d5304 100644
+--- a/drivers/usb/typec/ucsi/ucsi_glink.c
++++ b/drivers/usb/typec/ucsi/ucsi_glink.c
+@@ -323,9 +323,22 @@ static void pmic_glink_ucsi_register(struct work_struct *work)
+ 	if (!ucsi->ucsi_registered && pd_running) {
+ 		ucsi_register(ucsi->ucsi);
+ 		ucsi->ucsi_registered = true;
+-	} else if (ucsi->ucsi_registered && !pd_running) {
+-		ucsi_unregister(ucsi->ucsi);
+-		ucsi->ucsi_registered = false;
++	} else if (ucsi->ucsi_registered && pd_running) {
++		/*
++		 * The protection domain restarted underneath us. Re-read the
++		 * connector state rather than tearing the port down: an
++		 * ucsi_unregister() here reaches ucsi_unregister_partner(),
++		 * which calls typec_set_mode(con->port, TYPEC_STATE_SAFE) and
++		 * puts the Type-C mux into safe state - electrically
++		 * disconnecting whatever is attached. On a machine booting
++		 * from a USB-C disk that kills the root filesystem, and the
++		 * device never comes back: re-attach needs a connect event,
++		 * and the cable never moved.
++		 *
++		 * A PDR is a transient supplier outage, not a disconnect.
++		 * qcom_battmgr already treats it that way.
++		 */
++		ucsi_resume(ucsi->ucsi);
+ 	}
+ }
+ 

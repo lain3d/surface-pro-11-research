@@ -1,0 +1,60 @@
+From: Linux agent, Surface Pro 11 IMX681 bring-up
+Subject: [PATCH 2/2] libcamera: add a camera_sensor_properties entry for IMX681
+
+Without an entry libcamera logs
+
+    WARN CameraSensor 'imx681 1-0010': No static properties available for 'imx681'
+
+and falls back to a default unit cell, which makes every physical-size
+property (field of view, focal length in 35 mm equivalent) wrong.
+
+The unit cell size comes from the Windows camera profile
+IMX681DeLoB35P3A5.json, recovered from the Surface Pro 11 driver store by the
+Windows side of this relay. It gives pixel_width_mm and pixel_height_mm both as
+0.001, i.e. 1000 nm square -- so the square assumption is measured, not inferred
+from the array aspect ratio.
+
+sensorDelays is left zeroed on purpose. libcamera treats an all-zero delay
+block exactly like a missing entry (camera_sensor_legacy.cpp:498), so the
+unverified defaults still apply and the "No sensor delays found" warning still
+prints. That is the honest state: we have the cell size and we do not have the
+delays, and inventing plausible numbers to silence a warning is how you get a
+subtly wrong AE loop that nobody looks at again.
+
+Verified after installing:
+
+    Property: UnitCellSize = 1000x1000
+    Property: PixelArraySize = 4032x3024
+    Property: PixelArrayActiveAreas = [ (8, 64)/4032x3024 ]
+
+Applies to the Ubuntu libcamera 0.7.0-1ubuntu2 source package, on top of
+0001-ipa-libipa-add-CameraSensorHelper-for-IMX681.patch. The context differs
+slightly from upstream v0.7.0 because the distro adds its own imx500 entry
+just above.
+
+--- a/src/libcamera/sensor/camera_sensor_properties.cpp
++++ b/src/libcamera/sensor/camera_sensor_properties.cpp
+@@ -309,6 +309,23 @@
+ 				.hblankDelay = 3
+ 			},
+ 		} },
++		{ "imx681", {
++			/*
++			 * Unit cell size from the Windows camera profile
++			 * IMX681DeLoB35P3A5.json, which gives pixel_width_mm and
++			 * pixel_height_mm as 0.001 -- 1000 nm square. Measured
++			 * rather than inferred from the aspect ratio.
++			 *
++			 * sensorDelays is deliberately left zeroed. The delays
++			 * are unknown for this part, and an all-zero entry keeps
++			 * libcamera's unverified defaults *and* its warning,
++			 * which is the honest state. Guessing them here would
++			 * silence the warning without earning it.
++			 */
++			.unitCellSize = { 1000, 1000 },
++			.testPatternModes = {},
++			.sensorDelays = { },
++		} },
+ 		{ "imx708", {
+ 			.unitCellSize = { 1400, 1400 },
+ 			.testPatternModes = {

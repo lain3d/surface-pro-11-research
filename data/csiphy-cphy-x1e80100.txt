@@ -1,0 +1,672 @@
+CSIPHY C-PHY programming recovered from qccammipicsi8380.sys (Surface Pro 11, X1E80100)
+Extracted 2026-08-06 from the SurfaceCam Ghidra project. Image base 0x140000000.
+
+== settle-count table, C-PHY == @0x14000dab0, 26 entries of {u32 threshold_MSps, u32 settleCount}
+   lookup: msps = dataRate_bps / 2.28 / 1e6; first entry with msps < threshold wins
+   <   500 MSps  ->  settle 0x66 (102)
+   <   600 MSps  ->  settle 0x58 (88)
+   <   700 MSps  ->  settle 0x4e (78)
+   <   800 MSps  ->  settle 0x46 (70)
+   <   900 MSps  ->  settle 0x40 (64)
+   <  1000 MSps  ->  settle 0x39 (57)
+   <  1100 MSps  ->  settle 0x38 (56)
+   <  1200 MSps  ->  settle 0x35 (53)
+   <  1300 MSps  ->  settle 0x2f (47)
+   <  1400 MSps  ->  settle 0x2b (43)
+   <  1500 MSps  ->  settle 0x2e (46)
+   <  1600 MSps  ->  settle 0x2c (44)
+   <  1700 MSps  ->  settle 0x2a (42)
+   <  1800 MSps  ->  settle 0x29 (41)
+   <  1900 MSps  ->  settle 0x28 (40)
+   <  2000 MSps  ->  settle 0x27 (39)
+   <  2100 MSps  ->  settle 0x26 (38)
+   <  2200 MSps  ->  settle 0x25 (37)
+   <  2300 MSps  ->  settle 0x24 (36)
+   <  2400 MSps  ->  settle 0x23 (35)
+   <  2500 MSps  ->  settle 0x22 (34)
+   <  2600 MSps  ->  settle 0x22 (34)
+   <  2700 MSps  ->  settle 0x21 (33)
+   <  2800 MSps  ->  settle 0x21 (33)
+   <  2900 MSps  ->  settle 0x20 (32)
+   <  3000 MSps  ->  settle 0x20 (32)
+
+== the third u32 is NANOSECONDS, not microseconds ==
+   FUN_140005d00(base, table, count) is the register writer. Per entry:
+       *(u32 *)(base + e.offset) = e.value;
+       if (e.third) {
+           us = e.third / 1000;          /* ns -> us */
+           if (us == 0)      us = 1;
+           else if (us > 50) { KeDelayExecutionThread(-10 * us); continue; }
+           KeStallExecutionProcessor(us);
+       }
+   So over 50 us Windows sleeps; at or below it busy-stalls. 0x989680 is
+   10,000,000 ns = 10 ms, and the two entries carrying it cost 20 ms, not 20 s.
+   An earlier read of this field as microseconds is what put every C-PHY run's
+   stream-on 20 s past the capture timeout (missions 6-8).
+
+== C-PHY preamble table == @0x1400119f0, 9 x {u32 off, u32 val, u32 delay_ns}
+   FUN_140006f10 writes this immediately before the per-frequency table, and
+   only on the C-PHY path -- the D-PHY table carries the equivalent inline.
+   lane_regs_x1e80100[] in phy-qcom-mipi-csi2-3ph-dphy.c opens with exactly
+   {0x1014, 0xD5}, {0x101C, 0x7A}, {0x1018, 0x01}: same registers, same order.
+   0x1014 holds 0x2a (three trios) in the binary and is patched at runtime.
+   0x1084 = 0x00
+   0x108c = 0x00   delay=1000 ns
+   0x02f0 = 0x00
+   0x06f0 = 0x00
+   0x0af0 = 0x00
+   0x1014 = 0x2a          <- lane mask, patched by CSIPhyRxLane; 1 trio = 0x02
+   0x101c = 0x7a
+   0x1018 = 0x01
+   0x101c = 0x7a          <- written twice, second time after 0x1018
+
+== interrupt registers ==  (regs->offset 0x1000; CTRLn = 0x1000 + 4n,
+                            STATUSn = 0x10b0 + 4n)
+   Both C-PHY per-frequency tables END with the mask block and CTRL0:
+       CTRL11..CTRL21 = ff fe e6 df df fc fb 9b 7f bf ff      (selective!)
+       CTRL0          = 0x0e
+   Byte-identical to the mask block the other SoCs' D-PHY tables in that driver
+   already carry. lane_regs_x1e80100[] is the one table that omits it, which is
+   why lanes_enable() zeroes these and x1e80100 has never reported anything.
+
+   Windows' ISR, FUN_140001570 "MipiCsiCallback": reads STATUS0..STATUS10 from a
+   table of offsets at 0x14000d850, then writes the 24-entry ack table at
+   0x140011280 -- CTRL22..CTRL32 = 0xff, 100 ns, CTRL10 = 1, 100 ns,
+   CTRL22..CTRL32 = 0x00, 100 ns, CTRL10 = 0.
+   Four of the eleven are saved by name:
+       STATUS1 (0x10b4) = Csi2CommonStatus1
+       STATUS3 (0x10bc) = Csi2CommonStatus3
+       STATUS6 (0x10c8) = Csi2CommonStatus6
+       STATUS8 (0x10d0) = Csi2CommonStatus8
+
+== per-lane receiver status ==  (CSIPhyWaitforRx, FUN_140005dd8)
+   Polled until all read zero, 101 iterations at 1 ms, then a further 20 ms.
+   Lane block base + 0x158, stride 0x400.
+   C-PHY (odd lanes):   Lane1 0x358   Lane3 0x758   Lane5 0xb58
+   D-PHY (even + clk):  Lane0 0x0c4   Lane2 0x4c4   Lane4 0x8c4
+                        Lane6 0xcc4   Clk   0xec4
+   Nothing in the mainline driver reads these.
+
+== lane masks ==  (nNumOfDataLane -> laneMask written by CSIPhyRxLane)
+   C-PHY: 1 trio -> 0x02   2 trios -> 0x0a   3 trios -> 0x2a
+   D-PHY: 1 lane -> 0x81   2 lanes -> 0x85
+
+== CameraMIPIPHY_Start, the whole sequence ==  (FUN_140001c70)
+   Recovered 2026-08-07. Only step 6 had been transcribed before; 3, 4 and 5
+   are new and step 2 names a status bit nothing in Linux has ever read.
+
+     1. settle count.  C-PHY: table lookup below.  D-PHY: a formula.
+        A client-supplied value at ctx+0x14, if non-zero, OVERRIDES the
+        recommendation -- "Client requested settle count %d is used instead
+        of recommended settle count of %d". The recommended value is not
+        necessarily the value the hardware runs with.
+     2. RefGen ready:   if ((base[0x10fc] >> 7) & 1) == 0  ->  "RefGen is Not
+        Ready".  0x10fc = STATUS19 (0x10b0 + 4*19).  Windows logs and starts
+        anyway, so it is diagnostic, not a gate -- but it is a named readiness
+        bit for the PHY's reference generator and NOTHING in mainline reads it.
+     3. CSIDPhyReset    (FUN_140006028)   <- see below, the per-lane pulse
+     4. CSIPhyUpdatePerFrequency (FUN_140006168): patches the settle count into
+        the in-memory table at 0x20c/0x60c/0xa0c (C-PHY, per trio) or
+        0x008/0x408/0x808/0xc08/0xe08 (D-PHY), then patches the lane mask into
+        the table's 0x1014 entry.
+     5. FUN_140006b50: D-PHY *and* CsiTestMode only. Patches Csi2PhaseCtrl0
+        into every lane-block 0x?00 entry and Csi2PhaseLnckCtrl0 into 0xe00,
+        and forces 0x1030/0x1038/0x1044/0x104c to 0xff. Defaults are
+        PhaseCtrl0 = 0x8e, PhaseLnckCtrl0 = 0x80. Not on the front camera's
+        path (C-PHY), recorded only so nobody re-derives it.
+     6. FUN_140006f10: the 9-entry preamble, then the per-frequency table.
+     7. CSIPhyWaitforRx (FUN_140005dd8): poll the per-lane status until zero.
+
+== CSIDPhyReset ==  (FUN_140006028)  {u32 off, u32 val, u32 delay_ns}
+   Mainline's phy_qcom_mipi_csi2_reset() does the common pulse ONLY. The
+   per-lane pulse below is done on neither path, and for C-PHY the three
+   registers involved appear nowhere in the 3ph driver at all.
+
+   common, both modes   @0x140012028
+       0x1000 = 0x01   delay 20 ns
+       0x1000 = 0x00
+     (Linux does this with usleep_range(5000, 8000) in place of the 20 ns.)
+
+   C-PHY, per trio      @0x1400113a0    <- odd blocks, offset 0x5c, value 0x10
+       0x025c = 0x10   delay 100 ns
+       0x025c = 0x00
+       0x065c = 0x10   delay 100 ns
+       0x065c = 0x00
+       0x0a5c = 0x10   delay 100 ns
+       0x0a5c = 0x00
+
+   D-PHY, per lane      @0x140011200    <- even blocks + clk, offset 0x18, 0x01
+       0x0e18 = 0x01   delay 100 ns     (clk first)
+       0x0e18 = 0x00
+       0x0018 / 0x0418 / 0x0818 / 0x0c18, same 0x01 -> 0x00 pulse
+
+   Stop tables:  C-PHY @0x1400113e8 = {0x1014, 0x101c, 0x1018} all 0x00;
+                 D-PHY @0x140011410 = {0x1014, 0x00}; combo @0x140010740
+                 = {0x1014, patched 0x85 or 0x50}.
+
+== three C-PHY per-frequency tables, not two ==
+   FUN_140006168 selects by dataRate in bps:
+       <  0x77359401  (2.000 Gbps)  ->  @0x140011420, 123 entries
+       <  0x9502F901  (2.500 Gbps)  ->  @0x140011a60, 123 entries
+       >= 2.500 Gbps                ->  @0x140010c50, 121 entries
+   **IMX681 takes the third.** See below. An earlier version of this note said
+   it took the first and that the third was out of range; that was wrong, and it
+   was wrong because the data rate was inferred rather than measured.
+
+== the real data rate, measured 2026-08-07 ==
+   Windows' own CsiTestMode dump, from a working front-camera session:
+       Csi2DataRateKbps      5485700      = 5.4857 Gbps
+       Csi2PhaseNumOfLanes   1            <- one trio, stated by the vendor stack
+       Csi2PhasePhyMode      0            }  all four phase values stay 0 because
+       Csi2PhaseCtrl0*       0            }  the patcher that sets them is D-PHY
+       Csi2PhaseLnckCtrl0*   0            }  only -- itself a C-PHY confirmation
+       Csi2CommonStatus1/3/6/8   all 0    <- a working link reports nothing
+       CsidRxTotalPktsRcvd   559179
+       CsidRxStatsEcc        0
+       CsidRxTotalCrcErrors  0
+   (CsidRx* were not in the name list this repo had; the driver writes them too.)
+
+   Reconciling that against the sensor's own PLL registers closes the loop:
+
+       EXTCLK 19.2 MHz.
+       modes 1-5:  0x030d = 3, 0x030e/0x030f = 0x0177 = 375
+                   op_sys_clk = 19.2 / 3 * 375 = 2400.0 MHz
+       5,485,700,000 / 2,400,000,000 = 2.28571 = 16/7 exactly.
+
+   So **op_sys_clk IS the C-PHY symbol rate, and dataRate = symbols * 16/7**
+   (C-PHY carries 16 bits per 7 symbols). Two independent sources -- the vendor
+   blob's PLL registers and Windows' record of the live link -- agree to five
+   figures. That also retroactively confirms op_sys_clk_div = 1, which imx681.c
+   flags as an UNVERIFIED ASSUMPTION.
+
+       mode 0, 4032x3024:  0x030d = 2, 0x030e/0x030f = 0x00d0 = 208
+                           op_sys_clk = 19.2 / 2 * 208 = 1996.8 MHz
+                           dataRate   = 1996.8e6 * 16/7 = 4.564 Gbps
+                           msps       = 4564.1 / 2.28   = 2001.8
+                           settle     = 0x26 (38)       table 3
+
+   What the C-PHY runs actually programmed: link_freq_menu_items[0] is
+   998,400,000 -- half the symbol rate, because the driver applied the D-PHY DDR
+   convention to a C-PHY sensor. cphy_settle_cnt() then did link_freq * 2 / 2.28
+   = 875.8 MSps and picked **settle 0x40 (64)** out of **table 1**. The link was
+   configured for 36 % of its real symbol rate, with a settle window 68 % too
+   long, from the wrong register table.
+
+   Both link_freq_menu_items entries are half: index 1 should be 2,400,000,000,
+   which is the rate Windows measured.
+
+== CsiTestMode ==  registry, and the ground truth it would hand us
+   Key:  HKLM\SYSTEM\CurrentControlSet\Control\Qualcomm\Camera
+   Read at device init: CsiTestMode, Csi2PhaseCtrl0, Csi2PhaseLnckCtrl0.
+   The key does not exist on this machine, so the mode is off and the two
+   phase values default to 0xffffffff = "do not patch".
+
+   With CsiTestMode = 1, the driver writes back on device teardown:
+       Csi2CommonStatus1 / 3 / 6 / 8      <- the four status words, from a
+                                             link that WORKS
+       Csi2PhaseCtrl0Default / LastUsed
+       Csi2PhaseLnckCtrl0Default / LastUsed
+       Csi2PhaseNumOfLanes
+       Csi2DataRateKbps                   <- the real rate, not our inference
+       Csi2PHYIndex
+       Csi2PhasePhyMode
+
+== C-PHY per-frequency register table, dataRate < 2.000 Gbps == @0x140011420, 123 x {u32 off, u32 val, u32 flag}
+   0x0268 = 0xf1
+   0x0278 = 0x45
+   0x0288 = 0x20
+   0x026c = 0x05
+   0x028c = 0x37
+   0x0294 = 0x01
+   0x0270 = 0x00
+   0x0274 = 0x03
+   0x0668 = 0xf1
+   0x0678 = 0x45
+   0x0688 = 0x20
+   0x066c = 0x05
+   0x068c = 0x37
+   0x0694 = 0x01
+   0x0670 = 0x00
+   0x0674 = 0x03
+   0x0a68 = 0xf1
+   0x0a78 = 0x45
+   0x0a88 = 0x20
+   0x0a6c = 0x05
+   0x0a8c = 0x37
+   0x0a94 = 0x01
+   0x0a70 = 0x00
+   0x0a74 = 0x03   flag=0x989680
+   0x0294 = 0x09
+   0x02f4 = 0x00
+   0x02f8 = 0x00
+   0x02fc = 0x00
+   0x02f0 = 0xef
+   0x0694 = 0x09
+   0x06f4 = 0x00
+   0x06f8 = 0x00
+   0x06fc = 0x00
+   0x06f0 = 0xef
+   0x0a94 = 0x09
+   0x0af4 = 0x00
+   0x0af8 = 0x00
+   0x0afc = 0x00
+   0x0af0 = 0xef   flag=0x989680
+   0x0208 = 0x00
+   0x020c = 0x2e
+   0x0210 = 0x00
+   0x0214 = 0x09
+   0x0200 = 0x00
+   0x0204 = 0x00
+   0x0608 = 0x00
+   0x060c = 0x2e
+   0x0610 = 0x00
+   0x0614 = 0x09
+   0x0600 = 0x00
+   0x0604 = 0x00
+   0x0a08 = 0x00
+   0x0a0c = 0x2e
+   0x0a10 = 0x00
+   0x0a14 = 0x09
+   0x0a00 = 0x00
+   0x0a04 = 0x00
+   0x02e4 = 0x00
+   0x02e8 = 0x7f
+   0x02ec = 0x7f
+   0x0218 = 0x3e
+   0x021c = 0x41
+   0x0220 = 0x41
+   0x0224 = 0x7f
+   0x0228 = 0x00
+   0x022c = 0x00
+   0x06e4 = 0x00
+   0x06e8 = 0x7f
+   0x06ec = 0x7f
+   0x0618 = 0x3e
+   0x061c = 0x41
+   0x0620 = 0x41
+   0x0624 = 0x7f
+   0x0628 = 0x00
+   0x062c = 0x00
+   0x0ae4 = 0x00
+   0x0ae8 = 0x7f
+   0x0aec = 0x7f
+   0x0a18 = 0x3e
+   0x0a1c = 0x41
+   0x0a20 = 0x41
+   0x0a24 = 0x7f
+   0x0a28 = 0x00
+   0x0a2c = 0x00
+   0x0264 = 0x01
+   0x0244 = 0xb2
+   0x0310 = 0x35
+   0x02bc = 0xd0
+   0x0254 = 0x00
+   0x0240 = 0x00
+   0x0260 = 0xa8
+   0x0284 = 0x00
+   0x0290 = 0x02
+   0x0664 = 0x01
+   0x0644 = 0xb2
+   0x0710 = 0x35
+   0x06bc = 0xd0
+   0x0654 = 0x00
+   0x0640 = 0x00
+   0x0660 = 0xa8
+   0x0684 = 0x00
+   0x0690 = 0x02
+   0x0a64 = 0x01
+   0x0a44 = 0xb2
+   0x0b10 = 0x35
+   0x0abc = 0xd0
+   0x0a54 = 0x00
+   0x0a40 = 0x00
+   0x0a60 = 0xa8
+   0x0a84 = 0x00
+   0x0a90 = 0x02
+   0x102c = 0xff
+   0x1030 = 0xfe
+   0x1034 = 0xe6
+   0x1038 = 0xdf
+   0x103c = 0xdf
+   0x1040 = 0xfc
+   0x1044 = 0xfb
+   0x1048 = 0x9b
+   0x104c = 0x7f
+   0x1050 = 0xbf
+   0x1054 = 0xff
+   0x1000 = 0x0e
+
+== C-PHY per-frequency register table, dataRate < 2.500 Gbps == @0x140011a60, 123 x {u32 off, u32 val, u32 flag}
+   0x0268 = 0xf1
+   0x0278 = 0x2e
+   0x0288 = 0x20
+   0x026c = 0x3d
+   0x028c = 0x30
+   0x0294 = 0x01
+   0x0270 = 0x00
+   0x0274 = 0x03
+   0x0668 = 0xf1
+   0x0678 = 0x2e
+   0x0688 = 0x20
+   0x066c = 0x3d
+   0x068c = 0x30
+   0x0694 = 0x01
+   0x0670 = 0x00
+   0x0674 = 0x03
+   0x0a68 = 0xf1
+   0x0a78 = 0x2e
+   0x0a88 = 0x20
+   0x0a6c = 0x3d
+   0x0a8c = 0x30
+   0x0a94 = 0x01
+   0x0a70 = 0x00
+   0x0a74 = 0x03   flag=0x989680
+   0x0294 = 0x09
+   0x02f4 = 0x00
+   0x02f8 = 0x00
+   0x02fc = 0x00
+   0x02f0 = 0xef
+   0x0694 = 0x09
+   0x06f4 = 0x00
+   0x06f8 = 0x00
+   0x06fc = 0x00
+   0x06f0 = 0xef
+   0x0a94 = 0x09
+   0x0af4 = 0x00
+   0x0af8 = 0x00
+   0x0afc = 0x00
+   0x0af0 = 0xef   flag=0x989680
+   0x0208 = 0x00
+   0x020c = 0x2a
+   0x0210 = 0x00
+   0x0214 = 0x09
+   0x0200 = 0x00
+   0x0204 = 0x00
+   0x0608 = 0x00
+   0x060c = 0x2a
+   0x0610 = 0x00
+   0x0614 = 0x09
+   0x0600 = 0x00
+   0x0604 = 0x00
+   0x0a08 = 0x00
+   0x0a0c = 0x2a
+   0x0a10 = 0x00
+   0x0a14 = 0x09
+   0x0a00 = 0x00
+   0x0a04 = 0x00
+   0x02e4 = 0x00
+   0x02e8 = 0x7f
+   0x02ec = 0x7f
+   0x0218 = 0x3e
+   0x021c = 0x41
+   0x0220 = 0x41
+   0x0224 = 0x7f
+   0x0228 = 0x00
+   0x022c = 0x00
+   0x06e4 = 0x00
+   0x06e8 = 0x7f
+   0x06ec = 0x7f
+   0x0618 = 0x3e
+   0x061c = 0x41
+   0x0620 = 0x41
+   0x0624 = 0x7f
+   0x0628 = 0x00
+   0x062c = 0x00
+   0x0ae4 = 0x00
+   0x0ae8 = 0x7f
+   0x0aec = 0x7f
+   0x0a18 = 0x3e
+   0x0a1c = 0x41
+   0x0a20 = 0x41
+   0x0a24 = 0x7f
+   0x0a28 = 0x00
+   0x0a2c = 0x00
+   0x0264 = 0x01
+   0x0244 = 0xb2
+   0x0310 = 0x35
+   0x02bc = 0xd0
+   0x0254 = 0x00
+   0x0240 = 0x00
+   0x0260 = 0xa8
+   0x0284 = 0x00
+   0x0290 = 0x02
+   0x0664 = 0x01
+   0x0644 = 0xb2
+   0x0710 = 0x35
+   0x06bc = 0xd0
+   0x0654 = 0x00
+   0x0640 = 0x00
+   0x0660 = 0xa8
+   0x0684 = 0x00
+   0x0690 = 0x02
+   0x0a64 = 0x01
+   0x0a44 = 0xb2
+   0x0b10 = 0x35
+   0x0abc = 0xd0
+   0x0a54 = 0x00
+   0x0a40 = 0x00
+   0x0a60 = 0xa8
+   0x0a84 = 0x00
+   0x0a90 = 0x02
+   0x102c = 0xff
+   0x1030 = 0xfe
+   0x1034 = 0xe2
+   0x1038 = 0xdf
+   0x103c = 0x5f
+   0x1040 = 0xfc
+   0x1044 = 0xfb
+   0x1048 = 0x8b
+   0x104c = 0x7f
+   0x1050 = 0xbf
+   0x1054 = 0xff
+   0x1000 = 0x0e
+
+
+== C-PHY per-frequency register table, dataRate >= 2.500 Gbps == @0x140010c50, 121 x {u32 off, u32 val, u32 flag}
+   This is the table IMX681 actually needs: op_sys_clk 1996.8 MHz on mode 0
+   gives 4.564 Gbps, and 2400 MHz on modes 1-5 gives 5.4857 Gbps, both above
+   the 2.5 Gbps split. Every C-PHY run so far used the < 2.000 Gbps table.
+   Note the irq mask block differs from the other two tables:
+       CTRL11..CTRL21 = ff fe e2 df 5f fc fb 8b 7f bf ff   (vs ..e6 df df.. / ..9b..)
+   0x0268 = 0xf1
+   0x0294 = 0x01
+   0x0278 = 0x20
+   0x0288 = 0x20
+   0x026c = 0x3d
+   0x028c = 0x30
+   0x0270 = 0x00
+   0x0274 = 0x03
+   0x0668 = 0xf1
+   0x0694 = 0x01
+   0x0678 = 0x20
+   0x0688 = 0x20
+   0x066c = 0x3d
+   0x068c = 0x30
+   0x0670 = 0x00
+   0x0674 = 0x03
+   0x0a68 = 0xf1
+   0x0a94 = 0x01
+   0x0a78 = 0x20
+   0x0a88 = 0x20
+   0x0a6c = 0x3d
+   0x0a8c = 0x30
+   0x0a70 = 0x00
+   0x0a74 = 0x03   flag=0x989680
+   0x0294 = 0x09
+   0x02f4 = 0x00
+   0x02f8 = 0x00
+   0x02fc = 0x00
+   0x02f0 = 0xef   flag=0xf4240
+   0x0694 = 0x09
+   0x06f4 = 0x00
+   0x06f8 = 0x00
+   0x06fc = 0x00
+   0x06f0 = 0xef
+   0x0a94 = 0x09
+   0x0af4 = 0x00
+   0x0af8 = 0x00
+   0x0afc = 0x00
+   0x0af0 = 0xef   flag=0x989680
+   0x020c = 0x22
+   0x0208 = 0x00
+   0x0210 = 0x00
+   0x0214 = 0x00
+   0x0204 = 0x00
+   0x02e4 = 0x00
+   0x02e8 = 0x7f
+   0x02ec = 0x7f
+   0x0218 = 0x3e
+   0x021c = 0x41
+   0x0220 = 0x41
+   0x0224 = 0x7f
+   0x0228 = 0x00
+   0x022c = 0x00
+   0x0264 = 0x01
+   0x0244 = 0xb2
+   0x0310 = 0x35
+   0x02bc = 0xd0
+   0x0254 = 0x00
+   0x0240 = 0x00
+   0x0260 = 0xa8
+   0x0284 = 0x00
+   0x0290 = 0x02
+   0x060c = 0x22
+   0x0608 = 0x00
+   0x0610 = 0x00
+   0x0614 = 0x00
+   0x0604 = 0x00
+   0x06e4 = 0x00
+   0x06e8 = 0x7f
+   0x06ec = 0x7f
+   0x0618 = 0x3e
+   0x061c = 0x41
+   0x0620 = 0x41
+   0x0624 = 0x7f
+   0x0628 = 0x00
+   0x062c = 0x00
+   0x0664 = 0x01
+   0x0644 = 0xb2
+   0x0710 = 0x35
+   0x06bc = 0xd0
+   0x0654 = 0x00
+   0x0640 = 0x00
+   0x0660 = 0xa8
+   0x0684 = 0x00
+   0x0690 = 0x02
+   0x0a0c = 0x22
+   0x0a08 = 0x00
+   0x0a10 = 0x00
+   0x0a14 = 0x00
+   0x0a00 = 0x00
+   0x0a04 = 0x00
+   0x0ae4 = 0x00
+   0x0ae8 = 0x7f
+   0x0aec = 0x7f
+   0x0a18 = 0x3e
+   0x0a1c = 0x41
+   0x0a20 = 0x41
+   0x0a24 = 0x7f
+   0x0a28 = 0x00
+   0x0a2c = 0x00
+   0x0a64 = 0x01
+   0x0a44 = 0xb2
+   0x0b10 = 0x35
+   0x0abc = 0xd0
+   0x0a54 = 0x00
+   0x0a40 = 0x00
+   0x0a60 = 0xa8
+   0x0a84 = 0x00
+   0x0a90 = 0x02
+   0x102c = 0xff
+   0x1030 = 0xfe
+   0x1034 = 0xe2
+   0x1038 = 0xdf
+   0x103c = 0x5f
+   0x1040 = 0xfc
+   0x1044 = 0xfb
+   0x1048 = 0x8b
+   0x104c = 0x7f
+   0x1050 = 0xbf
+   0x1054 = 0xff
+   0x1000 = 0x0e
+
+
+================================================================================
+CSIPhyWaitforRx -- Windows' own PHY health criterion    (recovered 2026-08-07)
+================================================================================
+
+FUN_140005dd8 in qccammipicsi8380.sys. Called after CameraMIPIPHY_Start, this is
+the function that decides whether the receiver came up. It is worth having
+because the registers it polls are NOT the ones our driver reads, and the pass
+condition is the opposite of what you would guess.
+
+C-PHY path  (context+0x54 == 1):
+
+    poll   trio0 + 0x158   ->  0x0358      Windows calls it "Lane1Status"
+           trio1 + 0x158   ->  0x0758                      "Lane3Status"
+           trio2 + 0x158   ->  0x0b58                      "Lane5Status"
+
+D-PHY path:
+
+    poll   lane0 + 0xc4    ->  0x00c4      "Lane0Status"
+           lane1 + 0xc4    ->  0x04c4      "Lane2Status"
+           lane2 + 0xc4    ->  0x08c4      "Lane4Status"
+           lane3 + 0xc4    ->  0x0cc4      "Lane6Status"
+           clk   + 0xc4    ->  0x0ec4      "ClkStatus"
+
+This confirms the block geometry recorded above from the other direction: odd
+Windows lane numbers are the C-PHY trios at 0x200/0x600/0xa00, even ones are the
+D-PHY lanes at 0x000/0x400/0x800/0xc00, and 0xe00 is the clock lane.
+
+    SUCCESS IS ALL-ZERO.
+
+        if (s0 == 0 && s1 == 0 && s2 == 0) -> "CSIPhyWaitforRx Succeeded"
+
+    It retries up to 101 times with a 1 ms KeDelayExecutionThread between reads
+    (interval 0xffffffffffffd8f0 = -10000 in 100 ns units), so it will wait
+    about 101 ms before giving up with
+
+        "CSIPhyWaitforRx Failed, Lane1Status = 0x%x, Lane3Status = 0x%x,
+         Lane5Status = 0x%x"
+
+    and returning 7. On success and when called with param_2 == 0 it then sleeps
+    a further 20 ms (0xfffffffffffcf2c0 = -200000).
+
+These registers are a nonzero-means-fault status, and we have never read them.
+For our single active trio the one that matters is 0x0358.
+
+CORRECTION (mission 15): the base is 0x0ace8000, NOT 0x0ace4000. hamoa.dtsi
+declares csiphy0@ace4000, csiphy1@ace6000, csiphy2@ace8000 and csiphy4@acec000,
+but this board enables exactly one and /proc/iomem shows only
+
+    0ace8000-0ace9fff : ace8000.csiphy csiphy@ace8000
+
+Nothing claims 0x0ace4xxx. An ungated read of an unmapped address is the fault
+that SoC-resets this machine with no panic path and no pstore record, so the
+wrong base here is dangerous, not merely wrong. Absolute address for trio 0 is
+0x0ace8358; trios 1 and 2 are 0x0ace8758 and 0x0ace8b58.
+
+MEASURED, mission 15, on the failing 4032x3024 mode: trio 0 reads 0x0000000C for
+1060 of 1089 samples, flickering to 0x0D and briefly 0x00, 29 transitions across
+64 bursts. Trios 1 and 2 are 0x00000000 throughout, consistent with one active
+trio. So the PHY fails Qualcomm's own health test while delivering CRC-clean
+packets. Whether it also reads non-zero during a SUCCESSFUL capture is not yet
+known and is the discriminator worth having.
+
+NO DECODE EXISTS FOR COMMON STATUS2
+-----------------------------------
+Our driver reports CSIPHY STATUS2 = 0x1b at each burst boundary, where
+STATUSn = 0x10b0 + 4n, so STATUS2 = 0x10b8.
+
+There is no decode for it anywhere in qccammipicsi8380.sys. The binary's
+complete set of common-status references is the CsiTestMode dump, which saves
+
+    Csi2CommonStatus1   Csi2CommonStatus3   Csi2CommonStatus6   Csi2CommonStatus8
+
+and nothing else -- 2 is not among them -- and the strings carry no bit names.
+The driver's health decision does not use the common block at all; it uses the
+per-lane registers above.
+
+So the honest position is: STATUS2 remains undecoded, AND the instrument
+Qualcomm actually trusts for this question is one we have never sampled. Read
+0x0ace4358 before spending more effort on 0x1b.
