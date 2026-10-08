@@ -7,11 +7,6 @@
 
 ## Public release
 
-This is a cleaned snapshot of `handoff/new-system` at
-`e5337eca90b64ef4be05ab9a2c6d1bb30d7360fe`, released on 2026-10-07 without
-the original private Git history or assistant-memory bundle. The original
-research repository remains private.
-
 Original research prose, probes, and tooling are MIT-licensed; see [LICENSE](LICENSE).
 Third-party patches, quoted source, driver excerpts, OEM ACPI tables, and
 vendor-derived register data retain their existing rights and provenance.
